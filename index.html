@@ -9,1558 +9,823 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --green: #009B4E;
-      --green-dark: #007A3D;
-      --green-light: #00C062;
-      --green-subtle: #E6F5EE;
-      --navy: #1A1A2E;
-      --navy-mid: #16213E;
-      --navy-light: #252545;
-      --gray-50: #F8FAFB;
-      --gray-100: #F1F4F6;
-      --gray-200: #E2E8EE;
-      --gray-400: #8A9BB0;
-      --gray-600: #4A5568;
-      --gray-800: #1A202C;
+      --green: #009B4E; --green-dark: #007A3D; --green-light: #00C062; --green-subtle: #E6F5EE;
+      --navy: #1A1A2E; --navy-mid: #16213E;
+      --gray-50: #F8FAFB; --gray-100: #F1F4F6; --gray-200: #E2E8EE;
+      --gray-400: #8A9BB0; --gray-600: #4A5568; --gray-800: #1A202C;
       --white: #FFFFFF;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-      --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
-      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
-      --shadow-green: 0 4px 20px rgba(0,155,78,0.25);
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-      --radius-xl: 24px;
-      --transition: 200ms cubic-bezier(0.4,0,0.2,1);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08); --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12); --shadow-green: 0 4px 20px rgba(0,155,78,0.25);
+      --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 24px;
+      --t: 200ms cubic-bezier(0.4,0,0.2,1);
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--white);
-      color: var(--gray-800);
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--gray-800); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
     /* ── NAVBAR ── */
-    .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--gray-200);
-      height: 64px;
-      display: flex; align-items: center;
-    }
-    .navbar-inner {
-      max-width: 1280px; margin: 0 auto; padding: 0 24px;
-      width: 100%; display: flex; align-items: center; gap: 32px;
-    }
-    .nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none; flex-shrink: 0;
-    }
-    .nav-logo-mark {
-      width: 36px; height: 36px; background: var(--green);
-      border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); height: 64px; display: flex; align-items: center; }
+    .navbar-inner { max-width: 1320px; margin: 0 auto; padding: 0 24px; width: 100%; display: flex; align-items: center; gap: 28px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo-mark { width: 36px; height: 36px; background: var(--green); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
     .nav-logo-mark svg { width: 22px; height: 22px; fill: white; }
     .nav-logo-text { font-size: 17px; font-weight: 700; color: var(--navy); letter-spacing: -0.3px; }
     .nav-logo-text span { color: var(--green); }
-
-    .nav-links {
-      display: flex; align-items: center; gap: 4px; list-style: none; flex: 1;
-    }
-    .nav-links a {
-      display: block; padding: 6px 12px; font-size: 14px; font-weight: 500;
-      color: var(--gray-600); text-decoration: none; border-radius: var(--radius-sm);
-      transition: color var(--transition), background var(--transition);
-      white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--green); background: var(--green-subtle); }
-    .nav-links a.active { color: var(--green); background: var(--green-subtle); }
-
-    .nav-search {
-      display: flex; align-items: center; background: var(--gray-100);
-      border: 1px solid var(--gray-200); border-radius: var(--radius-sm);
-      padding: 7px 12px; gap: 8px; min-width: 220px;
-      transition: border-color var(--transition), box-shadow var(--transition);
-    }
-    .nav-search:focus-within {
-      border-color: var(--green); box-shadow: 0 0 0 3px rgba(0,155,78,0.12);
-      background: white;
-    }
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; flex: 1; }
+    .nav-links a { display: block; padding: 6px 12px; font-size: 14px; font-weight: 500; color: var(--gray-600); text-decoration: none; border-radius: var(--r-sm); transition: color var(--t), background var(--t); }
+    .nav-links a:hover, .nav-links a.active { color: var(--green); background: var(--green-subtle); }
+    .nav-search { display: flex; align-items: center; background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: var(--r-sm); padding: 7px 12px; gap: 8px; min-width: 200px; transition: border-color var(--t), box-shadow var(--t); }
+    .nav-search:focus-within { border-color: var(--green); box-shadow: 0 0 0 3px rgba(0,155,78,0.12); background: white; }
     .nav-search svg { width: 16px; height: 16px; color: var(--gray-400); flex-shrink: 0; }
-    .nav-search input {
-      border: none; background: transparent; font-size: 14px;
-      color: var(--gray-800); outline: none; width: 100%;
-    }
+    .nav-search input { border: none; background: transparent; font-size: 14px; color: var(--gray-800); outline: none; width: 100%; }
     .nav-search input::placeholder { color: var(--gray-400); }
-
-    .nav-cta {
-      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
-    }
-    .btn-ghost {
-      padding: 7px 16px; font-size: 14px; font-weight: 500;
-      color: var(--gray-600); background: transparent; border: 1px solid var(--gray-200);
-      border-radius: var(--radius-sm); cursor: pointer; text-decoration: none;
-      transition: all var(--transition); white-space: nowrap;
-    }
-    .btn-ghost:hover { border-color: var(--green); color: var(--green); background: var(--green-subtle); }
-    .btn-primary {
-      padding: 7px 18px; font-size: 14px; font-weight: 600;
-      color: white; background: var(--green); border: 1px solid var(--green);
-      border-radius: var(--radius-sm); cursor: pointer; text-decoration: none;
-      transition: all var(--transition); white-space: nowrap;
-    }
-    .btn-primary:hover { background: var(--green-dark); border-color: var(--green-dark); transform: translateY(-1px); box-shadow: var(--shadow-green); }
+    .btn-primary { padding: 7px 18px; font-size: 14px; font-weight: 600; color: white; background: var(--green); border: none; border-radius: var(--r-sm); cursor: pointer; text-decoration: none; transition: all var(--t); white-space: nowrap; }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: var(--shadow-green); }
 
     /* ── HERO ── */
-    .hero {
-      margin-top: 64px;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, #0F2440 100%);
-      position: relative; overflow: hidden; padding: 96px 24px 80px;
-    }
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(0,155,78,0.07) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(0,155,78,0.07) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-    .hero-glow {
-      position: absolute; width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(0,155,78,0.18) 0%, transparent 70%);
-      right: -100px; top: -100px; pointer-events: none;
-    }
-    .hero-glow-2 {
-      position: absolute; width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(0,155,78,0.1) 0%, transparent 70%);
-      left: -50px; bottom: -50px; pointer-events: none;
-    }
-    .hero-inner {
-      max-width: 1280px; margin: 0 auto; position: relative; z-index: 1;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(0,155,78,0.15); border: 1px solid rgba(0,155,78,0.3);
-      border-radius: 100px; padding: 6px 14px; margin-bottom: 24px;
-      font-size: 13px; font-weight: 500; color: #4FFFAA;
-    }
-    .hero-badge-dot { width: 7px; height: 7px; background: var(--green-light); border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-    .hero h1 {
-      font-size: clamp(32px, 4vw, 52px); font-weight: 800; line-height: 1.15;
-      color: white; letter-spacing: -1.5px; margin-bottom: 20px;
-    }
-    .hero h1 .highlight { color: var(--green-light); }
-    .hero-sub {
-      font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.7;
-      margin-bottom: 36px; max-width: 480px;
-    }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn-hero-primary {
-      padding: 13px 28px; font-size: 15px; font-weight: 600;
-      color: white; background: var(--green); border: none;
-      border-radius: var(--radius-sm); cursor: pointer; text-decoration: none;
-      transition: all var(--transition); display: inline-flex; align-items: center; gap: 8px;
-    }
-    .btn-hero-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: var(--shadow-green); }
-    .btn-hero-secondary {
-      padding: 13px 28px; font-size: 15px; font-weight: 600;
-      color: white; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25);
-      border-radius: var(--radius-sm); cursor: pointer; text-decoration: none;
-      transition: all var(--transition); display: inline-flex; align-items: center; gap: 8px;
-      backdrop-filter: blur(4px);
-    }
-    .btn-hero-secondary:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.4); transform: translateY(-2px); }
-    .hero-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-      background: rgba(255,255,255,0.08); border-radius: var(--radius-lg);
-      overflow: hidden; border: 1px solid rgba(255,255,255,0.1);
-      margin-top: 40px;
-    }
-    .hero-stat {
-      padding: 20px; background: rgba(255,255,255,0.04);
-      display: flex; flex-direction: column; gap: 4px;
-    }
-    .hero-stat-num { font-size: 26px; font-weight: 800; color: white; letter-spacing: -1px; }
+    .hero { margin-top: 64px; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #0F2440 100%); padding: 56px 24px 52px; position: relative; overflow: hidden; }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,155,78,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,155,78,0.07) 1px, transparent 1px); background-size: 60px 60px; }
+    .hero-glow { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,155,78,0.15) 0%, transparent 70%); right: -80px; top: -80px; pointer-events: none; }
+    .hero-inner { max-width: 1320px; margin: 0 auto; position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,155,78,0.15); border: 1px solid rgba(0,155,78,0.3); border-radius: 100px; padding: 5px 14px; margin-bottom: 16px; font-size: 12px; font-weight: 600; color: #4FFFAA; text-transform: uppercase; letter-spacing: 0.5px; }
+    .hero-badge-dot { width: 6px; height: 6px; background: var(--green-light); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+    .hero h1 { font-size: clamp(28px,3.5vw,46px); font-weight: 800; color: white; letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 12px; }
+    .hero h1 span { color: var(--green-light); }
+    .hero-sub { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 500px; line-height: 1.7; }
+    .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+    .hero-stat { text-align: center; }
+    .hero-stat-num { font-size: 28px; font-weight: 800; color: white; letter-spacing: -1px; }
     .hero-stat-num span { color: var(--green-light); }
-    .hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+    .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.45); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
 
-    .hero-visual {
-      display: flex; flex-direction: column; gap: 14px; position: relative;
-    }
-    .hero-card {
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius-md); padding: 20px 24px; backdrop-filter: blur(8px);
-      display: flex; align-items: center; gap: 16px;
-      transition: transform var(--transition);
-    }
-    .hero-card:hover { transform: translateX(6px); }
-    .hero-card-icon {
-      width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .hero-card-icon svg { width: 22px; height: 22px; }
-    .hero-card-content { flex: 1; }
-    .hero-card-title { font-size: 14px; font-weight: 600; color: white; margin-bottom: 2px; }
-    .hero-card-sub { font-size: 12px; color: rgba(255,255,255,0.5); }
-    .hero-card-badge {
-      font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 100px;
-    }
-
-    /* ── TRUST BAR ── */
-    .trust-bar {
-      background: var(--gray-50); border-bottom: 1px solid var(--gray-200);
-      padding: 20px 24px;
-    }
-    .trust-bar-inner {
-      max-width: 1280px; margin: 0 auto;
-      display: flex; align-items: center; gap: 48px; flex-wrap: wrap;
-    }
-    .trust-label { font-size: 12px; font-weight: 600; color: var(--gray-400); text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
-    .trust-logos { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
-    .trust-logo { font-size: 15px; font-weight: 700; color: var(--gray-400); letter-spacing: -0.3px; opacity: 0.7; }
-
-    /* ── SECTION COMMON ── */
-    .section { padding: 80px 24px; }
+    /* ── LAYOUT ── */
+    .section { padding: 0 24px; }
     .section-alt { background: var(--gray-50); }
-    .section-inner { max-width: 1280px; margin: 0 auto; }
-    .section-header { margin-bottom: 48px; }
-    .section-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 700; color: var(--green); text-transform: uppercase;
-      letter-spacing: 1.5px; margin-bottom: 12px;
-    }
-    .section-eyebrow::before {
-      content: ''; display: block; width: 20px; height: 2px; background: var(--green); border-radius: 2px;
-    }
-    .section-title {
-      font-size: clamp(26px, 3vw, 38px); font-weight: 800; color: var(--navy);
-      letter-spacing: -1px; margin-bottom: 14px; line-height: 1.2;
-    }
-    .section-title span { color: var(--green); }
-    .section-desc { font-size: 16px; color: var(--gray-600); max-width: 560px; line-height: 1.7; }
+    .inner { max-width: 1320px; margin: 0 auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+    .eyebrow::before { content: ''; display: block; width: 18px; height: 2px; background: var(--green); border-radius: 2px; }
+    .sec-title { font-size: clamp(22px,2.5vw,32px); font-weight: 800; color: var(--navy); letter-spacing: -0.8px; line-height: 1.2; margin-bottom: 8px; }
+    .sec-title span { color: var(--green); }
+    .sec-desc { font-size: 15px; color: var(--gray-600); line-height: 1.7; }
 
-    /* ── CAPABILITIES ── */
-    .capabilities-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-    }
-    .cap-card {
-      background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-lg);
-      padding: 28px; transition: all var(--transition); cursor: pointer; position: relative; overflow: hidden;
-    }
-    .cap-card::before {
-      content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
-      opacity: 0; transition: opacity var(--transition);
-    }
-    .cap-card:hover { border-color: var(--green); transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .cap-card:hover::before { opacity: 0.03; }
-    .cap-card:hover .cap-icon-wrap { background: var(--green); }
-    .cap-card:hover .cap-icon-wrap svg { color: white; }
-    .cap-card > * { position: relative; z-index: 1; }
-    .cap-icon-wrap {
-      width: 52px; height: 52px; border-radius: var(--radius-md);
-      background: var(--green-subtle); display: flex; align-items: center; justify-content: center;
-      margin-bottom: 18px; transition: background var(--transition);
-    }
-    .cap-icon-wrap svg { width: 26px; height: 26px; color: var(--green); transition: color var(--transition); }
-    .cap-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
-    .cap-desc { font-size: 14px; color: var(--gray-600); line-height: 1.65; margin-bottom: 16px; }
-    .cap-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-    .cap-tag {
-      font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 100px;
-      background: var(--gray-100); color: var(--gray-600);
-    }
-    .cap-arrow {
-      position: absolute; right: 20px; top: 28px;
-      width: 32px; height: 32px; border-radius: 50%; background: var(--gray-100);
-      display: flex; align-items: center; justify-content: center;
-      transition: all var(--transition);
-    }
-    .cap-card:hover .cap-arrow { background: var(--green); }
-    .cap-arrow svg { width: 16px; height: 16px; color: var(--gray-400); transition: color var(--transition); }
-    .cap-card:hover .cap-arrow svg { color: white; }
+    /* ── UNIT TABS ── */
+    .unit-section { background: var(--navy); padding: 28px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .unit-section-inner { max-width: 1320px; margin: 0 auto; }
+    .unit-section-label { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }
+    .unit-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .unit-tab { padding: 9px 18px; border-radius: 100px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.55); transition: all var(--t); white-space: nowrap; }
+    .unit-tab:hover { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.2); }
+    .unit-tab.active { background: var(--green); border-color: var(--green); color: white; box-shadow: var(--shadow-green); }
 
-    /* ── COLLATERALS ── */
-    .collaterals-header-row {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 24px; margin-bottom: 28px; flex-wrap: wrap;
-    }
-    .tabs {
-      display: flex; gap: 4px; background: var(--gray-100); border-radius: var(--radius-sm);
-      padding: 4px;
-    }
-    .tab-btn {
-      padding: 8px 20px; font-size: 14px; font-weight: 600; border: none;
-      border-radius: 6px; cursor: pointer; transition: all var(--transition);
-      background: transparent; color: var(--gray-600);
-      display: flex; align-items: center; gap: 8px;
-    }
-    .tab-btn.active { background: white; color: var(--navy); box-shadow: var(--shadow-sm); }
-    .tab-badge {
-      font-size: 11px; font-weight: 700; padding: 2px 7px;
-      border-radius: 100px; background: var(--green-subtle); color: var(--green);
-    }
-    .tab-badge.internal { background: #FEF3F2; color: #D92D20; }
+    /* ── UNIT HEADER ── */
+    .unit-header { padding: 32px 24px 0; }
+    .unit-header-inner { max-width: 1320px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 28px; border-bottom: 1px solid var(--gray-200); }
+    .unit-header-left { flex: 1; min-width: 280px; }
+    .unit-name { font-size: clamp(20px,2vw,28px); font-weight: 800; color: var(--navy); letter-spacing: -0.5px; margin-bottom: 6px; }
+    .unit-desc { font-size: 14px; color: var(--gray-600); line-height: 1.65; max-width: 560px; }
+    .unit-deck-card { background: var(--green-subtle); border: 1.5px solid var(--green); border-radius: var(--r-md); padding: 18px 22px; display: flex; align-items: center; gap: 16px; min-width: 300px; flex-shrink: 0; transition: all var(--t); cursor: pointer; }
+    .unit-deck-card:hover { background: var(--green); }
+    .unit-deck-card:hover .unit-deck-title { color: white; }
+    .unit-deck-card:hover .unit-deck-sub { color: rgba(255,255,255,0.7); }
+    .unit-deck-card:hover .unit-deck-icon { background: rgba(255,255,255,0.2); color: white; }
+    .unit-deck-card:hover .unit-deck-btn { background: white; color: var(--green); }
+    .unit-deck-icon { width: 44px; height: 44px; border-radius: var(--r-sm); background: var(--green); color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--t); }
+    .unit-deck-icon svg { width: 22px; height: 22px; }
+    .unit-deck-content { flex: 1; }
+    .unit-deck-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; transition: color var(--t); }
+    .unit-deck-sub { font-size: 12px; color: var(--gray-600); transition: color var(--t); }
+    .unit-deck-btn { display: flex; align-items: center; gap: 6px; padding: 7px 14px; background: var(--green); color: white; border-radius: var(--r-sm); font-size: 13px; font-weight: 600; transition: all var(--t); white-space: nowrap; }
+    .unit-deck-btn svg { width: 14px; height: 14px; }
 
-    .filter-search-row {
-      display: flex; align-items: center; gap: 12px; margin-bottom: 28px; flex-wrap: wrap;
-    }
-    .filter-search {
-      display: flex; align-items: center; background: white;
-      border: 1px solid var(--gray-200); border-radius: var(--radius-sm);
-      padding: 9px 14px; gap: 8px; flex: 1; min-width: 200px; max-width: 340px;
-      transition: border-color var(--transition), box-shadow var(--transition);
-    }
-    .filter-search:focus-within { border-color: var(--green); box-shadow: 0 0 0 3px rgba(0,155,78,0.1); }
-    .filter-search svg { width: 16px; height: 16px; color: var(--gray-400); flex-shrink: 0; }
-    .filter-search input { border: none; background: transparent; font-size: 14px; color: var(--gray-800); outline: none; width: 100%; }
+    /* ── VIEW TOGGLE ── */
+    .view-toggle-wrap { padding: 24px 24px 0; }
+    .view-toggle-inner { max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .view-toggle { display: flex; background: var(--gray-100); border-radius: var(--r-sm); padding: 4px; gap: 4px; }
+    .view-btn { padding: 9px 22px; font-size: 14px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; background: transparent; color: var(--gray-600); transition: all var(--t); display: flex; align-items: center; gap: 8px; }
+    .view-btn.active { background: white; color: var(--navy); box-shadow: var(--shadow-sm); }
+    .view-btn svg { width: 16px; height: 16px; }
+    .view-hint { font-size: 13px; color: var(--gray-400); font-style: italic; }
 
-    .filter-pills { display: flex; gap: 6px; flex-wrap: wrap; }
-    .filter-pill {
-      padding: 7px 14px; font-size: 13px; font-weight: 500;
-      border: 1px solid var(--gray-200); border-radius: 100px;
-      background: white; color: var(--gray-600); cursor: pointer;
-      transition: all var(--transition);
-    }
-    .filter-pill:hover { border-color: var(--green); color: var(--green); }
-    .filter-pill.active { background: var(--green); border-color: var(--green); color: white; }
+    /* ── SL VIEW ── */
+    .sl-view { padding: 20px 24px 48px; }
+    .sl-view-inner { max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
 
-    .collaterals-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px;
-    }
-    .coll-card {
-      background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-md);
-      padding: 22px; display: flex; flex-direction: column; gap: 14px;
-      transition: all var(--transition); cursor: pointer;
-    }
-    .coll-card:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: var(--shadow-md); }
-    .coll-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
-    .coll-type-icon {
-      width: 40px; height: 40px; border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .coll-type-icon svg { width: 20px; height: 20px; }
-    .coll-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
-    .badge {
-      font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 100px;
-    }
-    .badge-finance { background: #EFF6FF; color: #1D4ED8; }
-    .badge-supply { background: #F5F3FF; color: #6D28D9; }
-    .badge-cx { background: #FFFBEB; color: #B45309; }
-    .badge-analytics { background: #ECFDF5; color: #065F46; }
-    .badge-digital { background: #FEF2F2; color: #991B1B; }
-    .badge-risk { background: #EEF2FF; color: #3730A3; }
-    .badge-internal { background: #FEF3F2; color: #B42318; }
-    .badge-client { background: #ECFDF5; color: #027A48; }
+    .sl-item { border: 1px solid var(--gray-200); border-radius: var(--r-lg); background: white; overflow: hidden; transition: border-color var(--t), box-shadow var(--t); }
+    .sl-item:hover { border-color: var(--gray-400); }
+    .sl-item.expanded { border-color: var(--green); box-shadow: var(--shadow-md); }
 
-    .coll-title { font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.4; }
-    .coll-desc { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
-    .coll-meta {
-      display: flex; align-items: center; justify-content: space-between;
-      font-size: 12px; color: var(--gray-400); margin-top: auto;
-    }
-    .coll-meta-date { display: flex; align-items: center; gap: 5px; }
-    .coll-meta-date svg { width: 13px; height: 13px; }
-    .coll-actions { display: flex; gap: 8px; }
-    .coll-btn {
-      flex: 1; padding: 8px 14px; font-size: 13px; font-weight: 600;
-      border-radius: var(--radius-sm); cursor: pointer; border: none;
-      transition: all var(--transition); display: flex; align-items: center; justify-content: center; gap: 6px;
-    }
+    .sl-header { display: flex; align-items: center; gap: 16px; padding: 18px 22px; cursor: pointer; user-select: none; }
+    .sl-icon { width: 42px; height: 42px; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--t); }
+    .sl-icon svg { width: 20px; height: 20px; }
+    .sl-item.expanded .sl-icon { background: var(--green) !important; color: white !important; }
+    .sl-header-content { flex: 1; }
+    .sl-name { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+    .sl-short-desc { font-size: 13px; color: var(--gray-400); }
+    .sl-header-right { display: flex; align-items: center; gap: 12px; }
+    .sl-caps-pills { display: flex; gap: 5px; flex-wrap: wrap; }
+    .sl-cap-pill { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 100px; background: var(--gray-100); color: var(--gray-600); white-space: nowrap; }
+    .sl-chevron { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--t); }
+    .sl-chevron svg { width: 16px; height: 16px; color: var(--gray-400); transition: transform var(--t); }
+    .sl-item.expanded .sl-chevron { background: var(--green-subtle); border-color: var(--green); }
+    .sl-item.expanded .sl-chevron svg { color: var(--green); transform: rotate(180deg); }
+
+    .sl-body { max-height: 0; overflow: hidden; transition: max-height 380ms ease; }
+    .sl-item.expanded .sl-body { max-height: 3600px; }
+    .sl-body-inner { padding: 0 22px 22px; border-top: 1px solid var(--gray-100); padding-top: 18px; }
+
+    .sl-colls-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 12px; }
+    .sl-colls { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 24px; }
+
+    .offerings-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 12px; }
+    .offerings-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .offering-item { border: 1px solid var(--gray-200); border-radius: var(--r-md); background: var(--gray-50); overflow: hidden; transition: border-color var(--t); }
+    .offering-item.expanded { border-color: var(--green); background: white; }
+    .offering-header { display: flex; align-items: center; gap: 12px; padding: 13px 16px; cursor: pointer; user-select: none; }
+    .offering-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gray-200); flex-shrink: 0; transition: background var(--t); }
+    .offering-item.expanded .offering-dot { background: var(--green); }
+    .offering-name { font-size: 14px; font-weight: 600; color: var(--navy); flex: 1; }
+    .offering-chev { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all var(--t); }
+    .offering-chev svg { width: 14px; height: 14px; color: var(--gray-400); transition: transform var(--t); }
+    .offering-item.expanded .offering-chev svg { color: var(--green); transform: rotate(180deg); }
+
+    .offering-body { max-height: 0; overflow: hidden; transition: max-height 320ms ease; }
+    .offering-item.expanded .offering-body { max-height: 1600px; }
+    .offering-body-inner { padding: 0 16px 16px; border-top: 1px solid var(--gray-100); padding-top: 14px; }
+    .offering-desc { font-size: 13px; color: var(--gray-600); line-height: 1.65; margin-bottom: 12px; }
+    .sub-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 8px; }
+    .sub-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+    .sub-tag { font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 100px; background: white; border: 1px solid var(--gray-200); color: var(--gray-600); }
+    .offering-colls { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+
+    /* ── CAPABILITY VIEW ── */
+    .cap-view { padding: 24px 24px 48px; }
+    .cap-view-inner { max-width: 1320px; margin: 0 auto; }
+    .cap-group { margin-bottom: 32px; }
+    .cap-group-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .cap-group-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-600); }
+    .cap-group-line { flex: 1; height: 1px; background: var(--gray-200); }
+    .cap-group-count { font-size: 12px; font-weight: 600; color: var(--gray-400); }
+    .cap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+
+    .cap-item { border: 1px solid var(--gray-200); border-radius: var(--r-lg); background: white; overflow: hidden; transition: border-color var(--t), box-shadow var(--t); }
+    .cap-item.expanded { border-color: var(--green); box-shadow: var(--shadow-md); }
+    .cap-header { padding: 18px 20px; cursor: pointer; user-select: none; display: flex; align-items: flex-start; gap: 14px; }
+    .cap-icon { width: 44px; height: 44px; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--t); }
+    .cap-icon svg { width: 22px; height: 22px; }
+    .cap-item.expanded .cap-icon { background: var(--green) !important; color: white !important; }
+    .cap-header-content { flex: 1; }
+    .cap-name { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .cap-preview { font-size: 12px; color: var(--gray-400); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .cap-chev { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--t); margin-top: 2px; }
+    .cap-chev svg { width: 14px; height: 14px; color: var(--gray-400); transition: transform var(--t); }
+    .cap-item.expanded .cap-chev { background: var(--green-subtle); border-color: var(--green); }
+    .cap-item.expanded .cap-chev svg { color: var(--green); transform: rotate(180deg); }
+
+    .cap-body { max-height: 0; overflow: hidden; transition: max-height 350ms ease; }
+    .cap-item.expanded .cap-body { max-height: 1800px; }
+    .cap-body-inner { padding: 0 20px 20px; border-top: 1px solid var(--gray-100); padding-top: 16px; }
+    .cap-full-desc { font-size: 13px; color: var(--gray-600); line-height: 1.65; margin-bottom: 14px; }
+    .cap-colls { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+
+    /* ── COLLATERAL CARD (inline) ── */
+    .coll-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--r-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; transition: all var(--t); cursor: pointer; }
+    .coll-card:hover { border-color: var(--green); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .coll-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .coll-badges { display: flex; gap: 5px; flex-wrap: wrap; }
+    .badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.3px; }
+    .b-battlecard  { background: #FEF2F2; color: #DC2626; }
+    .b-firstcall   { background: #EFF6FF; color: #2563EB; }
+    .b-casestudy   { background: #ECFDF5; color: #059669; }
+    .b-twopager    { background: #F5F3FF; color: #7C3AED; }
+    .b-demo        { background: #FFFBEB; color: #D97706; }
+    .b-playbook    { background: #ECFEFF; color: #0891B2; }
+    .b-winloss     { background: #FFF7ED; color: #EA580C; }
+    .b-capdeck     { background: #EFF6FF; color: #1E40AF; }
+    .b-internal    { background: #FEF3F2; color: #B42318; }
+    .b-client      { background: #ECFDF5; color: #027A48; }
+    .coll-title    { font-size: 13px; font-weight: 700; color: var(--navy); line-height: 1.4; }
+    .coll-meta     { display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: var(--gray-400); }
+    .coll-actions  { display: flex; gap: 6px; }
+    .coll-btn { flex: 1; padding: 6px 10px; font-size: 12px; font-weight: 600; border-radius: var(--r-sm); cursor: pointer; border: none; transition: all var(--t); display: flex; align-items: center; justify-content: center; gap: 5px; }
+    .coll-btn svg { width: 12px; height: 12px; }
     .coll-btn-view { background: var(--green-subtle); color: var(--green); }
     .coll-btn-view:hover { background: var(--green); color: white; }
-    .coll-btn-download { background: var(--gray-100); color: var(--gray-600); }
-    .coll-btn-download:hover { background: var(--gray-200); }
+    .coll-btn-dl { background: var(--gray-100); color: var(--gray-600); }
+    .coll-btn-dl:hover { background: var(--gray-200); }
+    .no-colls { font-size: 13px; color: var(--gray-400); font-style: italic; padding: 8px 0; }
 
     /* ── CASE STUDIES ── */
-    .carousel-wrap { position: relative; overflow: hidden; }
-    .carousel-track {
-      display: flex; gap: 24px;
-      transition: transform 450ms cubic-bezier(0.4,0,0.2,1);
-    }
-    .cs-card {
-      background: white; border: 1px solid var(--gray-200); border-radius: var(--radius-xl);
-      overflow: hidden; min-width: calc(33.33% - 16px); flex-shrink: 0;
-      transition: all var(--transition); cursor: pointer;
-    }
+    .cs-section { padding: 80px 24px; }
+    .cs-inner { max-width: 1320px; margin: 0 auto; }
+    .cs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+    .cs-card { border: 1px solid var(--gray-200); border-radius: var(--r-xl); overflow: hidden; transition: all var(--t); cursor: pointer; background: white; }
     .cs-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--green); }
-    .cs-card-img {
-      height: 180px; position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .cs-card-img-overlay {
-      position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(26,26,46,0.85) 100%);
-    }
-    .cs-card-body { padding: 24px; }
-    .cs-meta {
-      display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
-    }
-    .cs-industry {
-      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
-      padding: 3px 9px; border-radius: 100px;
-    }
-    .cs-result {
-      font-size: 12px; font-weight: 600; color: var(--green);
-      display: flex; align-items: center; gap: 4px;
-    }
-    .cs-result svg { width: 14px; height: 14px; }
-    .cs-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.4; }
-    .cs-desc { font-size: 14px; color: var(--gray-600); line-height: 1.65; margin-bottom: 16px; }
-    .cs-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-      padding: 14px; background: var(--gray-50); border-radius: var(--radius-md);
-      margin-bottom: 16px;
-    }
-    .cs-stat-item { text-align: center; }
-    .cs-stat-val { font-size: 20px; font-weight: 800; color: var(--navy); letter-spacing: -0.5px; }
+    .cs-img { height: 140px; display: flex; align-items: center; justify-content: center; position: relative; }
+    .cs-img-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(26,26,46,0.8) 100%); }
+    .cs-body { padding: 22px; }
+    .cs-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .cs-industry { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 100px; }
+    .cs-result { font-size: 12px; font-weight: 600; color: var(--green); }
+    .cs-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.4; }
+    .cs-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; background: var(--gray-50); border-radius: var(--r-md); padding: 12px; margin-bottom: 14px; }
+    .cs-stat-val { font-size: 18px; font-weight: 800; color: var(--navy); }
     .cs-stat-val span { color: var(--green); }
-    .cs-stat-lbl { font-size: 11px; color: var(--gray-400); font-weight: 500; margin-top: 2px; }
-    .cs-read-more {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 14px; font-weight: 600; color: var(--green);
-      text-decoration: none; transition: gap var(--transition);
-    }
-    .cs-read-more:hover { gap: 10px; }
-    .cs-read-more svg { width: 16px; height: 16px; }
+    .cs-stat-lbl { font-size: 11px; color: var(--gray-400); font-weight: 500; }
+    .cs-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--green); text-decoration: none; }
+    .cs-link svg { width: 14px; height: 14px; }
 
-    .carousel-nav {
-      display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 36px;
-    }
-    .carousel-btn {
-      width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--gray-200);
-      background: white; cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: all var(--transition); color: var(--gray-600);
-    }
-    .carousel-btn:hover { background: var(--green); border-color: var(--green); color: white; }
-    .carousel-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-    .carousel-btn svg { width: 18px; height: 18px; }
-    .carousel-dots { display: flex; gap: 8px; }
-    .dot {
-      width: 8px; height: 8px; border-radius: 50%; background: var(--gray-200);
-      cursor: pointer; transition: all var(--transition);
-    }
-    .dot.active { background: var(--green); width: 24px; border-radius: 4px; }
+    /* ── CTA / FOOTER ── */
+    .cta-section { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); padding: 72px 24px; text-align: center; position: relative; overflow: hidden; }
+    .cta-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
+    .cta-inner h2 { font-size: clamp(24px,3vw,36px); font-weight: 800; color: white; letter-spacing: -1px; margin-bottom: 12px; }
+    .cta-inner p { font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 28px; line-height: 1.7; }
+    .cta-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn-cta-primary { padding: 13px 28px; font-size: 15px; font-weight: 600; color: white; background: var(--green); border: none; border-radius: var(--r-sm); cursor: pointer; text-decoration: none; transition: all var(--t); display: inline-flex; align-items: center; gap: 8px; }
+    .btn-cta-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: var(--shadow-green); }
+    .btn-cta-ghost { padding: 13px 28px; font-size: 15px; font-weight: 600; color: white; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); border-radius: var(--r-sm); cursor: pointer; text-decoration: none; transition: all var(--t); display: inline-flex; align-items: center; gap: 8px; }
+    .btn-cta-ghost:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
 
-    /* ── CTA BANNER ── */
-    .cta-banner {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-      padding: 72px 24px; text-align: center; position: relative; overflow: hidden;
-    }
-    .cta-banner-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
-    .cta-banner h2 { font-size: clamp(24px, 3vw, 38px); font-weight: 800; color: white; letter-spacing: -1px; margin-bottom: 14px; }
-    .cta-banner p { font-size: 16px; color: rgba(255,255,255,0.6); margin-bottom: 32px; line-height: 1.7; }
-    .cta-banner-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-
-    /* ── FOOTER ── */
-    .footer {
-      background: var(--navy); color: rgba(255,255,255,0.6);
-      padding: 56px 24px 28px;
-    }
-    .footer-inner { max-width: 1280px; margin: 0 auto; }
-    .footer-top {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px;
-    }
-    .footer-brand { display: flex; flex-direction: column; gap: 14px; }
-    .footer-logo {
-      display: flex; align-items: center; gap: 10px; text-decoration: none;
-    }
-    .footer-logo-mark {
-      width: 34px; height: 34px; background: var(--green);
-      border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    }
+    .footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 56px 24px 28px; }
+    .footer-inner { max-width: 1320px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-bottom: 14px; }
+    .footer-logo-mark { width: 34px; height: 34px; background: var(--green); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
     .footer-logo-mark svg { width: 20px; height: 20px; fill: white; }
     .footer-logo-text { font-size: 16px; font-weight: 700; color: white; }
-    .footer-tagline { font-size: 14px; line-height: 1.65; max-width: 260px; }
-    .footer-social { display: flex; gap: 10px; margin-top: 4px; }
-    .social-btn {
-      width: 36px; height: 36px; border-radius: 8px;
-      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
-      display: flex; align-items: center; justify-content: center; cursor: pointer;
-      transition: all var(--transition); color: rgba(255,255,255,0.5); text-decoration: none;
-    }
-    .social-btn:hover { background: var(--green); border-color: var(--green); color: white; }
-    .social-btn svg { width: 16px; height: 16px; }
-
-    .footer-col h4 { font-size: 13px; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
-    .footer-links { display: flex; flex-direction: column; gap: 10px; list-style: none; }
-    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color var(--transition); }
+    .footer-tagline { font-size: 14px; line-height: 1.65; max-width: 260px; margin-bottom: 18px; }
+    .footer-col h4 { font-size: 12px; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color var(--t); }
     .footer-links a:hover { color: var(--green-light); }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-    }
-    .footer-copy { font-size: 13px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 22px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px; }
     .footer-legal { display: flex; gap: 20px; }
-    .footer-legal a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color var(--transition); }
+    .footer-legal a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color var(--t); }
     .footer-legal a:hover { color: rgba(255,255,255,0.7); }
 
-    /* ── HIDDEN TAB CONTENT ── */
-    .tab-pane { display: none; }
-    .tab-pane.active { display: block; }
-
-    /* ── CARD HIDDEN ON FILTER ── */
-    .coll-card.hidden { display: none; }
-
     /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-      .hero-visual { display: none; }
-      .capabilities-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .cs-card { min-width: calc(50% - 12px); }
-    }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-search { display: none; }
-      .capabilities-grid { grid-template-columns: 1fr; }
-      .footer-top { grid-template-columns: 1fr; gap: 28px; }
-      .cs-card { min-width: 85%; }
-      .section { padding: 56px 16px; }
-      .hero { padding: 72px 16px 60px; }
-      .collaterals-header-row { flex-direction: column; }
-      .hero-stats { grid-template-columns: 1fr 1fr 1fr; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    }
+    @media (max-width: 1024px) { .cs-grid { grid-template-columns: repeat(2,1fr); } .footer-top { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) { .nav-links, .nav-search { display: none; } .hero-inner { flex-direction: column; gap: 28px; } .cs-grid { grid-template-columns: 1fr; } .footer-top { grid-template-columns: 1fr; gap: 28px; } .sl-header { flex-wrap: wrap; } .sl-caps-pills { display: none; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════ NAVBAR ══════════════════════════════ -->
+<!-- NAVBAR -->
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="navbar-inner">
-    <a href="#" class="nav-logo" aria-label="Genpact Sales Hub home">
+    <a href="#" class="nav-logo" aria-label="Genpact Sales Hub">
       <div class="nav-logo-mark">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-        </svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
       </div>
       <span class="nav-logo-text">Gen<span>pact</span> Sales Hub</span>
     </a>
-
     <ul class="nav-links" role="list">
       <li><a href="#" class="active">Home</a></li>
-      <li><a href="#capabilities">Capabilities</a></li>
-      <li><a href="#collaterals">Collaterals</a></li>
       <li><a href="#case-studies">Case Studies</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="mailto:salesenablement@genpact.com">Contact</a></li>
     </ul>
-
     <div class="nav-search" role="search">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-      </svg>
-      <input type="search" placeholder="Search capabilities, collaterals…" aria-label="Search" id="navSearch" />
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="search" placeholder="Search collaterals…" aria-label="Search collaterals" id="globalSearch" />
     </div>
-
-    <div class="nav-cta">
-      <a href="#collaterals" class="btn-ghost">Browse Collaterals</a>
-      <a href="#contact" class="btn-primary">Request Access</a>
-    </div>
+    <a href="mailto:salesenablement@genpact.com" class="btn-primary">Request Access</a>
   </div>
 </nav>
 
-<!-- ══════════════════════════════ HERO ══════════════════════════════ -->
-<section class="hero" aria-label="Hero section">
+<!-- HERO -->
+<section class="hero">
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="hero-glow" aria-hidden="true"></div>
-  <div class="hero-glow-2" aria-hidden="true"></div>
   <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        Sales Enablement Portal — FY 2025
-      </div>
-      <h1>Transforming Business<br/> with <span class="highlight">Intelligence</span></h1>
-      <p class="hero-sub">Your single source of truth for Genpact's capabilities, client-ready collaterals, battlecards, and case studies — built for the modern sales team.</p>
-      <div class="hero-actions">
-        <a href="#capabilities" class="btn-hero-primary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          Explore Capabilities
-        </a>
-        <a href="#collaterals" class="btn-hero-secondary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          Access Collaterals
-        </a>
-      </div>
-      <div class="hero-stats" role="list" aria-label="Genpact key metrics">
-        <div class="hero-stat" role="listitem">
-          <div class="hero-stat-num">125<span>K+</span></div>
-          <div class="hero-stat-label">Professionals Globally</div>
-        </div>
-        <div class="hero-stat" role="listitem">
-          <div class="hero-stat-num">30<span>+</span></div>
-          <div class="hero-stat-label">Countries Served</div>
-        </div>
-        <div class="hero-stat" role="listitem">
-          <div class="hero-stat-num">4000<span>+</span></div>
-          <div class="hero-stat-label">Global Clients</div>
-        </div>
-      </div>
+    <div>
+      <div class="hero-badge"><span class="hero-badge-dot"></span>Sales Enablement Portal — FY 2025</div>
+      <h1>Genpact <span>Sales Hub</span></h1>
+      <p class="hero-sub">Unit-specific capability decks, service line offerings, and client-ready collaterals — one source of truth for your sales conversations.</p>
     </div>
+    <div class="hero-stats" role="list">
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num">125<span>K+</span></div><div class="hero-stat-label">Professionals</div></div>
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num">30<span>+</span></div><div class="hero-stat-label">Countries</div></div>
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num">4000<span>+</span></div><div class="hero-stat-label">Clients</div></div>
+    </div>
+  </div>
+</section>
 
-    <div class="hero-visual" aria-hidden="true">
-      <div class="hero-card">
-        <div class="hero-card-icon" style="background:rgba(0,155,78,0.15)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#00C062" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+<!-- DYNAMIC APP ROOT -->
+<div id="app"></div>
+
+<!-- CASE STUDIES -->
+<section class="cs-section" id="case-studies" aria-labelledby="cs-heading">
+  <div class="cs-inner">
+    <div class="eyebrow">Client Impact</div>
+    <h2 class="sec-title" id="cs-heading">Featured <span>Case Studies</span></h2>
+    <p class="sec-desc">Real-world transformation stories across units and service lines.</p>
+    <div class="cs-grid">
+      <div class="cs-card">
+        <div class="cs-img" style="background:linear-gradient(135deg,#1A1A2E,#0F2440)">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="30" stroke="rgba(0,155,78,0.35)" stroke-width="2"/><path d="M32 18v14l9 5" stroke="#009B4E" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <div class="cs-img-overlay"></div>
         </div>
-        <div class="hero-card-content">
-          <div class="hero-card-title">F&A Cost Reduction Deal</div>
-          <div class="hero-card-sub">Global Banking Client • Q4 2024</div>
+        <div class="cs-body">
+          <div class="cs-meta"><span class="cs-industry" style="background:#EFF6FF;color:#1D4ED8">Banking & FS</span><span class="cs-result">42% Cost Reduction</span></div>
+          <h3 class="cs-title">Global Bank: Intelligent F&A Transformation</h3>
+          <div class="cs-stats">
+            <div><div class="cs-stat-val">42<span>%</span></div><div class="cs-stat-lbl">Cost Reduction</div></div>
+            <div><div class="cs-stat-val">60<span>%</span></div><div class="cs-stat-lbl">Faster Close</div></div>
+            <div><div class="cs-stat-val">$85<span>M</span></div><div class="cs-stat-lbl">Savings</div></div>
+          </div>
+          <a href="#" class="cs-link">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
-        <span class="hero-card-badge" style="background:rgba(0,192,98,0.15);color:#4FFFAA">Won</span>
       </div>
-      <div class="hero-card">
-        <div class="hero-card-icon" style="background:rgba(99,102,241,0.15)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+      <div class="cs-card">
+        <div class="cs-img" style="background:linear-gradient(135deg,#1A0A30,#2D1A4E)">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="16" y="16" width="32" height="32" rx="4" stroke="rgba(109,40,217,0.4)" stroke-width="2"/><path d="M24 32h16M32 24v16" stroke="#8B5CF6" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <div class="cs-img-overlay"></div>
         </div>
-        <div class="hero-card-content">
-          <div class="hero-card-title">Supply Chain Transformation</div>
-          <div class="hero-card-sub">Fortune 500 Retailer • Q3 2024</div>
+        <div class="cs-body">
+          <div class="cs-meta"><span class="cs-industry" style="background:#F5F3FF;color:#6D28D9">Consumer & Retail</span><span class="cs-result">35% Inventory Cut</span></div>
+          <h3 class="cs-title">Fortune 500 Retailer: AI-Led Supply Chain Overhaul</h3>
+          <div class="cs-stats">
+            <div><div class="cs-stat-val">35<span>%</span></div><div class="cs-stat-lbl">Inventory</div></div>
+            <div><div class="cs-stat-val">28<span>%</span></div><div class="cs-stat-lbl">Fill Rate</div></div>
+            <div><div class="cs-stat-val">$120<span>M</span></div><div class="cs-stat-lbl">Working Cap</div></div>
+          </div>
+          <a href="#" class="cs-link">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
-        <span class="hero-card-badge" style="background:rgba(99,102,241,0.15);color:#818CF8">Active</span>
       </div>
-      <div class="hero-card">
-        <div class="hero-card-icon" style="background:rgba(245,158,11,0.15)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      <div class="cs-card">
+        <div class="cs-img" style="background:linear-gradient(135deg,#001A1A,#003333)">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="16" stroke="rgba(245,158,11,0.4)" stroke-width="2"/><path d="M32 20v12l8 4" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <div class="cs-img-overlay"></div>
         </div>
-        <div class="hero-card-content">
-          <div class="hero-card-title">CX Modernization Program</div>
-          <div class="hero-card-sub">Telecom Enterprise • Q1 2025</div>
+        <div class="cs-body">
+          <div class="cs-meta"><span class="cs-industry" style="background:#FFFBEB;color:#B45309">Healthcare</span><span class="cs-result">+22 NPS Points</span></div>
+          <h3 class="cs-title">Healthcare Leader: CX Modernisation at Scale</h3>
+          <div class="cs-stats">
+            <div><div class="cs-stat-val">38<span>%</span></div><div class="cs-stat-lbl">AHT Drop</div></div>
+            <div><div class="cs-stat-val">+22</div><div class="cs-stat-lbl">NPS Gain</div></div>
+            <div><div class="cs-stat-val">91<span>%</span></div><div class="cs-stat-lbl">CSAT</div></div>
+          </div>
+          <a href="#" class="cs-link">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
-        <span class="hero-card-badge" style="background:rgba(245,158,11,0.15);color:#F59E0B">Pipeline</span>
-      </div>
-      <div class="hero-card">
-        <div class="hero-card-icon" style="background:rgba(239,68,68,0.15)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <div class="hero-card-content">
-          <div class="hero-card-title">Analytics & AI Platform</div>
-          <div class="hero-card-sub">Insurance Leader • Q2 2025</div>
-        </div>
-        <span class="hero-card-badge" style="background:rgba(239,68,68,0.15);color:#F87171">New</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════ TRUST BAR ══════════════════════════════ -->
-<div class="trust-bar">
-  <div class="trust-bar-inner">
-    <span class="trust-label">Trusted By</span>
-    <div class="trust-logos">
-      <span class="trust-logo">AXA</span>
-      <span class="trust-logo">Halliburton</span>
-      <span class="trust-logo">Walmart</span>
-      <span class="trust-logo">Cigna</span>
-      <span class="trust-logo">Novartis</span>
-      <span class="trust-logo">Merck</span>
-      <span class="trust-logo">StandardChartered</span>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════ CAPABILITIES ══════════════════════════════ -->
-<section class="section" id="capabilities" aria-labelledby="cap-heading">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-eyebrow">Capabilities & Offerings</div>
-      <h2 class="section-title" id="cap-heading">What We <span>Deliver</span></h2>
-      <p class="section-desc">Six core practice areas where Genpact combines domain expertise, digital technology, and AI to drive measurable outcomes for our clients.</p>
-    </div>
-    <div class="capabilities-grid">
-
-      <!-- Finance & Accounting -->
-      <div class="cap-card" tabindex="0" role="button" aria-label="Finance & Accounting capability">
-        <div class="cap-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
-        <div class="cap-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        </div>
-        <h3 class="cap-title">Finance & Accounting</h3>
-        <p class="cap-desc">End-to-end F&A transformation covering Record-to-Report, Order-to-Cash, and Procure-to-Pay — powered by AI and intelligent automation.</p>
-        <div class="cap-tags">
-          <span class="cap-tag">R2R</span>
-          <span class="cap-tag">O2C</span>
-          <span class="cap-tag">P2P</span>
-          <span class="cap-tag">FP&A</span>
-        </div>
-      </div>
-
-      <!-- Supply Chain -->
-      <div class="cap-card" tabindex="0" role="button" aria-label="Supply Chain capability">
-        <div class="cap-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
-        <div class="cap-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-        </div>
-        <h3 class="cap-title">Supply Chain</h3>
-        <p class="cap-desc">Intelligent supply chain management from demand planning to last-mile delivery, leveraging predictive analytics and real-time visibility platforms.</p>
-        <div class="cap-tags">
-          <span class="cap-tag">Demand Planning</span>
-          <span class="cap-tag">Logistics</span>
-          <span class="cap-tag">Procurement</span>
-        </div>
-      </div>
-
-      <!-- Customer Experience -->
-      <div class="cap-card" tabindex="0" role="button" aria-label="Customer Experience capability">
-        <div class="cap-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
-        <div class="cap-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <h3 class="cap-title">Customer Experience</h3>
-        <p class="cap-desc">Omni-channel CX solutions combining human empathy with AI — from contact centre transformation to customer lifecycle management and self-service.</p>
-        <div class="cap-tags">
-          <span class="cap-tag">Contact Centre</span>
-          <span class="cap-tag">CRM</span>
-          <span class="cap-tag">Self-Service</span>
-        </div>
-      </div>
-
-      <!-- Analytics & AI -->
-      <div class="cap-card" tabindex="0" role="button" aria-label="Analytics & AI capability">
-        <div class="cap-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
-        <div class="cap-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <h3 class="cap-title">Analytics & AI</h3>
-        <p class="cap-desc">Data-to-insights platforms, machine learning, generative AI, and advanced analytics that turn enterprise data into competitive advantage at scale.</p>
-        <div class="cap-tags">
-          <span class="cap-tag">Gen AI</span>
-          <span class="cap-tag">ML Ops</span>
-          <span class="cap-tag">Data Platform</span>
-        </div>
-      </div>
-
-      <!-- Digital Operations -->
-      <div class="cap-card" tabindex="0" role="button" aria-label="Digital Operations capability">
-        <div class="cap-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
-        <div class="cap-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M12 2v2M12 20v2M2 12H4M20 12h2"/></svg>
-        </div>
-        <h3 class="cap-title">Digital Operations</h3>
-        <p class="cap-desc">Intelligent automation, RPA, cloud transformation, and digital-first operating models that modernise enterprise operations end-to-end.</p>
-        <div class="cap-tags">
-          <span class="cap-tag">RPA</span>
-          <span class="cap-tag">Cloud</span>
-          <span class="cap-tag">Automation</span>
-        </div>
-      </div>
-
-      <!-- Risk & Compliance -->
-      <div class="cap-card" tabindex="0" role="button" aria-label="Risk & Compliance capability">
-        <div class="cap-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
-        <div class="cap-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3 class="cap-title">Risk & Compliance</h3>
-        <p class="cap-desc">Enterprise risk management, regulatory compliance, KYC/AML, financial crime, and internal audit services built for regulated industries.</p>
-        <div class="cap-tags">
-          <span class="cap-tag">KYC/AML</span>
-          <span class="cap-tag">RegTech</span>
-          <span class="cap-tag">Internal Audit</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════ COLLATERALS LIBRARY ══════════════════════════════ -->
-<section class="section section-alt" id="collaterals" aria-labelledby="coll-heading">
-  <div class="section-inner">
-    <div class="collaterals-header-row">
-      <div>
-        <div class="section-eyebrow">Resource Library</div>
-        <h2 class="section-title" id="coll-heading">Sales <span>Collaterals</span></h2>
-        <p class="section-desc">Access internal enablement tools and client-ready assets — all in one place.</p>
-      </div>
-      <div class="tabs" role="tablist" aria-label="Collateral type">
-        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-internal" id="btn-internal" onclick="switchTab('internal')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-          Internal
-          <span class="tab-badge internal">4</span>
-        </button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-client" id="btn-client" onclick="switchTab('client')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-          Client-Facing
-          <span class="tab-badge">8</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Filter + Search -->
-    <div class="filter-search-row">
-      <div class="filter-search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        <input type="search" placeholder="Search collaterals…" aria-label="Search collaterals" id="collSearch" oninput="filterCollaterals()" />
-      </div>
-      <div class="filter-pills" role="group" aria-label="Filter by category">
-        <button class="filter-pill active" onclick="setFilter('all', this)">All</button>
-        <button class="filter-pill" onclick="setFilter('finance', this)">Finance</button>
-        <button class="filter-pill" onclick="setFilter('supply', this)">Supply Chain</button>
-        <button class="filter-pill" onclick="setFilter('cx', this)">CX</button>
-        <button class="filter-pill" onclick="setFilter('analytics', this)">Analytics</button>
-        <button class="filter-pill" onclick="setFilter('digital', this)">Digital</button>
-        <button class="filter-pill" onclick="setFilter('risk', this)">Risk</button>
-      </div>
-    </div>
-
-    <!-- Internal Tab -->
-    <div class="tab-pane active" id="tab-internal" role="tabpanel" aria-labelledby="btn-internal">
-      <div class="collaterals-grid" id="internal-grid">
-
-        <div class="coll-card" data-cat="finance" tabindex="0">
-          <div class="coll-card-top">
-            <div class="coll-type-icon" style="background:#EFF6FF">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div class="coll-badges">
-              <span class="badge badge-internal">Internal</span>
-              <span class="badge badge-finance">Finance</span>
-            </div>
-          </div>
-          <h3 class="coll-title">F&A Battlecard — Q1 2025</h3>
-          <p class="coll-desc">Competitive positioning vs. Accenture, EY, and WNS across F&A services. Includes objection handling scripts and differentiators.</p>
-          <div class="coll-meta">
-            <span class="coll-meta-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Updated Jan 28, 2025
-            </span>
-            <span style="font-size:12px;font-weight:600;color:var(--green)">PDF · 2.4 MB</span>
-          </div>
-          <div class="coll-actions">
-            <button class="coll-btn coll-btn-view" onclick="viewCollateral(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              View
-            </button>
-            <button class="coll-btn coll-btn-download">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download
-            </button>
-          </div>
-        </div>
-
-        <div class="coll-card" data-cat="supply" tabindex="0">
-          <div class="coll-card-top">
-            <div class="coll-type-icon" style="background:#F5F3FF">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div class="coll-badges">
-              <span class="badge badge-internal">Internal</span>
-              <span class="badge badge-supply">Supply Chain</span>
-            </div>
-          </div>
-          <h3 class="coll-title">Supply Chain vs SAP Competitor Battlecard</h3>
-          <p class="coll-desc">Head-to-head comparison against SAP, Blue Yonder, and Manhattan Associates. Includes pricing leverage points and win themes.</p>
-          <div class="coll-meta">
-            <span class="coll-meta-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Updated Feb 3, 2025
-            </span>
-            <span style="font-size:12px;font-weight:600;color:var(--green)">PDF · 1.8 MB</span>
-          </div>
-          <div class="coll-actions">
-            <button class="coll-btn coll-btn-view" onclick="viewCollateral(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              View
-            </button>
-            <button class="coll-btn coll-btn-download">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download
-            </button>
-          </div>
-        </div>
-
-        <div class="coll-card" data-cat="analytics" tabindex="0">
-          <div class="coll-card-top">
-            <div class="coll-type-icon" style="background:#ECFDF5">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            </div>
-            <div class="coll-badges">
-              <span class="badge badge-internal">Internal</span>
-              <span class="badge badge-analytics">Analytics</span>
-            </div>
-          </div>
-          <h3 class="coll-title">Analytics & AI Win/Loss Analysis — Q3 2024</h3>
-          <p class="coll-desc">Lessons from 14 deals across AI analytics. Key objections, lost reasons, and winning strategies with recommended talk tracks per persona.</p>
-          <div class="coll-meta">
-            <span class="coll-meta-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Updated Dec 12, 2024
-            </span>
-            <span style="font-size:12px;font-weight:600;color:var(--green)">PPTX · 4.1 MB</span>
-          </div>
-          <div class="coll-actions">
-            <button class="coll-btn coll-btn-view" onclick="viewCollateral(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              View
-            </button>
-            <button class="coll-btn coll-btn-download">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download
-            </button>
-          </div>
-        </div>
-
-        <div class="coll-card" data-cat="digital" tabindex="0">
-          <div class="coll-card-top">
-            <div class="coll-type-icon" style="background:#FEF2F2">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#991B1B" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><line x1="12" y1="17" x2="12" y2="17"/></svg>
-            </div>
-            <div class="coll-badges">
-              <span class="badge badge-internal">Internal</span>
-              <span class="badge badge-digital">Digital</span>
-            </div>
-          </div>
-          <h3 class="coll-title">Digital Operations Internal Playbook 2025</h3>
-          <p class="coll-desc">Complete sales playbook for Digital Ops deals — deal qualification, stakeholder mapping, commercial model guidance, and partner ecosystem.</p>
-          <div class="coll-meta">
-            <span class="coll-meta-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Updated Feb 10, 2025
-            </span>
-            <span style="font-size:12px;font-weight:600;color:var(--green)">PDF · 6.2 MB</span>
-          </div>
-          <div class="coll-actions">
-            <button class="coll-btn coll-btn-view" onclick="viewCollateral(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              View
-            </button>
-            <button class="coll-btn coll-btn-download">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download
-            </button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Client-Facing Tab -->
-    <div class="tab-pane" id="tab-client" role="tabpanel" aria-labelledby="btn-client">
-      <div class="collaterals-grid" id="client-grid">
-
-        <div class="coll-card" data-cat="finance" tabindex="0">
-          <div class="coll-card-top">
-            <div class="coll-type-icon" style="background:#EFF6FF">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
-            </div>
-            <div class="coll-badges">
-              <span class="badge badge-client">Client-Facing</span>
-              <span class="badge badge-finance">Finance</span>
-            </div>
-          </div>
-          <h3 class="coll-title">F&A First Call Deck — 2025</h3>
-          <p class="coll-desc">Executive-ready 12-slide introduction to Genpact's Finance & Accounting practice. Tailored for CFO and VP Finance-level conversations.</p>
-          <div class="coll-meta">
-            <span class="coll-meta-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Updated Feb 1, 2025
-            </span>
-            <span style="font-size:12px;font-weight:600;color:var(--green)">PPTX · 5.8 MB</span>
-          </div>
-          <div class="coll-actions">
-            <button class="coll-btn coll-btn-view" onclick="viewCollateral(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              View
-            </button>
-            <button class="coll-btn coll-btn-download">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download
-            </button>
-          </div>
-        </div>
-
-        <div class="coll-card" data-cat="supply" tabindex="0">
-          <div class="coll-card-top">
-            <div class="coll-type-icon" style="background:#F5F3FF">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            </div>
-            <div class="coll-badges">
-              <span class="badge badge-client">Client-Facing</span>
-              <span class="badge badge-supply">Supply Chain</span>
-            </div>
-          </div>
-          <h3 class="coll-title">Supply Chain Transformation 2-Pager</h3>
-          <p class="coll-desc">Concise two-page overview of Genpact's supply chain capabilities, client outcomes, and technology stack for leave-behinds.</p>
-          <div class="coll-meta">
-            <span class="coll-meta-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Updated Feb 5, 2025
-            </span>
-            <span style="font-size:12px;font-weight:600;color:var(--green)">PDF · 1.2 MB</span>
-          </div>
-          <div class="coll-actions">
-            <button class="coll-btn coll-btn-view" onclick="viewCollateral(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              View
-            </button>
-            <button class="coll-btn coll-btn-download">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download
-            </button>
-          </div>
-        </div>
-
-        <div class="coll-card" data-cat="cx" tabindex="0">
-          <div class="coll-card-top">
-            <div class="coll-type-icon" style="background:#FFFBEB">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12 19.79 19.79 0 01.1 3.38a2 2 0 012-2.18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.37a16 16 0 006 6l.73-.73a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-            </div>
-            <div class="coll-badges">
-              <span class="badge badge-client">Client-Facing</span>
-              <span class="badge badge-cx">CX</span>
-            </div>
-          </div>
-          <h3 class="coll-title">Global Telecom CX Transformation Case Study</h3>
-          <p class="coll-desc">How Genpact helped a Tier-1 telecom operator reduce AHT by 38% and improve NPS by 22 points through AI-led CX redesign.</p>
-          <div class="coll-meta">
-            <span class="coll-meta-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Updated Jan 15, 2025
-            </span>
-            <span style="font-size:12px;font-weight:600;color:var(--green)">PDF · 2.0 MB</span>
-          </div>
-          <div class="coll-actions">
-            <button class="coll-btn coll-btn-view" onclick="viewCollateral(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              View
-            </button>
-            <button class="coll-btn coll-btn-download">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download
-            </button>
-          </div>
-        </div>
-
-        <div class="coll-card" data-cat="analytics" tabindex="0">
-          <div class="coll-card-top">
-            <div class="coll-type-icon" style="background:#ECFDF5">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-            </div>
-            <div class="coll-badges">
-              <span class="badge badge-client">Client-Facing</span>
-              <span class="badge badge-analytics">Analytics</span>
-            </div>
-          </div>
-          <h3 class="coll-title">AI-Powered Analytics Platform — Product Demo</h3>
-          <p class="coll-desc">Interactive 8-minute recorded demo showcasing Genpact's analytics platform with real-time dashboards, predictive models, and Gen AI features.</p>
-          <div class="coll-meta">
-            <span class="coll-meta-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Updated Feb 12, 2025
-            </span>
-            <span style="font-size:12px;font-weight:600;color:var(--green)">MP4 · 142 MB</span>
-          </div>
-          <div class="coll-actions">
-            <button class="coll-btn coll-btn-view" onclick="viewCollateral(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              Play Demo
-            </button>
-            <button class="coll-btn coll-btn-download">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download
-            </button>
-          </div>
-        </div>
-
-        <div class="coll-card" data-cat="risk" tabindex="0">
-          <div class="coll-card-top">
-            <div class="coll-type-icon" style="background:#EEF2FF">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#3730A3" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            </div>
-            <div class="coll-badges">
-              <span class="badge badge-client">Client-Facing</span>
-              <span class="badge badge-risk">Risk</span>
-            </div>
-          </div>
-          <h3 class="coll-title">RegTech & Compliance 2-Pager</h3>
-          <p class="coll-desc">Snapshot of Genpact's Risk & Compliance capabilities in financial services — covering KYC, AML screening, and model risk governance.</p>
-          <div class="coll-meta">
-            <span class="coll-meta-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Updated Jan 20, 2025
-            </span>
-            <span style="font-size:12px;font-weight:600;color:var(--green)">PDF · 1.5 MB</span>
-          </div>
-          <div class="coll-actions">
-            <button class="coll-btn coll-btn-view" onclick="viewCollateral(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              View
-            </button>
-            <button class="coll-btn coll-btn-download">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download
-            </button>
-          </div>
-        </div>
-
-        <div class="coll-card" data-cat="digital" tabindex="0">
-          <div class="coll-card-top">
-            <div class="coll-type-icon" style="background:#FEF2F2">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#991B1B" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
-            </div>
-            <div class="coll-badges">
-              <span class="badge badge-client">Client-Facing</span>
-              <span class="badge badge-digital">Digital</span>
-            </div>
-          </div>
-          <h3 class="coll-title">Digital Operations First Call Deck</h3>
-          <p class="coll-desc">10-slide introduction to Genpact's Digital Operations practice — intelligent automation, cloud-native platforms, and measurable ROI case examples.</p>
-          <div class="coll-meta">
-            <span class="coll-meta-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Updated Feb 8, 2025
-            </span>
-            <span style="font-size:12px;font-weight:600;color:var(--green)">PPTX · 7.3 MB</span>
-          </div>
-          <div class="coll-actions">
-            <button class="coll-btn coll-btn-view" onclick="viewCollateral(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              View
-            </button>
-            <button class="coll-btn coll-btn-download">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download
-            </button>
-          </div>
-        </div>
-
-        <div class="coll-card" data-cat="finance" tabindex="0">
-          <div class="coll-card-top">
-            <div class="coll-type-icon" style="background:#EFF6FF">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <div class="coll-badges">
-              <span class="badge badge-client">Client-Facing</span>
-              <span class="badge badge-finance">Finance</span>
-            </div>
-          </div>
-          <h3 class="coll-title">Global Bank F&A Transformation Case Study</h3>
-          <p class="coll-desc">How Genpact delivered 42% cost reduction and 60% faster month-end close for a top-10 global bank through intelligent F&A transformation.</p>
-          <div class="coll-meta">
-            <span class="coll-meta-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Updated Jan 25, 2025
-            </span>
-            <span style="font-size:12px;font-weight:600;color:var(--green)">PDF · 3.1 MB</span>
-          </div>
-          <div class="coll-actions">
-            <button class="coll-btn coll-btn-view" onclick="viewCollateral(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              View
-            </button>
-            <button class="coll-btn coll-btn-download">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download
-            </button>
-          </div>
-        </div>
-
-        <div class="coll-card" data-cat="cx" tabindex="0">
-          <div class="coll-card-top">
-            <div class="coll-type-icon" style="background:#FFFBEB">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
-            </div>
-            <div class="coll-badges">
-              <span class="badge badge-client">Client-Facing</span>
-              <span class="badge badge-cx">CX</span>
-            </div>
-          </div>
-          <h3 class="coll-title">CX Modernisation First Call Deck</h3>
-          <p class="coll-desc">Tailored for CCO and Head of CX conversations. 14 slides covering omni-channel strategy, AI agents, and Genpact's CX transformation framework.</p>
-          <div class="coll-meta">
-            <span class="coll-meta-date">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Updated Feb 14, 2025
-            </span>
-            <span style="font-size:12px;font-weight:600;color:var(--green)">PPTX · 9.4 MB</span>
-          </div>
-          <div class="coll-actions">
-            <button class="coll-btn coll-btn-view" onclick="viewCollateral(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              View
-            </button>
-            <button class="coll-btn coll-btn-download">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download
-            </button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════ CASE STUDIES ══════════════════════════════ -->
-<section class="section" id="case-studies" aria-labelledby="cs-heading">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-eyebrow">Client Impact</div>
-      <h2 class="section-title" id="cs-heading">Featured <span>Case Studies</span></h2>
-      <p class="section-desc">Real-world transformation stories demonstrating measurable outcomes across industries and service lines.</p>
-    </div>
-    <div class="carousel-wrap">
-      <div class="carousel-track" id="carouselTrack">
-
-        <!-- CS 1 -->
-        <div class="cs-card">
-          <div class="cs-card-img" style="background:linear-gradient(135deg,#1A1A2E 0%,#0F2440 100%)">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-              <circle cx="40" cy="40" r="38" stroke="rgba(0,155,78,0.3)" stroke-width="2"/>
-              <path d="M40 20v20M40 40l14 8" stroke="#009B4E" stroke-width="3" stroke-linecap="round"/>
-              <circle cx="40" cy="40" r="6" fill="#009B4E"/>
-            </svg>
-            <div class="cs-card-img-overlay"></div>
-          </div>
-          <div class="cs-card-body">
-            <div class="cs-meta">
-              <span class="cs-industry" style="background:#EFF6FF;color:#1D4ED8">Banking</span>
-              <span class="cs-result">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                42% Cost Reduction
-              </span>
-            </div>
-            <h3 class="cs-title">Global Bank: Intelligent F&A Transformation</h3>
-            <p class="cs-desc">End-to-end finance transformation for a top-10 global bank, automating R2R and O2C processes with AI-driven insights and a digital COE.</p>
-            <div class="cs-stats">
-              <div class="cs-stat-item">
-                <div class="cs-stat-val">42<span>%</span></div>
-                <div class="cs-stat-lbl">Cost Reduction</div>
-              </div>
-              <div class="cs-stat-item">
-                <div class="cs-stat-val">60<span>%</span></div>
-                <div class="cs-stat-lbl">Faster Close</div>
-              </div>
-              <div class="cs-stat-item">
-                <div class="cs-stat-val">$85<span>M</span></div>
-                <div class="cs-stat-lbl">Annual Savings</div>
-              </div>
-            </div>
-            <a href="#" class="cs-read-more">
-              Read Full Case Study
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- CS 2 -->
-        <div class="cs-card">
-          <div class="cs-card-img" style="background:linear-gradient(135deg,#1A0A30 0%,#2D1A4E 100%)">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-              <rect x="20" y="20" width="40" height="40" rx="4" stroke="rgba(109,40,217,0.4)" stroke-width="2"/>
-              <path d="M30 40h20M40 30v20" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-            <div class="cs-card-img-overlay"></div>
-          </div>
-          <div class="cs-card-body">
-            <div class="cs-meta">
-              <span class="cs-industry" style="background:#F5F3FF;color:#6D28D9">Retail</span>
-              <span class="cs-result">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                35% Inventory Reduction
-              </span>
-            </div>
-            <h3 class="cs-title">Fortune 500 Retailer: AI-Led Supply Chain Overhaul</h3>
-            <p class="cs-desc">Deployed predictive demand sensing and intelligent inventory optimisation across 14 markets, reducing stockouts and working capital requirements.</p>
-            <div class="cs-stats">
-              <div class="cs-stat-item">
-                <div class="cs-stat-val">35<span>%</span></div>
-                <div class="cs-stat-lbl">Inventory Cut</div>
-              </div>
-              <div class="cs-stat-item">
-                <div class="cs-stat-val">28<span>%</span></div>
-                <div class="cs-stat-lbl">Fill Rate Gain</div>
-              </div>
-              <div class="cs-stat-item">
-                <div class="cs-stat-val">$120<span>M</span></div>
-                <div class="cs-stat-lbl">Working Capital</div>
-              </div>
-            </div>
-            <a href="#" class="cs-read-more">
-              Read Full Case Study
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- CS 3 -->
-        <div class="cs-card">
-          <div class="cs-card-img" style="background:linear-gradient(135deg,#1A1500 0%,#2D2400 100%)">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-              <circle cx="40" cy="40" r="20" stroke="rgba(245,158,11,0.4)" stroke-width="2"/>
-              <path d="M40 28v12l8 4" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-            <div class="cs-card-img-overlay"></div>
-          </div>
-          <div class="cs-card-body">
-            <div class="cs-meta">
-              <span class="cs-industry" style="background:#FFFBEB;color:#B45309">Telecom</span>
-              <span class="cs-result">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                +22 NPS Points
-              </span>
-            </div>
-            <h3 class="cs-title">Tier-1 Telecom: CX Modernisation at Scale</h3>
-            <p class="cs-desc">Redesigned end-to-end customer journeys with AI-powered agents and sentiment analytics across voice, digital, and in-store channels.</p>
-            <div class="cs-stats">
-              <div class="cs-stat-item">
-                <div class="cs-stat-val">38<span>%</span></div>
-                <div class="cs-stat-lbl">AHT Reduction</div>
-              </div>
-              <div class="cs-stat-item">
-                <div class="cs-stat-val">+22</div>
-                <div class="cs-stat-lbl">NPS Gain</div>
-              </div>
-              <div class="cs-stat-item">
-                <div class="cs-stat-val">91<span>%</span></div>
-                <div class="cs-stat-lbl">CSAT Score</div>
-              </div>
-            </div>
-            <a href="#" class="cs-read-more">
-              Read Full Case Study
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="carousel-nav" aria-label="Carousel navigation">
-      <button class="carousel-btn" id="prevBtn" onclick="moveCarousel(-1)" aria-label="Previous case study">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <div class="carousel-dots" id="carouselDots" role="list">
-        <div class="dot active" role="listitem" aria-current="true" onclick="goToSlide(0)"></div>
-        <div class="dot" role="listitem" onclick="goToSlide(1)"></div>
-        <div class="dot" role="listitem" onclick="goToSlide(2)"></div>
-      </div>
-      <button class="carousel-btn" id="nextBtn" onclick="moveCarousel(1)" aria-label="Next case study">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════ CTA BANNER ══════════════════════════════ -->
-<section class="cta-banner" id="contact" aria-label="Call to action">
+<!-- CTA -->
+<section class="cta-section" aria-label="Call to action">
   <div class="hero-grid" aria-hidden="true"></div>
-  <div class="hero-glow" aria-hidden="true" style="opacity:0.6"></div>
-  <div class="cta-banner-inner">
+  <div class="cta-inner">
     <h2>Ready to Win Your Next Deal?</h2>
-    <p>Access the full Genpact sales toolkit — customisable decks, competitive intelligence, and expert support from our Sales Enablement team.</p>
-    <div class="cta-banner-actions">
-      <a href="#collaterals" class="btn-hero-primary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Browse All Collaterals
+    <p>Access the full Genpact sales toolkit — customisable decks, competitive intelligence, and expert support from Sales Enablement.</p>
+    <div class="cta-btns">
+      <a href="#app" class="btn-cta-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Browse Collaterals
       </a>
-      <a href="mailto:salesenablement@genpact.com" class="btn-hero-secondary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <a href="mailto:salesenablement@genpact.com" class="btn-cta-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Contact Sales Enablement
       </a>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════ FOOTER ══════════════════════════════ -->
+<!-- FOOTER -->
 <footer class="footer" aria-label="Site footer">
   <div class="footer-inner">
     <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#" class="footer-logo" aria-label="Genpact Sales Hub">
-          <div class="footer-logo-mark">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-          </div>
-          <span class="footer-logo-text">Genpact Sales Hub</span>
-        </a>
-        <p class="footer-tagline">Empowering Genpact sales teams with world-class enablement tools, competitive intelligence, and client-ready collaterals.</p>
-        <div class="footer-social">
-          <a href="#" class="social-btn" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="#" class="social-btn" aria-label="Twitter">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
-          </a>
-          <a href="#" class="social-btn" aria-label="Email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </a>
-        </div>
+      <div>
+        <a href="#" class="footer-logo"><div class="footer-logo-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><span class="footer-logo-text">Genpact Sales Hub</span></a>
+        <p class="footer-tagline">Empowering Genpact sales teams with unit-specific capability decks, SL & capability collaterals, and competitive intelligence.</p>
       </div>
-      <div class="footer-col">
-        <h4>Capabilities</h4>
-        <ul class="footer-links">
-          <li><a href="#capabilities">Finance & Accounting</a></li>
-          <li><a href="#capabilities">Supply Chain</a></li>
-          <li><a href="#capabilities">Customer Experience</a></li>
-          <li><a href="#capabilities">Analytics & AI</a></li>
-          <li><a href="#capabilities">Digital Operations</a></li>
-          <li><a href="#capabilities">Risk & Compliance</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Collaterals</h4>
-        <ul class="footer-links">
-          <li><a href="#collaterals">Battlecards</a></li>
-          <li><a href="#collaterals">First Call Decks</a></li>
-          <li><a href="#collaterals">Case Studies</a></li>
-          <li><a href="#collaterals">2-Pagers</a></li>
-          <li><a href="#collaterals">Product Demos</a></li>
-          <li><a href="#collaterals">Playbooks</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Resources</h4>
-        <ul class="footer-links">
-          <li><a href="#">Sales Training</a></li>
-          <li><a href="#">Partner Portal</a></li>
-          <li><a href="#">Analyst Reports</a></li>
-          <li><a href="#">Genpact.com</a></li>
-          <li><a href="mailto:salesenablement@genpact.com">Sales Enablement</a></li>
-          <li><a href="#">Request Custom Deck</a></li>
-        </ul>
-      </div>
+      <div class="footer-col"><h4>Service Lines</h4><ul class="footer-links"><li><a href="#">Finance & Accounting</a></li><li><a href="#">Supply Chain</a></li><li><a href="#">Customer Experience</a></li><li><a href="#">Human Resources</a></li><li><a href="#">Risk & Compliance</a></li></ul></div>
+      <div class="footer-col"><h4>Capabilities</h4><ul class="footer-links"><li><a href="#">Data</a></li><li><a href="#">Unified AI</a></li><li><a href="#">Service as Agentic</a></li><li><a href="#">Digital Technology</a></li><li><a href="#">DSS / Tech Services</a></li></ul></div>
+      <div class="footer-col"><h4>Resources</h4><ul class="footer-links"><li><a href="#">Sales Training</a></li><li><a href="#">Partner Portal</a></li><li><a href="#">Genpact.com</a></li><li><a href="mailto:salesenablement@genpact.com">Sales Enablement</a></li><li><a href="#">Request Custom Deck</a></li></ul></div>
     </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2025 Genpact. All rights reserved. Internal Use Only.</p>
-      <nav class="footer-legal" aria-label="Legal links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-        <a href="#">Accessibility</a>
-      </nav>
-    </div>
+    <div class="footer-bottom"><span>© 2025 Genpact. All rights reserved. Internal Use Only.</span><nav class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a></nav></div>
   </div>
 </footer>
 
-<!-- ══════════════════════════════ JAVASCRIPT ══════════════════════════════ -->
 <script>
-  // ── Tabs ──
-  function switchTab(tab) {
-    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
-    document.getElementById('tab-' + tab).classList.add('active');
-    document.getElementById('btn-' + tab).classList.add('active');
-    document.getElementById('btn-' + tab).setAttribute('aria-selected','true');
-    // Reset filter & search when switching tabs
-    document.getElementById('collSearch').value = '';
-    setFilterActive('all');
-    showAllCards();
-  }
+/* ═══════════════════════ DATA ═══════════════════════ */
+const UNITS = [
+  { id:'lifesciences', name:'Life Sciences & Pharma', desc:'Drug discovery, clinical operations, pharmacovigilance, and commercial excellence across pharma, biotech, and med-tech.' },
+  { id:'healthcare',   name:'Healthcare',             desc:'Payer and provider transformation — member services, claims, utilisation management, and value-based care.' },
+  { id:'banking',      name:'Banking & FS',           desc:'Retail, commercial, and investment banking — F&A, risk, compliance, and digital transformation.' },
+  { id:'insurance',    name:'Insurance',              desc:'P&C, life, and specialty — underwriting, claims, policy admin, and regulatory compliance.' },
+  { id:'consumer',     name:'Consumer & Retail',      desc:'Supply chain, customer experience, and analytics for global consumer goods and retail leaders.' },
+  { id:'manufacturing',name:'Manufacturing',          desc:'Engineering, supply chain, finance, and digital operations for discrete and process manufacturers.' },
+  { id:'hightech',     name:'High Tech',              desc:'Revenue operations, supply chain, customer support, and analytics for technology companies.' },
+  { id:'energy',       name:'Energy & Utilities',     desc:'Asset management, field services, regulatory compliance, and analytics for energy and utility firms.' },
+];
 
-  // ── Filter pills ──
-  let activeFilter = 'all';
-  function setFilter(cat, btn) {
-    activeFilter = cat;
-    setFilterActive(cat);
-    filterCollaterals();
-  }
-  function setFilterActive(cat) {
-    activeFilter = cat;
-    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.filter-pill').forEach(p => {
-      if (p.textContent.trim().toLowerCase() === cat || (cat === 'all' && p.textContent.trim() === 'All')) {
-        p.classList.add('active');
-      }
-    });
-  }
-  function showAllCards() {
-    document.querySelectorAll('.coll-card').forEach(c => c.classList.remove('hidden'));
-  }
-  function filterCollaterals() {
-    const query = (document.getElementById('collSearch').value || '').toLowerCase();
-    const activePane = document.querySelector('.tab-pane.active');
-    if (!activePane) return;
-    activePane.querySelectorAll('.coll-card').forEach(card => {
-      const text = card.innerText.toLowerCase();
-      const cat = card.getAttribute('data-cat') || '';
-      const catMatch = activeFilter === 'all' || cat === activeFilter;
-      const textMatch = !query || text.includes(query);
-      card.classList.toggle('hidden', !(catMatch && textMatch));
-    });
-  }
+const SLS = [
+  {
+    id:'fa', name:'Finance & Accounting', icon:'dollar', color:'#1D4ED8', bg:'#EFF6FF',
+    desc:'End-to-end finance transformation covering receivables, accounting, and payables with AI-driven insights.',
+    caps:['Data','Unified AI','DSS','Digital Ops'],
+    offerings:[
+      { id:'i2c', name:'I2C Services', desc:'Invoice-to-cash automation covering order management, billing, collections, and cash application.', subs:['Order Management','Billing & Invoicing','Collections Management','Cash Application','Dispute Resolution','Credit Management'] },
+      { id:'r2r', name:'R2R Services', desc:'Record-to-report services for faster, more accurate financial close and reporting at scale.', subs:['GL Accounting','Period Close Management','Financial Consolidation','Management Reporting','Intercompany Accounting','Fixed Assets'] },
+      { id:'ap',  name:'AP Suite',    desc:'Accounts payable automation from invoice receipt to payment execution and vendor management.', subs:['Invoice Processing','Vendor Master Management','Payment Processing','T&E Management','AP Analytics','Vendor Portal'] },
+    ]
+  },
+  {
+    id:'sc', name:'Supply Chain', icon:'chain', color:'#6D28D9', bg:'#F5F3FF',
+    desc:'Intelligent supply chain management from demand sensing to last-mile delivery, powered by AI and real-time visibility.',
+    caps:['Data','Unified AI','Digital Tech','Digital Ops'],
+    offerings:[
+      { id:'proc', name:'Procurement Suite',      desc:'Source-to-pay transformation with intelligent category management and supplier collaboration.', subs:['Strategic Sourcing','Category Management','Supplier Relationship Mgmt','Contract Management','Purchase-to-Pay','Spend Analytics'] },
+      { id:'dp',   name:'Demand Planning',         desc:'AI-driven demand sensing and supply planning for optimised inventory across markets.', subs:['Demand Sensing','S&OP Planning','Inventory Optimisation','Capacity Planning','Scenario Modelling'] },
+      { id:'lf',   name:'Logistics & Fulfillment', desc:'End-to-end logistics management and last-mile optimisation with trade compliance.', subs:['Warehouse Management','Transportation Management','Last-Mile Delivery','Returns Management','Trade Compliance'] },
+    ]
+  },
+  {
+    id:'cx', name:'Customer Experience', icon:'headphones', color:'#B45309', bg:'#FFFBEB',
+    desc:'Omni-channel CX transformation combining human empathy with AI — contact centre to self-service and CRM.',
+    caps:['Unified AI','Service as Agentic','Digital Tech','Digital Ops'],
+    offerings:[
+      { id:'cc',          name:'Contact Centre Services', desc:'AI-augmented contact centre operations across voice, digital, and self-service channels.', subs:['Voice Operations','Digital Support','Back-office CX','Quality Management','Workforce Management'] },
+      { id:'selfservice', name:'Self-Service & Digital',  desc:'Intelligent self-service across web, mobile, and messaging with AI-powered virtual agents.', subs:['Chatbot & Virtual Agent','IVR Modernisation','Knowledge Management','Customer Portal'] },
+      { id:'crm',         name:'CRM & Lifecycle Mgmt',   desc:'Customer lifecycle management from acquisition to retention, loyalty, and win-back.', subs:['CRM Operations','Loyalty Management','Customer Analytics','Campaign Management'] },
+    ]
+  },
+  {
+    id:'hr', name:'Human Resources', icon:'users', color:'#0891B2', bg:'#ECFEFF',
+    desc:'End-to-end HR transformation from talent acquisition through operations, payroll, and learning.',
+    caps:['Data','Unified AI','DSS','Digital Ops'],
+    offerings:[
+      { id:'ta',    name:'Talent Acquisition', desc:'AI-driven recruitment and onboarding for faster, better-quality hiring at scale.', subs:['Sourcing & Screening','Interview Orchestration','Offer Management','Onboarding','RPO'] },
+      { id:'hrops', name:'HR Operations',      desc:'Efficient HR shared services covering core employee lifecycle processes.', subs:['Employee Data Management','Payroll Processing','Benefits Administration','Time & Attendance','Employee Helpdesk'] },
+      { id:'ld',    name:'Learning & Development', desc:'Digital-first L&D solutions to upskill your workforce at scale and speed.', subs:['Learning Platform Mgmt','Content Development','Compliance Training','Leadership Development'] },
+    ]
+  },
+  {
+    id:'rc', name:'Risk & Compliance', icon:'shield', color:'#3730A3', bg:'#EEF2FF',
+    desc:'Enterprise risk, regulatory compliance, and financial crime management for regulated industries.',
+    caps:['Data','Unified AI','DSS','Tech Services'],
+    offerings:[
+      { id:'kyc',     name:'KYC / AML',              desc:'End-to-end Know Your Customer and Anti-Money Laundering operations and screening.', subs:['Customer Due Diligence','Enhanced Due Diligence','Sanctions Screening','Transaction Monitoring','SAR Filing'] },
+      { id:'regcomp', name:'Regulatory Compliance',   desc:'Regulatory reporting, compliance monitoring, and audit management at scale.', subs:['Regulatory Reporting','Compliance Monitoring','Internal Audit','Model Risk Governance','Policy Management'] },
+      { id:'fraud',   name:'Fraud & Financial Crime', desc:'AI-powered fraud detection and financial crime prevention across channels.', subs:['Fraud Detection','Claims Investigation','Insurance Fraud','Cyber Risk','Trade Surveillance'] },
+    ]
+  },
+];
 
-  // ── Carousel ──
-  let currentSlide = 0;
-  const totalSlides = 3;
-  function updateCarousel() {
-    const track = document.getElementById('carouselTrack');
-    const cardWidth = track.children[0].offsetWidth + 24;
-    track.style.transform = 'translateX(-' + (currentSlide * cardWidth) + 'px)';
-    document.querySelectorAll('.dot').forEach((d, i) => {
-      d.classList.toggle('active', i === currentSlide);
-      d.setAttribute('aria-current', i === currentSlide ? 'true' : 'false');
-    });
-    document.getElementById('prevBtn').disabled = currentSlide === 0;
-    document.getElementById('nextBtn').disabled = currentSlide >= totalSlides - 1;
-  }
-  function moveCarousel(dir) {
-    currentSlide = Math.max(0, Math.min(totalSlides - 1, currentSlide + dir));
-    updateCarousel();
-  }
-  function goToSlide(idx) {
-    currentSlide = idx;
-    updateCarousel();
-  }
+const CAPS = {
+  advancedTech: [
+    { id:'data',       name:'Data',                  color:'#1D4ED8', bg:'#EFF6FF', icon:'database',  desc:'Data engineering, analytics, and governance platforms that turn enterprise data into a strategic asset at scale.', subs:['Data Engineering','Analytics & BI','Data Governance','Data Products','Data Monetisation'] },
+    { id:'unifiedai',  name:'Unified AI',             color:'#7C3AED', bg:'#F5F3FF', icon:'sparkle',   desc:'Machine learning, generative AI, and NLP solutions at enterprise scale — from model development to production and ops.', subs:['Machine Learning','Generative AI','NLP & Vision','AI Ops / MLOps','Responsible AI'] },
+    { id:'agentic',    name:'Service as Agentic',     color:'#0F766E', bg:'#F0FDFA', icon:'bot',       desc:'Autonomous AI agents and orchestration platforms that execute multi-step business processes with minimal human intervention.', subs:['AI Agents','Process Orchestration','Human-in-Loop Design','Agentic Workflow Automation','Agent Evaluation'] },
+    { id:'digitaltech',name:'Digital Technology',     color:'#C2410C', bg:'#FFF7ED', icon:'code',      desc:'Cloud-native application development, modernisation, and platform engineering for enterprise-grade digital transformation.', subs:['Cloud Migration','App Modernisation','API & Integration','DevSecOps','Platform Engineering'] },
+    { id:'advisory',   name:'Advisory',               color:'#B45309', bg:'#FFFBEB', icon:'lightbulb', desc:'Strategy, operating model design, and digital roadmapping to lead enterprise transformation from the boardroom.', subs:['Digital Strategy','Operating Model Design','Change Management','Innovation Labs','Value Realisation'] },
+  ],
+  coreBusiness: [
+    { id:'dss',        name:'DSS',                   color:'#065F46', bg:'#ECFDF5', icon:'barchart', desc:'Decision Support Services providing performance management, FP&A, and risk intelligence to drive better business outcomes.', subs:['Decision Analytics','Risk Intelligence','Performance Management','FP&A','CFO Advisory'] },
+    { id:'techsvc',    name:'Tech Services',          color:'#1D4ED8', bg:'#EFF6FF', icon:'server',   desc:'IT infrastructure, application management, service desk, and cybersecurity services for enterprise technology estates.', subs:['IT Infrastructure','Application Management','Service Desk','Cybersecurity','End-User Computing'] },
+    { id:'digitalops', name:'Digital Operations',     color:'#6D28D9', bg:'#F5F3FF', icon:'cog',     desc:'Intelligent BPO and digital operations management with continuous improvement, automation, and lean principles at its core.', subs:['Process Management','Intelligent Automation','Quality Ops','Workforce Optimisation','Lean & Six Sigma'] },
+  ],
+};
 
-  // ── Collateral view feedback ──
-  function viewCollateral(btn) {
-    const original = btn.innerHTML;
-    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Opening…';
-    btn.disabled = true;
-    setTimeout(() => { btn.innerHTML = original; btn.disabled = false; }, 1800);
-  }
+const COLLS = [
+  // Unit-level
+  { id:1,  title:'Life Sciences — Unit Capability Overview', type:'Capability Deck', access:'client',   units:['lifesciences'], sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'8.4 MB', upd:'Feb 2025' },
+  { id:2,  title:'Healthcare — Unit Capability Overview',    type:'Capability Deck', access:'client',   units:['healthcare'],   sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'7.2 MB', upd:'Feb 2025' },
+  { id:3,  title:'Banking & FS — Unit Capability Overview',  type:'Capability Deck', access:'client',   units:['banking'],      sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'9.1 MB', upd:'Jan 2025' },
+  { id:4,  title:'Insurance — Unit Capability Overview',     type:'Capability Deck', access:'client',   units:['insurance'],    sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'6.8 MB', upd:'Feb 2025' },
+  { id:5,  title:'Consumer & Retail — Unit Capability Overview', type:'Capability Deck', access:'client', units:['consumer'], sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'7.5 MB', upd:'Jan 2025' },
+  { id:6,  title:'Manufacturing — Unit Capability Overview', type:'Capability Deck', access:'client',   units:['manufacturing'],sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'6.2 MB', upd:'Feb 2025' },
+  { id:7,  title:'High Tech — Unit Capability Overview',     type:'Capability Deck', access:'client',   units:['hightech'],     sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'8.0 MB', upd:'Feb 2025' },
+  { id:8,  title:'Energy & Utilities — Unit Capability Overview', type:'Capability Deck', access:'client', units:['energy'],   sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'5.9 MB', upd:'Jan 2025' },
+  { id:9,  title:'Life Sciences Sales Playbook FY25',        type:'Playbook',        access:'internal', units:['lifesciences'], sl:null,  cap:null,       offering:null,   fmt:'PDF',  size:'4.2 MB', upd:'Feb 2025' },
+  { id:10, title:'Banking & FS Win/Loss Analysis Q3 2024',   type:'Win/Loss',        access:'internal', units:['banking'],      sl:null,  cap:null,       offering:null,   fmt:'PDF',  size:'3.1 MB', upd:'Dec 2024' },
+  // F&A SL
+  { id:11, title:'F&A First Call Deck 2025',                 type:'First Call Deck', access:'client',   units:['all'],          sl:'fa',  cap:null,       offering:null,   fmt:'PPTX', size:'5.8 MB', upd:'Jan 2025' },
+  { id:12, title:'F&A Transformation 2-Pager',               type:'2-Pager',         access:'client',   units:['all'],          sl:'fa',  cap:null,       offering:null,   fmt:'PDF',  size:'1.2 MB', upd:'Feb 2025' },
+  { id:13, title:'F&A Battlecard — Accenture / EY / WNS',   type:'Battlecard',      access:'internal', units:['all'],          sl:'fa',  cap:null,       offering:null,   fmt:'PDF',  size:'2.4 MB', upd:'Jan 2025' },
+  { id:14, title:'F&A Internal Playbook 2025',               type:'Playbook',        access:'internal', units:['all'],          sl:'fa',  cap:null,       offering:null,   fmt:'PDF',  size:'6.2 MB', upd:'Feb 2025' },
+  // I2C
+  { id:15, title:'I2C Services — Solution Deck',             type:'First Call Deck', access:'client',   units:['all'],          sl:'fa',  cap:null,       offering:'i2c',  fmt:'PPTX', size:'4.1 MB', upd:'Feb 2025' },
+  { id:16, title:'I2C Competitive Battlecard',               type:'Battlecard',      access:'internal', units:['all'],          sl:'fa',  cap:null,       offering:'i2c',  fmt:'PDF',  size:'1.8 MB', upd:'Jan 2025' },
+  { id:17, title:'I2C Case Study — Global Bank',             type:'Case Study',      access:'client',   units:['banking'],      sl:'fa',  cap:null,       offering:'i2c',  fmt:'PDF',  size:'2.1 MB', upd:'Jan 2025' },
+  // R2R
+  { id:18, title:'R2R Services — Solution Overview',         type:'First Call Deck', access:'client',   units:['all'],          sl:'fa',  cap:null,       offering:'r2r',  fmt:'PPTX', size:'3.9 MB', upd:'Feb 2025' },
+  { id:19, title:'R2R Battlecard vs Competitors',            type:'Battlecard',      access:'internal', units:['all'],          sl:'fa',  cap:null,       offering:'r2r',  fmt:'PDF',  size:'1.6 MB', upd:'Jan 2025' },
+  // AP
+  { id:20, title:'AP Suite — Product Demo',                  type:'Demo',            access:'client',   units:['all'],          sl:'fa',  cap:null,       offering:'ap',   fmt:'MP4',  size:'142 MB', upd:'Feb 2025' },
+  { id:21, title:'AP Suite 2-Pager',                         type:'2-Pager',         access:'client',   units:['all'],          sl:'fa',  cap:null,       offering:'ap',   fmt:'PDF',  size:'0.9 MB', upd:'Feb 2025' },
+  // Supply Chain SL
+  { id:22, title:'Supply Chain First Call Deck 2025',        type:'First Call Deck', access:'client',   units:['all'],          sl:'sc',  cap:null,       offering:null,   fmt:'PPTX', size:'6.5 MB', upd:'Jan 2025' },
+  { id:23, title:'Supply Chain 2-Pager',                     type:'2-Pager',         access:'client',   units:['all'],          sl:'sc',  cap:null,       offering:null,   fmt:'PDF',  size:'1.4 MB', upd:'Feb 2025' },
+  { id:24, title:'Supply Chain Battlecard vs SAP / Blue Yonder', type:'Battlecard',  access:'internal', units:['all'],          sl:'sc',  cap:null,       offering:null,   fmt:'PDF',  size:'1.8 MB', upd:'Feb 2025' },
+  // Procurement
+  { id:25, title:'Procurement Suite — Solution Deck',        type:'First Call Deck', access:'client',   units:['all'],          sl:'sc',  cap:null,       offering:'proc', fmt:'PPTX', size:'4.8 MB', upd:'Feb 2025' },
+  { id:26, title:'Procurement Battlecard vs Coupa / Ivalua', type:'Battlecard',      access:'internal', units:['all'],          sl:'sc',  cap:null,       offering:'proc', fmt:'PDF',  size:'2.0 MB', upd:'Jan 2025' },
+  // CX SL
+  { id:27, title:'CX First Call Deck 2025',                  type:'First Call Deck', access:'client',   units:['all'],          sl:'cx',  cap:null,       offering:null,   fmt:'PPTX', size:'9.4 MB', upd:'Feb 2025' },
+  { id:28, title:'CX Transformation Case Study — Telecom',   type:'Case Study',      access:'client',   units:['all'],          sl:'cx',  cap:null,       offering:null,   fmt:'PDF',  size:'2.0 MB', upd:'Jan 2025' },
+  { id:29, title:'CX Battlecard',                            type:'Battlecard',      access:'internal', units:['all'],          sl:'cx',  cap:null,       offering:null,   fmt:'PDF',  size:'2.2 MB', upd:'Jan 2025' },
+  // Risk SL
+  { id:30, title:'Risk & Compliance First Call Deck',        type:'First Call Deck', access:'client',   units:['banking','insurance'], sl:'rc', cap:null, offering:null,   fmt:'PPTX', size:'5.1 MB', upd:'Jan 2025' },
+  { id:31, title:'RegTech & Compliance 2-Pager',             type:'2-Pager',         access:'client',   units:['all'],          sl:'rc',  cap:null,       offering:null,   fmt:'PDF',  size:'1.5 MB', upd:'Jan 2025' },
+  { id:32, title:'KYC/AML Solution Deck',                    type:'First Call Deck', access:'client',   units:['banking','insurance'], sl:'rc', cap:null, offering:'kyc',  fmt:'PPTX', size:'4.2 MB', upd:'Feb 2025' },
+  // Capabilities
+  { id:33, title:'Unified AI — Capability Overview Deck',    type:'Capability Deck', access:'client',   units:['all'],          sl:null,  cap:'unifiedai', offering:null,   fmt:'PPTX', size:'7.1 MB', upd:'Feb 2025' },
+  { id:34, title:'Generative AI — Solution Brief',           type:'2-Pager',         access:'client',   units:['all'],          sl:null,  cap:'unifiedai', offering:null,   fmt:'PDF',  size:'1.1 MB', upd:'Feb 2025' },
+  { id:35, title:'Unified AI — Product Demo',                type:'Demo',            access:'client',   units:['all'],          sl:null,  cap:'unifiedai', offering:null,   fmt:'MP4',  size:'98 MB',  upd:'Feb 2025' },
+  { id:36, title:'AI Agents — Competitive Battlecard',       type:'Battlecard',      access:'internal', units:['all'],          sl:null,  cap:'agentic',   offering:null,   fmt:'PDF',  size:'2.3 MB', upd:'Feb 2025' },
+  { id:37, title:'Service as Agentic — Introduction Deck',   type:'First Call Deck', access:'client',   units:['all'],          sl:null,  cap:'agentic',   offering:null,   fmt:'PPTX', size:'6.3 MB', upd:'Feb 2025' },
+  { id:38, title:'Data Platform — Capability Overview',      type:'Capability Deck', access:'client',   units:['all'],          sl:null,  cap:'data',      offering:null,   fmt:'PPTX', size:'5.9 MB', upd:'Jan 2025' },
+  { id:39, title:'Digital Operations — Overview Deck',       type:'Capability Deck', access:'client',   units:['all'],          sl:null,  cap:'digitalops', offering:null,  fmt:'PPTX', size:'7.3 MB', upd:'Feb 2025' },
+  { id:40, title:'DSS — Decision Support Services Overview', type:'Capability Deck', access:'client',   units:['all'],          sl:null,  cap:'dss',       offering:null,   fmt:'PPTX', size:'4.8 MB', upd:'Jan 2025' },
+  { id:41, title:'Digital Technology — Platform Deck',       type:'Capability Deck', access:'client',   units:['all'],          sl:null,  cap:'digitaltech',offering:null,  fmt:'PPTX', size:'6.1 MB', upd:'Feb 2025' },
+  { id:42, title:'HR First Call Deck 2025',                  type:'First Call Deck', access:'client',   units:['all'],          sl:'hr',  cap:null,       offering:null,   fmt:'PPTX', size:'4.6 MB', upd:'Jan 2025' },
+  { id:43, title:'HR Battlecard vs ADP / Alight',            type:'Battlecard',      access:'internal', units:['all'],          sl:'hr',  cap:null,       offering:null,   fmt:'PDF',  size:'1.9 MB', upd:'Feb 2025' },
+];
 
-  // ── Smooth active nav highlight ──
-  const sections = document.querySelectorAll('section[id], div[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  function onScroll() {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 80) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-    });
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
+/* ═══════════════════════ STATE ═══════════════════════ */
+let STATE = { unitId: 'lifesciences', view: 'sl' };
 
-  // ── Init ──
-  updateCarousel();
-  window.addEventListener('resize', updateCarousel);
+/* ═══════════════════════ SVG ICONS ═══════════════════════ */
+const IC = {
+  dollar:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>`,
+  chain:      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>`,
+  headphones: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg>`,
+  users:      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>`,
+  shield:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  database:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>`,
+  sparkle:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 5.5L19 10l-5.5 1.5L12 17l-1.5-5.5L5 10l5.5-1.5L12 3z"/></svg>`,
+  bot:        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 3v4M8 3h8"/><circle cx="9" cy="16" r="1" fill="currentColor"/><circle cx="15" cy="16" r="1" fill="currentColor"/></svg>`,
+  code:       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+  lightbulb:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 015.74 11.05L17 15H7l-.74-1.95A7 7 0 0112 2z"/></svg>`,
+  barchart:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
+  server:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`,
+  cog:        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M12 2v2M12 20v2M2 12H4M20 12h2"/></svg>`,
+  deck:       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>`,
+  download:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`,
+  eye:        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+  play:       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>`,
+  chevdown:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>`,
+};
 
-  // ── Nav search global ──
-  document.getElementById('navSearch').addEventListener('input', function() {
-    const q = this.value.toLowerCase();
-    if (!q) return;
-    // Jump to collaterals and search there
-    document.getElementById('collSearch').value = q;
-    filterCollaterals();
-    if (q.length > 1) document.getElementById('collaterals').scrollIntoView({ behavior: 'smooth', block: 'start' });
+const TYPE_BADGE = {
+  'Battlecard':     'b-battlecard',
+  'First Call Deck':'b-firstcall',
+  'Case Study':     'b-casestudy',
+  '2-Pager':        'b-twopager',
+  'Demo':           'b-demo',
+  'Playbook':       'b-playbook',
+  'Win/Loss':       'b-winloss',
+  'Capability Deck':'b-capdeck',
+};
+
+/* ═══════════════════════ COLLATERAL FILTER ═══════════════════════ */
+function getColls({ unitId, sl, cap, offering }) {
+  return COLLS.filter(c => {
+    const uMatch = c.units.includes('all') || c.units.includes(unitId);
+    const slMatch   = c.sl       === (sl       || null);
+    const capMatch  = c.cap      === (cap      || null);
+    const ofMatch   = c.offering === (offering || null);
+    return uMatch && slMatch && capMatch && ofMatch;
   });
-</script>
+}
 
+/* ═══════════════════════ RENDER HELPERS ═══════════════════════ */
+function btnIcon(type) {
+  if (type === 'Demo') return IC.play;
+  return IC.eye;
+}
+function btnLabel(type) {
+  return type === 'Demo' ? 'Play' : 'View';
+}
+
+function renderCollCard(c) {
+  const typeCls = TYPE_BADGE[c.type] || 'b-capdeck';
+  const accessCls = c.access === 'internal' ? 'b-internal' : 'b-client';
+  const accessLabel = c.access === 'internal' ? 'Internal' : 'Client';
+  return `
+    <div class="coll-card" tabindex="0">
+      <div class="coll-card-top">
+        <div class="coll-badges">
+          <span class="badge ${typeCls}">${c.type}</span>
+          <span class="badge ${accessCls}">${accessLabel}</span>
+        </div>
+      </div>
+      <div class="coll-title">${c.title}</div>
+      <div class="coll-meta">
+        <span>${c.fmt} · ${c.size}</span>
+        <span>Updated ${c.upd}</span>
+      </div>
+      <div class="coll-actions">
+        <button class="coll-btn coll-btn-view">${btnIcon(c.type)} ${btnLabel(c.type)}</button>
+        <button class="coll-btn coll-btn-dl">${IC.download} Download</button>
+      </div>
+    </div>`;
+}
+
+function renderCollGrid(colls, cls) {
+  if (!colls.length) return `<p class="no-colls">No collaterals available yet for this level.</p>`;
+  return `<div class="${cls}">${colls.map(renderCollCard).join('')}</div>`;
+}
+
+/* ═══════════════════════ RENDER SL VIEW ═══════════════════════ */
+function renderSLView(unitId) {
+  const items = SLS.map(sl => {
+    const slColls = getColls({ unitId, sl: sl.id, cap: null, offering: null });
+    const offeringsHtml = sl.offerings.map(of => {
+      const ofColls = getColls({ unitId, sl: sl.id, cap: null, offering: of.id });
+      return `
+        <div class="offering-item" data-offering="${of.id}">
+          <div class="offering-header" onclick="toggleOffering('${of.id}')">
+            <span class="offering-dot"></span>
+            <span class="offering-name">${of.name}</span>
+            <span class="offering-chev">${IC.chevdown}</span>
+          </div>
+          <div class="offering-body">
+            <div class="offering-body-inner">
+              <p class="offering-desc">${of.desc}</p>
+              <div class="sub-label">Sub-offerings</div>
+              <div class="sub-tags">${of.subs.map(s=>`<span class="sub-tag">${s}</span>`).join('')}</div>
+              <div class="sub-label">Collaterals</div>
+              ${renderCollGrid(ofColls,'offering-colls')}
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+
+    return `
+      <div class="sl-item" data-sl="${sl.id}">
+        <div class="sl-header" onclick="toggleSL('${sl.id}')">
+          <div class="sl-icon" style="background:${sl.bg};color:${sl.color}">${IC[sl.icon]}</div>
+          <div class="sl-header-content">
+            <div class="sl-name">${sl.name}</div>
+            <div class="sl-short-desc">${sl.desc.substring(0,80)}…</div>
+          </div>
+          <div class="sl-header-right">
+            <div class="sl-caps-pills">${sl.caps.map(c=>`<span class="sl-cap-pill">${c}</span>`).join('')}</div>
+            <div class="sl-chevron">${IC.chevdown}</div>
+          </div>
+        </div>
+        <div class="sl-body">
+          <div class="sl-body-inner">
+            <div class="sl-colls-label">SL-Level Collaterals</div>
+            ${renderCollGrid(slColls,'sl-colls')}
+            <div class="offerings-label" style="margin-top:${slColls.length?'20px':'0'}">Offerings</div>
+            <div class="offerings-list">${offeringsHtml}</div>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  return `<div class="sl-view"><div class="sl-view-inner">${items}</div></div>`;
+}
+
+/* ═══════════════════════ RENDER CAPABILITY VIEW ═══════════════════════ */
+function renderCapView(unitId) {
+  function renderGroup(label, caps) {
+    const items = caps.map(cap => {
+      const colls = getColls({ unitId, sl: null, cap: cap.id, offering: null });
+      return `
+        <div class="cap-item" data-cap="${cap.id}">
+          <div class="cap-header" onclick="toggleCap('${cap.id}')">
+            <div class="cap-icon" style="background:${cap.bg};color:${cap.color}">${IC[cap.icon]}</div>
+            <div class="cap-header-content">
+              <div class="cap-name">${cap.name}</div>
+              <div class="cap-preview">${cap.desc}</div>
+            </div>
+            <div class="cap-chev">${IC.chevdown}</div>
+          </div>
+          <div class="cap-body">
+            <div class="cap-body-inner">
+              <p class="cap-full-desc">${cap.desc}</p>
+              <div class="sub-label">Sub-capabilities</div>
+              <div class="sub-tags" style="margin-bottom:16px">${cap.subs.map(s=>`<span class="sub-tag">${s}</span>`).join('')}</div>
+              <div class="sub-label">Collaterals</div>
+              ${renderCollGrid(colls,'cap-colls')}
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+    return `
+      <div class="cap-group">
+        <div class="cap-group-header">
+          <span class="cap-group-label">${label}</span>
+          <div class="cap-group-line"></div>
+          <span class="cap-group-count">${caps.length} capabilities</span>
+        </div>
+        <div class="cap-grid">${items}</div>
+      </div>`;
+  }
+
+  return `
+    <div class="cap-view">
+      <div class="cap-view-inner">
+        ${renderGroup('Advanced Tech', CAPS.advancedTech)}
+        ${renderGroup('Core Business', CAPS.coreBusiness)}
+      </div>
+    </div>`;
+}
+
+/* ═══════════════════════ RENDER APP ═══════════════════════ */
+function renderApp() {
+  const unit = UNITS.find(u => u.id === STATE.unitId);
+  const unitColls = getColls({ unitId: STATE.unitId, sl: null, cap: null, offering: null });
+
+  const unitTabsHtml = UNITS.map(u => `
+    <button class="unit-tab${u.id === STATE.unitId ? ' active' : ''}" onclick="selectUnit('${u.id}')" role="tab" aria-selected="${u.id===STATE.unitId}">${u.name}</button>
+  `).join('');
+
+  const viewContent = STATE.view === 'sl'
+    ? renderSLView(STATE.unitId)
+    : renderCapView(STATE.unitId);
+
+  document.getElementById('app').innerHTML = `
+    <section class="unit-section">
+      <div class="unit-section-inner">
+        <div class="unit-section-label">Select Unit / Industry Vertical</div>
+        <div class="unit-tabs" role="tablist">${unitTabsHtml}</div>
+      </div>
+    </section>
+
+    <div class="unit-header">
+      <div class="unit-header-inner">
+        <div class="unit-header-left">
+          <h2 class="unit-name">${unit.name}</h2>
+          <p class="unit-desc">${unit.desc}</p>
+        </div>
+        <div class="unit-deck-card" role="button" tabindex="0">
+          <div class="unit-deck-icon">${IC.deck}</div>
+          <div class="unit-deck-content">
+            <div class="unit-deck-title">${unit.name} — Capability Overview</div>
+            <div class="unit-deck-sub">${unitColls.filter(c=>c.access==='client').length} client · ${unitColls.filter(c=>c.access==='internal').length} internal</div>
+          </div>
+          <div class="unit-deck-btn">${IC.download} Download</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="view-toggle-wrap">
+      <div class="view-toggle-inner">
+        <div class="view-toggle" role="tablist" aria-label="View type">
+          <button class="view-btn${STATE.view==='sl' ? ' active':''}" onclick="switchView('sl')" role="tab" aria-selected="${STATE.view==='sl'}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            Service Line View
+          </button>
+          <button class="view-btn${STATE.view==='cap' ? ' active':''}" onclick="switchView('cap')" role="tab" aria-selected="${STATE.view==='cap'}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Capability View
+          </button>
+        </div>
+        <span class="view-hint">${STATE.view==='sl' ? 'All capabilities combined by service line' : 'Discrete capability areas — Advanced Tech & Core Business'}</span>
+      </div>
+    </div>
+
+    ${viewContent}
+  `;
+}
+
+/* ═══════════════════════ ACTIONS ═══════════════════════ */
+function selectUnit(id) { STATE.unitId = id; renderApp(); }
+function switchView(v)   { STATE.view  = v;  renderApp(); }
+
+function toggleSL(id) {
+  const el = document.querySelector(`[data-sl="${id}"]`);
+  if (!el) return;
+  const wasOpen = el.classList.contains('expanded');
+  document.querySelectorAll('.sl-item.expanded').forEach(e => e.classList.remove('expanded'));
+  if (!wasOpen) el.classList.add('expanded');
+}
+
+function toggleOffering(id) {
+  const el = document.querySelector(`[data-offering="${id}"]`);
+  if (!el) return;
+  const wasOpen = el.classList.contains('expanded');
+  const parent = el.closest('.sl-body-inner');
+  if (parent) parent.querySelectorAll('.offering-item.expanded').forEach(e => e.classList.remove('expanded'));
+  if (!wasOpen) el.classList.add('expanded');
+}
+
+function toggleCap(id) {
+  const el = document.querySelector(`[data-cap="${id}"]`);
+  if (!el) return;
+  const wasOpen = el.classList.contains('expanded');
+  document.querySelectorAll('.cap-item.expanded').forEach(e => e.classList.remove('expanded'));
+  if (!wasOpen) el.classList.add('expanded');
+}
+
+/* ═══════════════════════ INIT ═══════════════════════ */
+renderApp();
+
+document.getElementById('globalSearch').addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim();
+  if (!q) { document.querySelectorAll('.coll-card').forEach(c=>c.style.opacity='1'); return; }
+  document.querySelectorAll('.coll-card').forEach(c => {
+    c.style.opacity = c.innerText.toLowerCase().includes(q) ? '1' : '0.25';
+  });
+});
+</script>
 </body>
 </html>
