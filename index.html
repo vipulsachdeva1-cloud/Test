@@ -61,39 +61,81 @@
     /* ── MAIN LAYOUT ── */
     .app-wrap { max-width:1400px; margin:0 auto; padding:28px 24px 60px; display:flex; gap:24px; align-items:flex-start; }
 
-    /* ── FILTER SIDEBAR ── */
-    .sidebar { width:248px; flex-shrink:0; background:white; border:1px solid var(--g200); border-radius:var(--r-lg); overflow:hidden; position:sticky; top:76px; max-height:calc(100vh - 92px); overflow-y:auto; }
+    /* ── SIDEBAR ── */
+    .sidebar { width:268px; flex-shrink:0; background:white; border:1px solid var(--g200); border-radius:var(--r-lg); overflow:hidden; position:sticky; top:76px; max-height:calc(100vh - 92px); overflow-y:auto; }
     .sidebar::-webkit-scrollbar { width:4px; }
     .sidebar::-webkit-scrollbar-thumb { background:var(--g200); border-radius:4px; }
-    .sidebar-head { padding:16px 18px 12px; border-bottom:1px solid var(--g100); display:flex; align-items:center; justify-content:space-between; }
+    .sidebar-head { padding:14px 18px 12px; border-bottom:1px solid var(--g100); display:flex; align-items:center; justify-content:space-between; }
     .sidebar-title { font-size:13px; font-weight:700; color:var(--navy); }
     .btn-reset { font-size:12px; font-weight:600; color:var(--green); background:none; border:none; cursor:pointer; padding:3px 8px; border-radius:5px; transition:background var(--t); }
     .btn-reset:hover { background:var(--green-sub); }
 
-    .filt-section { border-bottom:1px solid var(--g100); }
-    .filt-section:last-child { border-bottom:none; }
-    .filt-toggle { width:100%; display:flex; align-items:center; justify-content:space-between; padding:12px 18px; background:none; border:none; cursor:pointer; font-size:12px; font-weight:700; color:var(--g600); text-transform:uppercase; letter-spacing:0.8px; }
-    .filt-toggle:hover { color:var(--navy); }
-    .filt-toggle svg { width:14px; height:14px; color:var(--g400); transition:transform var(--t); }
-    .filt-toggle.open svg { transform:rotate(180deg); }
-    .filt-body { padding:0 18px 14px; }
-    .filt-body.closed { display:none; }
+    /* ── WIZARD STEPS ── */
+    .step-block { padding:14px 18px; border-bottom:1px solid var(--g100); }
+    .step-block:last-child { border-bottom:none; }
+    .step-label { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+    .step-num { width:20px; height:20px; border-radius:50%; background:var(--green); color:white; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .step-num.inactive { background:var(--g200); color:var(--g400); }
+    .step-q { font-size:12px; font-weight:700; color:var(--navy); }
+    .step-placeholder { font-size:12px; color:var(--g400); font-style:italic; padding:2px 0; }
 
-    .filt-opt { display:flex; align-items:center; gap:9px; padding:5px 0; cursor:pointer; }
-    .filt-opt:hover .filt-label { color:var(--navy); }
-    .filt-radio { width:15px; height:15px; border:1.5px solid var(--g300); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all var(--t); }
-    .filt-radio.sel { border-color:var(--green); background:var(--green); }
-    .filt-radio.sel::after { content:''; width:5px; height:5px; background:white; border-radius:50%; }
-    .filt-check { width:15px; height:15px; border:1.5px solid var(--g300); border-radius:3px; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all var(--t); }
-    .filt-check.sel { border-color:var(--green); background:var(--green); }
-    .filt-check.sel::after { content:''; width:8px; height:5px; border-left:2px solid white; border-bottom:2px solid white; transform:rotate(-45deg) translate(1px,-1px); }
-    .filt-label { font-size:13px; color:var(--g600); flex:1; transition:color var(--t); }
-    .filt-count { font-size:11px; font-weight:600; color:var(--g400); background:var(--g100); padding:1px 6px; border-radius:100px; }
+    /* ── INTENT OPTIONS ── */
+    .intent-opt { display:flex; align-items:flex-start; gap:9px; padding:8px 10px; margin:4px 0; cursor:pointer; border-radius:var(--r); border:1.5px solid var(--g200); transition:all var(--t); }
+    .intent-opt:hover { border-color:var(--green); background:var(--green-sub); }
+    .intent-opt.sel { border-color:var(--green); background:var(--green-sub); }
+    .intent-radio { width:14px; height:14px; border:1.5px solid var(--g300); border-radius:50%; flex-shrink:0; margin-top:3px; display:flex; align-items:center; justify-content:center; transition:all var(--t); }
+    .intent-opt.sel .intent-radio { border-color:var(--green); background:var(--green); }
+    .intent-opt.sel .intent-radio::after { content:''; width:5px; height:5px; background:white; border-radius:50%; display:block; }
+    .intent-name { font-size:13px; font-weight:600; color:var(--navy); line-height:1.3; }
+    .intent-desc { font-size:11px; color:var(--g400); margin-top:2px; line-height:1.35; }
 
-    .filt-group-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--g400); margin:10px 0 6px; padding-top:6px; border-top:1px solid var(--g100); }
-    .filt-group-label:first-child { border-top:none; margin-top:0; }
+    /* ── UNIT GRID ── */
+    .unit-grid { display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+    .unit-chip { padding:6px 7px; font-size:11px; font-weight:600; color:var(--g600); background:var(--g100); border:1.5px solid var(--g200); border-radius:6px; cursor:pointer; transition:all var(--t); text-align:center; line-height:1.3; }
+    .unit-chip:hover { border-color:var(--green); color:var(--green); background:var(--green-sub); }
+    .unit-chip.sel { border-color:var(--green); color:var(--green-dk); background:var(--green-sub); font-weight:700; }
 
-    .filt-indent { padding-left:24px; }
+    /* ── SL PICKER ── */
+    .sl-item { display:flex; align-items:center; gap:9px; padding:7px 8px; border-radius:6px; cursor:pointer; transition:all var(--t); border:1.5px solid transparent; margin-bottom:3px; }
+    .sl-item:hover { background:var(--g100); border-color:var(--g200); }
+    .sl-item.sel { background:var(--green-sub); border-color:var(--green); }
+    .sl-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+    .sl-name { font-size:13px; font-weight:600; color:var(--navy); flex:1; }
+    .sl-item.sel .sl-name { color:var(--green-dk); }
+
+    /* ── OFFERING PICKER ── */
+    .of-indent { padding-left:12px; margin-top:3px; margin-bottom:6px; margin-left:13px; border-left:2px solid var(--g200); }
+    .of-item { display:flex; align-items:center; gap:7px; padding:5px 8px; border-radius:5px; cursor:pointer; transition:all var(--t); margin-bottom:2px; }
+    .of-item:hover { background:var(--g100); }
+    .of-item.sel { background:var(--green-sub); }
+    .of-radio { width:11px; height:11px; border:1.5px solid var(--g300); border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all var(--t); }
+    .of-item.sel .of-radio { border-color:var(--green); background:var(--green); }
+    .of-item.sel .of-radio::after { content:''; width:4px; height:4px; background:white; border-radius:50%; display:block; }
+    .of-name { font-size:12px; font-weight:500; color:var(--g600); }
+    .of-item.sel .of-name { color:var(--green-dk); font-weight:600; }
+
+    /* ── CAPABILITY PICKER ── */
+    .cap-group-lbl { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--g400); margin:10px 0 5px; padding-top:8px; border-top:1px solid var(--g100); }
+    .cap-group-lbl:first-child { border-top:none; margin-top:0; padding-top:0; }
+    .cap-item { display:flex; align-items:center; gap:8px; padding:6px 8px; border-radius:6px; cursor:pointer; transition:all var(--t); border:1.5px solid transparent; margin-bottom:3px; }
+    .cap-item:hover { background:var(--g100); border-color:var(--g200); }
+    .cap-item.sel { background:var(--green-sub); border-color:var(--green); }
+    .cap-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+    .cap-name { font-size:13px; font-weight:600; color:var(--navy); }
+    .cap-item.sel .cap-name { color:var(--green-dk); }
+
+    /* ── STEP 3 NARROWING ── */
+    .narrow-row { margin-bottom:12px; }
+    .narrow-row:last-child { margin-bottom:0; }
+    .narrow-lbl { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--g400); margin-bottom:6px; }
+    .type-chips { display:flex; flex-wrap:wrap; gap:4px; }
+    .type-chip { padding:3px 9px; font-size:11px; font-weight:600; border:1.5px solid var(--g200); border-radius:100px; color:var(--g600); background:white; cursor:pointer; transition:all var(--t); }
+    .type-chip:hover { border-color:var(--green); color:var(--green); }
+    .type-chip.sel { border-color:var(--green); background:var(--green); color:white; }
+    .acc-opts { display:flex; gap:5px; }
+    .acc-opt { flex:1; padding:5px 4px; font-size:11px; font-weight:600; border:1.5px solid var(--g200); border-radius:6px; color:var(--g600); background:white; cursor:pointer; transition:all var(--t); text-align:center; }
+    .acc-opt:hover { border-color:var(--green); }
+    .acc-opt.sel { border-color:var(--green); background:var(--green); color:white; }
 
     /* ── RESULTS AREA ── */
     .results { flex:1; min-width:0; }
@@ -106,12 +148,13 @@
     .chip-x { cursor:pointer; color:var(--g400); display:flex; align-items:center; transition:color var(--t); }
     .chip-x:hover { color:var(--g800); }
     .chip-x svg { width:12px; height:12px; }
-    .chip.chip-unit { border-color:var(--green); background:var(--green-sub); color:var(--green); }
-    .chip.chip-sl   { border-color:#6D28D9; background:#F5F3FF; color:#6D28D9; }
-    .chip.chip-of   { border-color:#1D4ED8; background:#EFF6FF; color:#1D4ED8; }
-    .chip.chip-cap  { border-color:#0F766E; background:#F0FDFA; color:#0F766E; }
-    .chip.chip-type { border-color:#B45309; background:#FFFBEB; color:#B45309; }
-    .chip.chip-acc  { border-color:#374151; background:var(--g100); color:#374151; }
+    .chip.chip-intent { border-color:var(--green); background:var(--green-sub); color:var(--green-dk); }
+    .chip.chip-unit   { border-color:var(--green); background:var(--green-sub); color:var(--green); }
+    .chip.chip-sl     { border-color:#6D28D9; background:#F5F3FF; color:#6D28D9; }
+    .chip.chip-of     { border-color:#1D4ED8; background:#EFF6FF; color:#1D4ED8; }
+    .chip.chip-cap    { border-color:#0F766E; background:#F0FDFA; color:#0F766E; }
+    .chip.chip-type   { border-color:#B45309; background:#FFFBEB; color:#B45309; }
+    .chip.chip-acc    { border-color:#374151; background:var(--g100); color:#374151; }
 
     .group-toggle { display:flex; gap:4px; background:white; border:1px solid var(--g200); border-radius:var(--r); padding:3px; }
     .grp-btn { padding:5px 13px; font-size:12px; font-weight:600; border:none; border-radius:5px; cursor:pointer; background:transparent; color:var(--g600); transition:all var(--t); display:flex; align-items:center; gap:6px; }
@@ -126,8 +169,7 @@
 
     /* ── COLLATERAL CARDS ── */
     .card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; }
-
-    .coll-card { background:white; border:1px solid var(--g200); border-radius:var(--r-md); padding:16px 18px; display:flex; flex-direction:column; gap:11px; transition:all var(--t); cursor:pointer; }
+    .coll-card { background:white; border:1px solid var(--g200); border-radius:var(--r-md); padding:16px 18px; display:flex; flex-direction:column; gap:10px; transition:all var(--t); cursor:pointer; }
     .coll-card:hover { border-color:var(--green); transform:translateY(-2px); box-shadow:var(--sh-md); }
     .coll-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
     .coll-badges { display:flex; gap:5px; flex-wrap:wrap; }
@@ -142,9 +184,10 @@
     .b-cd  { background:#EFF6FF; color:#1E40AF; }
     .b-int { background:#FEF3F2; color:#B42318; }
     .b-cli { background:#ECFDF5; color:#027A48; }
-
     .coll-level { font-size:10px; font-weight:600; color:var(--g400); background:var(--g100); padding:2px 7px; border-radius:100px; white-space:nowrap; flex-shrink:0; }
     .coll-title { font-size:13px; font-weight:700; color:var(--navy); line-height:1.4; }
+    .coll-subs { font-size:11px; color:var(--g400); line-height:1.4; }
+    .coll-subs b { color:var(--g600); font-weight:600; }
     .coll-meta { display:flex; align-items:center; justify-content:space-between; font-size:11px; color:var(--g400); }
     .coll-actions { display:flex; gap:6px; }
     .coll-btn { flex:1; padding:7px 10px; font-size:12px; font-weight:600; border-radius:6px; cursor:pointer; border:none; transition:all var(--t); display:flex; align-items:center; justify-content:center; gap:5px; }
@@ -207,7 +250,7 @@
     .fl-mark { width:32px; height:32px; background:var(--green); border-radius:7px; display:flex; align-items:center; justify-content:center; }
     .fl-mark svg { width:18px; height:18px; fill:white; }
     .fl-text { font-size:15px; font-weight:700; color:white; }
-    .ft-tag { font-size:13px; line-height:1.65; max-width:250px; margin-bottom:0; }
+    .ft-tag { font-size:13px; line-height:1.65; max-width:250px; }
     .fc h4 { font-size:11px; font-weight:700; color:white; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
     .fc ul { list-style:none; display:flex; flex-direction:column; gap:8px; }
     .fc ul a { font-size:13px; color:rgba(255,255,255,0.45); text-decoration:none; transition:color var(--t); }
@@ -218,7 +261,7 @@
     .fb-legal a:hover { color:rgba(255,255,255,0.65); }
 
     /* ── RESPONSIVE ── */
-    @media(max-width:1100px){ .sidebar{width:220px;} }
+    @media(max-width:1100px){ .sidebar{width:240px;} }
     @media(max-width:900px){ .app-wrap{flex-direction:column;} .sidebar{width:100%;position:static;max-height:none;} .cs-grid{grid-template-columns:1fr 1fr;} .ft{grid-template-columns:1fr 1fr;gap:28px;} }
     @media(max-width:600px){ .nav-links,.nav-search{display:none;} .cs-grid{grid-template-columns:1fr;} .ft{grid-template-columns:1fr;} .hero-stats{display:none;} }
     @media(prefers-reduced-motion:reduce){ *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;} }
@@ -254,7 +297,7 @@
     <div>
       <div class="hero-badge"><span class="hero-dot"></span>Sales Enablement Portal — FY 2025</div>
       <h1>Genpact <span>Sales Hub</span></h1>
-      <p class="hero-sub">Find unit capability decks, service line collaterals, offering assets, and competitive intelligence — filter any way you need.</p>
+      <p class="hero-sub">Find the right asset in three steps — unit decks, service line collaterals, offering solution packs, and capability assets.</p>
     </div>
     <div class="hero-stats" role="list">
       <div role="listitem"><div class="hs-num">125<span>K+</span></div><div class="hs-lbl">Professionals</div></div>
@@ -266,7 +309,7 @@
 
 <!-- MAIN APP -->
 <div class="app-wrap">
-  <aside class="sidebar" id="sidebar" aria-label="Collateral filters"></aside>
+  <aside class="sidebar" id="sidebar" aria-label="Collateral finder"></aside>
   <div class="results" id="results"></div>
 </div>
 
@@ -284,7 +327,7 @@
         </div>
         <div class="cs-body">
           <div class="cs-meta"><span class="cs-ind" style="background:#EFF6FF;color:#1D4ED8">Banking & FS</span><span class="cs-res">42% Cost Reduction</span></div>
-          <div class="cs-title">Global Bank: Intelligent F&A Transformation</div>
+          <div class="cs-title">Global Bank: Intelligent F&amp;A Transformation</div>
           <div class="cs-stats">
             <div><div class="csv">42<span>%</span></div><div class="csl">Cost Save</div></div>
             <div><div class="csv">60<span>%</span></div><div class="csl">Faster Close</div></div>
@@ -356,7 +399,7 @@
         <a href="#" class="fl"><div class="fl-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><span class="fl-text">Genpact Sales Hub</span></a>
         <p class="ft-tag">Empowering Genpact sales teams with unit-specific capability decks, service line collaterals, and competitive intelligence.</p>
       </div>
-      <div class="fc"><h4>Service Lines</h4><ul><li><a href="#">Finance & Accounting</a></li><li><a href="#">Supply Chain</a></li><li><a href="#">Customer Experience</a></li><li><a href="#">Human Resources</a></li><li><a href="#">Risk & Compliance</a></li></ul></div>
+      <div class="fc"><h4>Service Lines</h4><ul><li><a href="#">Finance &amp; Accounting</a></li><li><a href="#">Supply Chain</a></li><li><a href="#">Customer Experience</a></li><li><a href="#">Human Resources</a></li><li><a href="#">Risk &amp; Compliance</a></li></ul></div>
       <div class="fc"><h4>Capabilities</h4><ul><li><a href="#">Data</a></li><li><a href="#">Unified AI</a></li><li><a href="#">Service as Agentic</a></li><li><a href="#">Digital Technology</a></li><li><a href="#">DSS / Tech Services</a></li></ul></div>
       <div class="fc"><h4>Resources</h4><ul><li><a href="#">Sales Training</a></li><li><a href="#">Partner Portal</a></li><li><a href="#">Genpact.com</a></li><li><a href="mailto:salesenablement@genpact.com">Sales Enablement</a></li><li><a href="#">Request Custom Deck</a></li></ul></div>
     </div>
@@ -365,9 +408,11 @@
 </footer>
 
 <script>
-/* ═══════════════ DATA ═══════════════ */
-const UNITS=[
-  {id:'lifesciences', name:'Life Sciences & Pharma'},
+/* ═══════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════ */
+const UNITS = [
+  {id:'lifesciences', name:'Life Sciences'},
   {id:'healthcare',   name:'Healthcare'},
   {id:'banking',      name:'Banking & FS'},
   {id:'insurance',    name:'Insurance'},
@@ -377,136 +422,150 @@ const UNITS=[
   {id:'energy',       name:'Energy & Utilities'},
 ];
 
-const SLS=[
-  {id:'fa',  name:'Finance & Accounting', color:'#1D4ED8', bg:'#EFF6FF',
+const SLS = [
+  {id:'fa', name:'Finance & Accounting', color:'#1D4ED8', bg:'#EFF6FF',
    offerings:[
-     {id:'i2c',  name:'I2C Services'},
-     {id:'r2r',  name:'R2R Services'},
-     {id:'ap',   name:'AP Suite'},
+     {id:'i2c', name:'I2C Services',  subs:['Order Management','Billing & Invoicing','Collections & Deductions','Cash Application']},
+     {id:'r2r', name:'R2R Services',  subs:['General Ledger','Financial Consolidation','Account Reconciliation','Intercompany Accounting']},
+     {id:'ap',  name:'AP Suite',      subs:['Invoice Processing','Vendor Management','Payment Processing','Expense Management']},
    ]},
-  {id:'sc',  name:'Supply Chain',          color:'#6D28D9', bg:'#F5F3FF',
+  {id:'sc', name:'Supply Chain', color:'#6D28D9', bg:'#F5F3FF',
    offerings:[
-     {id:'proc', name:'Procurement Suite'},
-     {id:'dp',   name:'Demand Planning'},
-     {id:'lf',   name:'Logistics & Fulfillment'},
+     {id:'proc', name:'Procurement Suite',       subs:['Source to Contract','Vendor Onboarding','Spend Analytics','Catalog Management']},
+     {id:'dp',   name:'Demand Planning',          subs:['Demand Sensing','S&OP','Inventory Optimization','Forecasting']},
+     {id:'lf',   name:'Logistics & Fulfillment', subs:['Transportation Mgmt','Warehouse Ops','Last-Mile Delivery','Returns Management']},
    ]},
-  {id:'cx',  name:'Customer Experience',   color:'#B45309', bg:'#FFFBEB',
+  {id:'cx', name:'Customer Experience', color:'#B45309', bg:'#FFFBEB',
    offerings:[
-     {id:'cc',   name:'Contact Centre Services'},
-     {id:'ss',   name:'Self-Service & Digital'},
-     {id:'crm',  name:'CRM & Lifecycle Mgmt'},
+     {id:'cc',  name:'Contact Centre Services', subs:['Inbound Voice','Omnichannel Support','Quality Assurance','WFM']},
+     {id:'ss',  name:'Self-Service & Digital',  subs:['IVR / Chatbot','Knowledge Management','Digital Deflection','AI Assist']},
+     {id:'crm', name:'CRM & Lifecycle Mgmt',   subs:['Customer 360','Campaign Mgmt','Loyalty Programs','Churn Prediction']},
    ]},
-  {id:'hr',  name:'Human Resources',       color:'#0891B2', bg:'#ECFEFF',
+  {id:'hr', name:'Human Resources', color:'#0891B2', bg:'#ECFEFF',
    offerings:[
-     {id:'ta',   name:'Talent Acquisition'},
-     {id:'hrops',name:'HR Operations'},
-     {id:'ld',   name:'Learning & Development'},
+     {id:'ta',    name:'Talent Acquisition',      subs:['Sourcing & Screening','Interview Scheduling','Offer Management','Onboarding']},
+     {id:'hrops', name:'HR Operations',            subs:['Payroll','Benefits Admin','Employee Helpdesk','Data Management']},
+     {id:'ld',    name:'Learning & Development',  subs:['LMS Admin','Content Curation','Skills Assessment','Leadership Dev']},
    ]},
-  {id:'rc',  name:'Risk & Compliance',     color:'#3730A3', bg:'#EEF2FF',
+  {id:'rc', name:'Risk & Compliance', color:'#3730A3', bg:'#EEF2FF',
    offerings:[
-     {id:'kyc',  name:'KYC / AML'},
-     {id:'reg',  name:'Regulatory Compliance'},
-     {id:'fraud',name:'Fraud & Financial Crime'},
+     {id:'kyc',   name:'KYC / AML',               subs:['Customer Due Diligence','Transaction Monitoring','Sanctions Screening','SAR Filing']},
+     {id:'reg',   name:'Regulatory Compliance',    subs:['Reporting Automation','Policy Management','Audit Trail','Change Management']},
+     {id:'fraud', name:'Fraud & Financial Crime',  subs:['Fraud Detection','Dispute Management','Investigation','Recovery']},
    ]},
 ];
 
-const CAPS=[
+const CAPS = [
   {group:'Advanced Tech', items:[
-    {id:'data',       name:'Data',                 color:'#1D4ED8', bg:'#EFF6FF'},
-    {id:'unifiedai',  name:'Unified AI',            color:'#7C3AED', bg:'#F5F3FF'},
-    {id:'agentic',    name:'Service as Agentic',    color:'#0F766E', bg:'#F0FDFA'},
-    {id:'digitaltech',name:'Digital Technology',    color:'#C2410C', bg:'#FFF7ED'},
-    {id:'advisory',   name:'Advisory',              color:'#B45309', bg:'#FFFBEB'},
+    {id:'data',        name:'Data',                color:'#1D4ED8', bg:'#EFF6FF'},
+    {id:'unifiedai',   name:'Unified AI',           color:'#7C3AED', bg:'#F5F3FF'},
+    {id:'agentic',     name:'Service as Agentic',   color:'#0F766E', bg:'#F0FDFA'},
+    {id:'digitaltech', name:'Digital Technology',   color:'#C2410C', bg:'#FFF7ED'},
+    {id:'advisory',    name:'Advisory',             color:'#B45309', bg:'#FFFBEB'},
   ]},
   {group:'Core Business', items:[
-    {id:'dss',        name:'DSS',                  color:'#065F46', bg:'#ECFDF5'},
-    {id:'techsvc',    name:'Tech Services',         color:'#1D4ED8', bg:'#EFF6FF'},
-    {id:'digitalops', name:'Digital Operations',    color:'#6D28D9', bg:'#F5F3FF'},
+    {id:'dss',        name:'DSS',               color:'#065F46', bg:'#ECFDF5'},
+    {id:'techsvc',    name:'Tech Services',      color:'#1D4ED8', bg:'#EFF6FF'},
+    {id:'digitalops', name:'Digital Operations', color:'#6D28D9', bg:'#F5F3FF'},
   ]},
 ];
 
-const TYPES=['Capability Deck','First Call Deck','Battlecard','Case Study','2-Pager','Demo','Playbook','Win/Loss'];
+const TYPES = ['Capability Deck','First Call Deck','Battlecard','Case Study','2-Pager','Demo','Playbook','Win/Loss'];
 
 // level: 'unit' | 'sl' | 'offering' | 'cap'
-const COLLS=[
-  // Unit-level
-  {id:1,  title:'Life Sciences & Pharma — Unit Capability Deck',  type:'Capability Deck', access:'client',   level:'unit', units:['lifesciences'], sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'8.4 MB',upd:'Feb 2025'},
-  {id:2,  title:'Healthcare — Unit Capability Deck',               type:'Capability Deck', access:'client',   level:'unit', units:['healthcare'],   sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'7.2 MB',upd:'Feb 2025'},
-  {id:3,  title:'Banking & FS — Unit Capability Deck',             type:'Capability Deck', access:'client',   level:'unit', units:['banking'],      sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'9.1 MB',upd:'Jan 2025'},
-  {id:4,  title:'Insurance — Unit Capability Deck',                type:'Capability Deck', access:'client',   level:'unit', units:['insurance'],    sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'6.8 MB',upd:'Feb 2025'},
-  {id:5,  title:'Consumer & Retail — Unit Capability Deck',        type:'Capability Deck', access:'client',   level:'unit', units:['consumer'],     sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'7.5 MB',upd:'Jan 2025'},
-  {id:6,  title:'Manufacturing — Unit Capability Deck',            type:'Capability Deck', access:'client',   level:'unit', units:['manufacturing'],sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'6.2 MB',upd:'Feb 2025'},
-  {id:7,  title:'High Tech — Unit Capability Deck',                type:'Capability Deck', access:'client',   level:'unit', units:['hightech'],     sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'8.0 MB',upd:'Feb 2025'},
-  {id:8,  title:'Energy & Utilities — Unit Capability Deck',       type:'Capability Deck', access:'client',   level:'unit', units:['energy'],       sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'5.9 MB',upd:'Jan 2025'},
-  {id:9,  title:'Life Sciences Sales Playbook FY25',               type:'Playbook',        access:'internal', level:'unit', units:['lifesciences'], sl:null,  offering:null, cap:null,        fmt:'PDF', size:'4.2 MB',upd:'Feb 2025'},
-  {id:10, title:'Banking & FS Win/Loss Analysis Q3 2024',          type:'Win/Loss',        access:'internal', level:'unit', units:['banking'],      sl:null,  offering:null, cap:null,        fmt:'PDF', size:'3.1 MB',upd:'Dec 2024'},
-  {id:11, title:'Healthcare Sales Playbook FY25',                  type:'Playbook',        access:'internal', level:'unit', units:['healthcare'],   sl:null,  offering:null, cap:null,        fmt:'PDF', size:'3.8 MB',upd:'Jan 2025'},
-  // F&A SL
-  {id:12, title:'F&A First Call Deck 2025',                        type:'First Call Deck', access:'client',   level:'sl',   units:['all'],          sl:'fa',  offering:null, cap:null,        fmt:'PPTX',size:'5.8 MB',upd:'Jan 2025'},
-  {id:13, title:'F&A Transformation 2-Pager',                      type:'2-Pager',         access:'client',   level:'sl',   units:['all'],          sl:'fa',  offering:null, cap:null,        fmt:'PDF', size:'1.2 MB',upd:'Feb 2025'},
-  {id:14, title:'F&A Battlecard — Accenture / EY / WNS',           type:'Battlecard',      access:'internal', level:'sl',   units:['all'],          sl:'fa',  offering:null, cap:null,        fmt:'PDF', size:'2.4 MB',upd:'Jan 2025'},
-  {id:15, title:'F&A Internal Playbook 2025',                      type:'Playbook',        access:'internal', level:'sl',   units:['all'],          sl:'fa',  offering:null, cap:null,        fmt:'PDF', size:'6.2 MB',upd:'Feb 2025'},
-  {id:16, title:'F&A Case Study — Global Bank Cost Reduction',     type:'Case Study',      access:'client',   level:'sl',   units:['banking'],      sl:'fa',  offering:null, cap:null,        fmt:'PDF', size:'2.8 MB',upd:'Jan 2025'},
-  // F&A Offerings
-  {id:17, title:'I2C Services — Solution Deck',                    type:'First Call Deck', access:'client',   level:'offering',units:['all'],        sl:'fa',  offering:'i2c',cap:null,        fmt:'PPTX',size:'4.1 MB',upd:'Feb 2025'},
-  {id:18, title:'I2C Competitive Battlecard',                      type:'Battlecard',      access:'internal', level:'offering',units:['all'],        sl:'fa',  offering:'i2c',cap:null,        fmt:'PDF', size:'1.8 MB',upd:'Jan 2025'},
-  {id:19, title:'I2C Case Study — Top-10 Global Bank',             type:'Case Study',      access:'client',   level:'offering',units:['banking'],    sl:'fa',  offering:'i2c',cap:null,        fmt:'PDF', size:'2.1 MB',upd:'Jan 2025'},
-  {id:20, title:'R2R Services — Solution Overview',                type:'First Call Deck', access:'client',   level:'offering',units:['all'],        sl:'fa',  offering:'r2r',cap:null,        fmt:'PPTX',size:'3.9 MB',upd:'Feb 2025'},
-  {id:21, title:'R2R Battlecard vs Competitors',                   type:'Battlecard',      access:'internal', level:'offering',units:['all'],        sl:'fa',  offering:'r2r',cap:null,        fmt:'PDF', size:'1.6 MB',upd:'Jan 2025'},
-  {id:22, title:'AP Suite — Product Demo',                         type:'Demo',            access:'client',   level:'offering',units:['all'],        sl:'fa',  offering:'ap', cap:null,        fmt:'MP4', size:'142 MB',upd:'Feb 2025'},
-  {id:23, title:'AP Suite 2-Pager',                               type:'2-Pager',         access:'client',   level:'offering',units:['all'],        sl:'fa',  offering:'ap', cap:null,        fmt:'PDF', size:'0.9 MB',upd:'Feb 2025'},
-  // Supply Chain SL
-  {id:24, title:'Supply Chain First Call Deck 2025',               type:'First Call Deck', access:'client',   level:'sl',   units:['all'],          sl:'sc',  offering:null, cap:null,        fmt:'PPTX',size:'6.5 MB',upd:'Jan 2025'},
-  {id:25, title:'Supply Chain 2-Pager',                            type:'2-Pager',         access:'client',   level:'sl',   units:['all'],          sl:'sc',  offering:null, cap:null,        fmt:'PDF', size:'1.4 MB',upd:'Feb 2025'},
-  {id:26, title:'Supply Chain Battlecard vs SAP / Blue Yonder',    type:'Battlecard',      access:'internal', level:'sl',   units:['all'],          sl:'sc',  offering:null, cap:null,        fmt:'PDF', size:'1.8 MB',upd:'Feb 2025'},
-  {id:27, title:'Procurement Suite — Solution Deck',               type:'First Call Deck', access:'client',   level:'offering',units:['all'],        sl:'sc',  offering:'proc',cap:null,       fmt:'PPTX',size:'4.8 MB',upd:'Feb 2025'},
-  {id:28, title:'Procurement Battlecard vs Coupa / Ivalua',        type:'Battlecard',      access:'internal', level:'offering',units:['all'],        sl:'sc',  offering:'proc',cap:null,       fmt:'PDF', size:'2.0 MB',upd:'Jan 2025'},
-  {id:29, title:'Demand Planning — Solution Brief',                type:'2-Pager',         access:'client',   level:'offering',units:['all'],        sl:'sc',  offering:'dp', cap:null,        fmt:'PDF', size:'1.1 MB',upd:'Feb 2025'},
-  // CX SL
-  {id:30, title:'CX First Call Deck 2025',                         type:'First Call Deck', access:'client',   level:'sl',   units:['all'],          sl:'cx',  offering:null, cap:null,        fmt:'PPTX',size:'9.4 MB',upd:'Feb 2025'},
-  {id:31, title:'CX Transformation Case Study — Telecom',          type:'Case Study',      access:'client',   level:'sl',   units:['all'],          sl:'cx',  offering:null, cap:null,        fmt:'PDF', size:'2.0 MB',upd:'Jan 2025'},
-  {id:32, title:'CX Battlecard',                                   type:'Battlecard',      access:'internal', level:'sl',   units:['all'],          sl:'cx',  offering:null, cap:null,        fmt:'PDF', size:'2.2 MB',upd:'Jan 2025'},
-  {id:33, title:'Contact Centre Services — Solution Deck',         type:'First Call Deck', access:'client',   level:'offering',units:['all'],        sl:'cx',  offering:'cc', cap:null,        fmt:'PPTX',size:'5.1 MB',upd:'Feb 2025'},
-  {id:34, title:'Self-Service & Digital — 2-Pager',               type:'2-Pager',         access:'client',   level:'offering',units:['all'],        sl:'cx',  offering:'ss', cap:null,        fmt:'PDF', size:'0.8 MB',upd:'Feb 2025'},
-  // HR SL
-  {id:35, title:'HR First Call Deck 2025',                         type:'First Call Deck', access:'client',   level:'sl',   units:['all'],          sl:'hr',  offering:null, cap:null,        fmt:'PPTX',size:'4.6 MB',upd:'Jan 2025'},
-  {id:36, title:'HR Battlecard vs ADP / Alight',                   type:'Battlecard',      access:'internal', level:'sl',   units:['all'],          sl:'hr',  offering:null, cap:null,        fmt:'PDF', size:'1.9 MB',upd:'Feb 2025'},
-  {id:37, title:'Talent Acquisition — Solution Deck',              type:'First Call Deck', access:'client',   level:'offering',units:['all'],        sl:'hr',  offering:'ta', cap:null,        fmt:'PPTX',size:'3.7 MB',upd:'Feb 2025'},
-  // Risk SL
-  {id:38, title:'Risk & Compliance First Call Deck',               type:'First Call Deck', access:'client',   level:'sl',   units:['banking','insurance'], sl:'rc', offering:null, cap:null,  fmt:'PPTX',size:'5.1 MB',upd:'Jan 2025'},
-  {id:39, title:'RegTech & Compliance 2-Pager',                    type:'2-Pager',         access:'client',   level:'sl',   units:['all'],          sl:'rc',  offering:null, cap:null,        fmt:'PDF', size:'1.5 MB',upd:'Jan 2025'},
-  {id:40, title:'KYC/AML Solution Deck',                           type:'First Call Deck', access:'client',   level:'offering',units:['banking','insurance'], sl:'rc', offering:'kyc', cap:null, fmt:'PPTX',size:'4.2 MB',upd:'Feb 2025'},
-  {id:41, title:'KYC Battlecard vs LexisNexis / Acuris',           type:'Battlecard',      access:'internal', level:'offering',units:['all'],        sl:'rc',  offering:'kyc',cap:null,        fmt:'PDF', size:'1.7 MB',upd:'Feb 2025'},
-  // Capabilities
-  {id:42, title:'Unified AI — Capability Overview Deck',           type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'unifiedai', fmt:'PPTX',size:'7.1 MB',upd:'Feb 2025'},
-  {id:43, title:'Generative AI — Solution Brief',                  type:'2-Pager',         access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'unifiedai', fmt:'PDF', size:'1.1 MB',upd:'Feb 2025'},
-  {id:44, title:'Unified AI — Product Demo',                       type:'Demo',            access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'unifiedai', fmt:'MP4', size:'98 MB', upd:'Feb 2025'},
-  {id:45, title:'AI Agents — Competitive Battlecard',              type:'Battlecard',      access:'internal', level:'cap',  units:['all'],          sl:null,  offering:null, cap:'agentic',   fmt:'PDF', size:'2.3 MB',upd:'Feb 2025'},
-  {id:46, title:'Service as Agentic — Introduction Deck',          type:'First Call Deck', access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'agentic',   fmt:'PPTX',size:'6.3 MB',upd:'Feb 2025'},
-  {id:47, title:'Data Platform — Capability Overview',             type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'data',      fmt:'PPTX',size:'5.9 MB',upd:'Jan 2025'},
-  {id:48, title:'Digital Operations — Overview Deck',              type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'digitalops',fmt:'PPTX',size:'7.3 MB',upd:'Feb 2025'},
-  {id:49, title:'DSS — Decision Support Services Overview',        type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'dss',       fmt:'PPTX',size:'4.8 MB',upd:'Jan 2025'},
-  {id:50, title:'Digital Technology — Platform Deck',              type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'digitaltech',fmt:'PPTX',size:'6.1 MB',upd:'Feb 2025'},
+const COLLS = [
+  // ── Unit level ──
+  {id:1,  title:'Life Sciences & Pharma — Unit Capability Deck', type:'Capability Deck', access:'client',   level:'unit', units:['lifesciences'], sl:null, offering:null, cap:null,         fmt:'PPTX',size:'8.4 MB',upd:'Feb 2025'},
+  {id:2,  title:'Healthcare — Unit Capability Deck',              type:'Capability Deck', access:'client',   level:'unit', units:['healthcare'],   sl:null, offering:null, cap:null,         fmt:'PPTX',size:'7.2 MB',upd:'Feb 2025'},
+  {id:3,  title:'Banking & FS — Unit Capability Deck',            type:'Capability Deck', access:'client',   level:'unit', units:['banking'],      sl:null, offering:null, cap:null,         fmt:'PPTX',size:'9.1 MB',upd:'Jan 2025'},
+  {id:4,  title:'Insurance — Unit Capability Deck',               type:'Capability Deck', access:'client',   level:'unit', units:['insurance'],    sl:null, offering:null, cap:null,         fmt:'PPTX',size:'6.8 MB',upd:'Feb 2025'},
+  {id:5,  title:'Consumer & Retail — Unit Capability Deck',       type:'Capability Deck', access:'client',   level:'unit', units:['consumer'],     sl:null, offering:null, cap:null,         fmt:'PPTX',size:'7.5 MB',upd:'Jan 2025'},
+  {id:6,  title:'Manufacturing — Unit Capability Deck',           type:'Capability Deck', access:'client',   level:'unit', units:['manufacturing'],sl:null, offering:null, cap:null,         fmt:'PPTX',size:'6.2 MB',upd:'Feb 2025'},
+  {id:7,  title:'High Tech — Unit Capability Deck',               type:'Capability Deck', access:'client',   level:'unit', units:['hightech'],     sl:null, offering:null, cap:null,         fmt:'PPTX',size:'8.0 MB',upd:'Feb 2025'},
+  {id:8,  title:'Energy & Utilities — Unit Capability Deck',      type:'Capability Deck', access:'client',   level:'unit', units:['energy'],       sl:null, offering:null, cap:null,         fmt:'PPTX',size:'5.9 MB',upd:'Jan 2025'},
+  {id:9,  title:'Life Sciences Sales Playbook FY25',              type:'Playbook',        access:'internal', level:'unit', units:['lifesciences'], sl:null, offering:null, cap:null,         fmt:'PDF', size:'4.2 MB',upd:'Feb 2025'},
+  {id:10, title:'Banking & FS Win/Loss Analysis Q3 2024',         type:'Win/Loss',        access:'internal', level:'unit', units:['banking'],      sl:null, offering:null, cap:null,         fmt:'PDF', size:'3.1 MB',upd:'Dec 2024'},
+  {id:11, title:'Healthcare Sales Playbook FY25',                 type:'Playbook',        access:'internal', level:'unit', units:['healthcare'],   sl:null, offering:null, cap:null,         fmt:'PDF', size:'3.8 MB',upd:'Jan 2025'},
+  // ── F&A SL level ──
+  {id:12, title:'F&A First Call Deck 2025',                       type:'First Call Deck', access:'client',   level:'sl',   units:['all'],          sl:'fa', offering:null, cap:null,         fmt:'PPTX',size:'5.8 MB',upd:'Jan 2025'},
+  {id:13, title:'F&A Transformation 2-Pager',                     type:'2-Pager',         access:'client',   level:'sl',   units:['all'],          sl:'fa', offering:null, cap:null,         fmt:'PDF', size:'1.2 MB',upd:'Feb 2025'},
+  {id:14, title:'F&A Battlecard — Accenture / EY / WNS',          type:'Battlecard',      access:'internal', level:'sl',   units:['all'],          sl:'fa', offering:null, cap:null,         fmt:'PDF', size:'2.4 MB',upd:'Jan 2025'},
+  {id:15, title:'F&A Internal Playbook 2025',                     type:'Playbook',        access:'internal', level:'sl',   units:['all'],          sl:'fa', offering:null, cap:null,         fmt:'PDF', size:'6.2 MB',upd:'Feb 2025'},
+  {id:16, title:'F&A Case Study — Global Bank Cost Reduction',    type:'Case Study',      access:'client',   level:'sl',   units:['banking'],      sl:'fa', offering:null, cap:null,         fmt:'PDF', size:'2.8 MB',upd:'Jan 2025'},
+  // ── F&A Offerings ──
+  {id:17, title:'I2C Services — Solution Deck',                   type:'First Call Deck', access:'client',   level:'offering', units:['all'],      sl:'fa', offering:'i2c',cap:null,         fmt:'PPTX',size:'4.1 MB',upd:'Feb 2025'},
+  {id:18, title:'I2C Competitive Battlecard',                     type:'Battlecard',      access:'internal', level:'offering', units:['all'],      sl:'fa', offering:'i2c',cap:null,         fmt:'PDF', size:'1.8 MB',upd:'Jan 2025'},
+  {id:19, title:'I2C Case Study — Top-10 Global Bank',            type:'Case Study',      access:'client',   level:'offering', units:['banking'],  sl:'fa', offering:'i2c',cap:null,         fmt:'PDF', size:'2.1 MB',upd:'Jan 2025'},
+  {id:20, title:'R2R Services — Solution Overview',               type:'First Call Deck', access:'client',   level:'offering', units:['all'],      sl:'fa', offering:'r2r',cap:null,         fmt:'PPTX',size:'3.9 MB',upd:'Feb 2025'},
+  {id:21, title:'R2R Battlecard vs Competitors',                  type:'Battlecard',      access:'internal', level:'offering', units:['all'],      sl:'fa', offering:'r2r',cap:null,         fmt:'PDF', size:'1.6 MB',upd:'Jan 2025'},
+  {id:22, title:'AP Suite — Product Demo',                        type:'Demo',            access:'client',   level:'offering', units:['all'],      sl:'fa', offering:'ap', cap:null,         fmt:'MP4', size:'142 MB',upd:'Feb 2025'},
+  {id:23, title:'AP Suite 2-Pager',                              type:'2-Pager',         access:'client',   level:'offering', units:['all'],      sl:'fa', offering:'ap', cap:null,         fmt:'PDF', size:'0.9 MB',upd:'Feb 2025'},
+  // ── Supply Chain SL level ──
+  {id:24, title:'Supply Chain First Call Deck 2025',              type:'First Call Deck', access:'client',   level:'sl',   units:['all'],          sl:'sc', offering:null, cap:null,         fmt:'PPTX',size:'6.5 MB',upd:'Jan 2025'},
+  {id:25, title:'Supply Chain 2-Pager',                           type:'2-Pager',         access:'client',   level:'sl',   units:['all'],          sl:'sc', offering:null, cap:null,         fmt:'PDF', size:'1.4 MB',upd:'Feb 2025'},
+  {id:26, title:'Supply Chain Battlecard vs SAP / Blue Yonder',   type:'Battlecard',      access:'internal', level:'sl',   units:['all'],          sl:'sc', offering:null, cap:null,         fmt:'PDF', size:'1.8 MB',upd:'Feb 2025'},
+  // ── Supply Chain Offerings ──
+  {id:27, title:'Procurement Suite — Solution Deck',              type:'First Call Deck', access:'client',   level:'offering', units:['all'],      sl:'sc', offering:'proc',cap:null,        fmt:'PPTX',size:'4.8 MB',upd:'Feb 2025'},
+  {id:28, title:'Procurement Battlecard vs Coupa / Ivalua',       type:'Battlecard',      access:'internal', level:'offering', units:['all'],      sl:'sc', offering:'proc',cap:null,        fmt:'PDF', size:'2.0 MB',upd:'Jan 2025'},
+  {id:29, title:'Demand Planning — Solution Brief',               type:'2-Pager',         access:'client',   level:'offering', units:['all'],      sl:'sc', offering:'dp',  cap:null,        fmt:'PDF', size:'1.1 MB',upd:'Feb 2025'},
+  // ── CX SL level ──
+  {id:30, title:'CX First Call Deck 2025',                        type:'First Call Deck', access:'client',   level:'sl',   units:['all'],          sl:'cx', offering:null, cap:null,         fmt:'PPTX',size:'9.4 MB',upd:'Feb 2025'},
+  {id:31, title:'CX Transformation Case Study — Telecom',         type:'Case Study',      access:'client',   level:'sl',   units:['all'],          sl:'cx', offering:null, cap:null,         fmt:'PDF', size:'2.0 MB',upd:'Jan 2025'},
+  {id:32, title:'CX Battlecard',                                  type:'Battlecard',      access:'internal', level:'sl',   units:['all'],          sl:'cx', offering:null, cap:null,         fmt:'PDF', size:'2.2 MB',upd:'Jan 2025'},
+  // ── CX Offerings ──
+  {id:33, title:'Contact Centre Services — Solution Deck',        type:'First Call Deck', access:'client',   level:'offering', units:['all'],      sl:'cx', offering:'cc', cap:null,         fmt:'PPTX',size:'5.1 MB',upd:'Feb 2025'},
+  {id:34, title:'Self-Service & Digital — 2-Pager',              type:'2-Pager',         access:'client',   level:'offering', units:['all'],      sl:'cx', offering:'ss', cap:null,         fmt:'PDF', size:'0.8 MB',upd:'Feb 2025'},
+  // ── HR SL level ──
+  {id:35, title:'HR First Call Deck 2025',                        type:'First Call Deck', access:'client',   level:'sl',   units:['all'],          sl:'hr', offering:null, cap:null,         fmt:'PPTX',size:'4.6 MB',upd:'Jan 2025'},
+  {id:36, title:'HR Battlecard vs ADP / Alight',                  type:'Battlecard',      access:'internal', level:'sl',   units:['all'],          sl:'hr', offering:null, cap:null,         fmt:'PDF', size:'1.9 MB',upd:'Feb 2025'},
+  // ── HR Offerings ──
+  {id:37, title:'Talent Acquisition — Solution Deck',             type:'First Call Deck', access:'client',   level:'offering', units:['all'],      sl:'hr', offering:'ta', cap:null,         fmt:'PPTX',size:'3.7 MB',upd:'Feb 2025'},
+  // ── Risk SL level ──
+  {id:38, title:'Risk & Compliance First Call Deck',              type:'First Call Deck', access:'client',   level:'sl',   units:['banking','insurance'], sl:'rc', offering:null, cap:null,  fmt:'PPTX',size:'5.1 MB',upd:'Jan 2025'},
+  {id:39, title:'RegTech & Compliance 2-Pager',                   type:'2-Pager',         access:'client',   level:'sl',   units:['all'],          sl:'rc', offering:null, cap:null,         fmt:'PDF', size:'1.5 MB',upd:'Jan 2025'},
+  // ── Risk Offerings ──
+  {id:40, title:'KYC/AML Solution Deck',                          type:'First Call Deck', access:'client',   level:'offering', units:['banking','insurance'], sl:'rc', offering:'kyc', cap:null, fmt:'PPTX',size:'4.2 MB',upd:'Feb 2025'},
+  {id:41, title:'KYC Battlecard vs LexisNexis / Acuris',          type:'Battlecard',      access:'internal', level:'offering', units:['all'],      sl:'rc', offering:'kyc',cap:null,         fmt:'PDF', size:'1.7 MB',upd:'Feb 2025'},
+  // ── Capabilities ──
+  {id:42, title:'Unified AI — Capability Overview Deck',          type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null, offering:null, cap:'unifiedai',  fmt:'PPTX',size:'7.1 MB',upd:'Feb 2025'},
+  {id:43, title:'Generative AI — Solution Brief',                 type:'2-Pager',         access:'client',   level:'cap',  units:['all'],          sl:null, offering:null, cap:'unifiedai',  fmt:'PDF', size:'1.1 MB',upd:'Feb 2025'},
+  {id:44, title:'Unified AI — Product Demo',                      type:'Demo',            access:'client',   level:'cap',  units:['all'],          sl:null, offering:null, cap:'unifiedai',  fmt:'MP4', size:'98 MB', upd:'Feb 2025'},
+  {id:45, title:'AI Agents — Competitive Battlecard',             type:'Battlecard',      access:'internal', level:'cap',  units:['all'],          sl:null, offering:null, cap:'agentic',    fmt:'PDF', size:'2.3 MB',upd:'Feb 2025'},
+  {id:46, title:'Service as Agentic — Introduction Deck',         type:'First Call Deck', access:'client',   level:'cap',  units:['all'],          sl:null, offering:null, cap:'agentic',    fmt:'PPTX',size:'6.3 MB',upd:'Feb 2025'},
+  {id:47, title:'Data Platform — Capability Overview',            type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null, offering:null, cap:'data',       fmt:'PPTX',size:'5.9 MB',upd:'Jan 2025'},
+  {id:48, title:'Digital Operations — Overview Deck',             type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null, offering:null, cap:'digitalops', fmt:'PPTX',size:'7.3 MB',upd:'Feb 2025'},
+  {id:49, title:'DSS — Decision Support Services Overview',       type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null, offering:null, cap:'dss',        fmt:'PPTX',size:'4.8 MB',upd:'Jan 2025'},
+  {id:50, title:'Digital Technology — Platform Deck',             type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null, offering:null, cap:'digitaltech',fmt:'PPTX',size:'6.1 MB',upd:'Feb 2025'},
 ];
 
-/* ═══════════════ FILTER STATE ═══════════════ */
-// Each dimension is independent — AND logic across dimensions
+/* ═══════════════════════════════════════════
+   FILTER STATE
+   intent maps to the 'level' field on collaterals
+═══════════════════════════════════════════ */
 const F = {
-  unit:'', sl:'', offering:'', cap:'', type:'', access:'', q:'', group:'flat',
+  intent: '',    // '' | 'unit' | 'sl' | 'offering' | 'cap'
+  unit: '',
+  sl: '',
+  offering: '',
+  cap: '',
+  type: '',
+  access: '',
+  q: '',
+  group: 'flat',
 };
 
-/* ═══════════════ OPEN STATE (sidebar sections) ═══════════════ */
-const OPEN = { unit:true, sl:true, offering:true, cap:true, type:true, access:true };
-
-/* ═══════════════ FILTER LOGIC ═══════════════ */
-function countFor(updates) {
-  const test = {...F,...updates};
-  return COLLS.filter(c=>matches(c,test)).length;
-}
-
-function matches(c, f=F) {
-  const q = (f.q||'').toLowerCase().trim();
+/* ═══════════════════════════════════════════
+   FILTER LOGIC
+═══════════════════════════════════════════ */
+function matches(c, f) {
+  f = f || F;
+  const q = (f.q || '').toLowerCase().trim();
   if (q && !c.title.toLowerCase().includes(q)) return false;
+  // Intent → level constraint
+  if (f.intent) {
+    if (c.level !== f.intent) return false;
+  }
+  // Dimensional filters (AND logic)
   if (f.unit && !c.units.includes('all') && !c.units.includes(f.unit)) return false;
   if (f.sl   && c.sl !== f.sl) return false;
   if (f.offering && c.offering !== f.offering) return false;
@@ -516,98 +575,190 @@ function matches(c, f=F) {
   return true;
 }
 
-function filtered() { return COLLS.filter(c=>matches(c)); }
+function filtered() { return COLLS.filter(c => matches(c)); }
 
-/* ═══════════════ BADGE CLASSES ═══════════════ */
+/* ═══════════════════════════════════════════
+   BADGE / LABEL MAPS
+═══════════════════════════════════════════ */
 const TBADGE = {
   'Capability Deck':'b-cd','First Call Deck':'b-fc','Battlecard':'b-bc',
-  'Case Study':'b-cs','2-Pager':'b-2p','Demo':'b-dm','Playbook':'b-pb','Win/Loss':'b-wl'
+  'Case Study':'b-cs','2-Pager':'b-2p','Demo':'b-dm','Playbook':'b-pb','Win/Loss':'b-wl',
 };
-
 const LEVEL_LABEL = { unit:'Unit Level', sl:'Service Line', offering:'Offering', cap:'Capability' };
-
-/* ═══════════════ SVG SNIPPETS ═══════════════ */
-const S = {
-  chev:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>`,
-  eye:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
-  play:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>`,
-  dl:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`,
-  x:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
-  flat:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>`,
-  grp:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>`,
+const INTENT_NAME = {
+  unit:'Unit Capability Decks', sl:'SL Collaterals',
+  offering:'Offering Collaterals', cap:'Capability Collaterals',
 };
 
-/* ═══════════════ RENDER SIDEBAR ═══════════════ */
+/* ═══════════════════════════════════════════
+   SVG SNIPPETS
+═══════════════════════════════════════════ */
+const S = {
+  eye:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+  play: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>`,
+  dl:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`,
+  x:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
+  flat: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>`,
+  grp:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>`,
+};
+
+/* ═══════════════════════════════════════════
+   RENDER SIDEBAR (3-step wizard)
+═══════════════════════════════════════════ */
 function renderSidebar() {
-  const activeOfferings = F.sl ? (SLS.find(s=>s.id===F.sl)||{offerings:[]}).offerings : [];
+  const intent = F.intent;
+  const active = !!intent;
 
-  function sec(key, label, content) {
-    const open = OPEN[key];
-    return `<div class="filt-section">
-      <button class="filt-toggle ${open?'open':''}" onclick="toggleSec('${key}')">${label}${S.chev}</button>
-      <div class="filt-body ${open?'':'closed'}">${content}</div>
-    </div>`;
+  /* ── Step 2 content ── */
+  const STEP2_Q = {
+    unit:     'Which industry vertical?',
+    sl:       'Which service line?',
+    offering: 'Which service line & offering?',
+    cap:      'Which capability?',
+  };
+
+  let step2Body = '';
+  if (!intent) {
+    step2Body = '<p class="step-placeholder">Select an option above to continue</p>';
+  } else if (intent === 'unit') {
+    step2Body = `<div class="unit-grid">` +
+      UNITS.map(u => {
+        const sel = F.unit === u.id;
+        return `<div class="unit-chip${sel?' sel':''}" onclick="toggleUnit('${u.id}')">${u.name}</div>`;
+      }).join('') +
+      `</div>`;
+  } else if (intent === 'sl') {
+    step2Body = SLS.map(s => {
+      const sel = F.sl === s.id;
+      return `<div class="sl-item${sel?' sel':''}" onclick="toggleSL('${s.id}')">
+        <div class="sl-dot" style="background:${s.color}"></div>
+        <span class="sl-name">${s.name}</span>
+      </div>`;
+    }).join('');
+  } else if (intent === 'offering') {
+    step2Body = SLS.map(s => {
+      const slSel = F.sl === s.id;
+      const ofHtml = slSel ? `<div class="of-indent">` +
+        s.offerings.map(o => {
+          const oSel = F.offering === o.id;
+          return `<div class="of-item${oSel?' sel':''}" onclick="toggleOffering('${o.id}')">
+            <div class="of-radio"></div>
+            <span class="of-name">${o.name}</span>
+          </div>`;
+        }).join('') + `</div>` : '';
+      return `<div class="sl-item${slSel?' sel':''}" onclick="toggleSL('${s.id}')">
+        <div class="sl-dot" style="background:${s.color}"></div>
+        <span class="sl-name">${s.name}</span>
+      </div>${ofHtml}`;
+    }).join('');
+  } else if (intent === 'cap') {
+    step2Body = CAPS.map((grp, gi) =>
+      `<div class="cap-group-lbl${gi===0?' ':''}"> ${grp.group}</div>` +
+      grp.items.map(c => {
+        const sel = F.cap === c.id;
+        return `<div class="cap-item${sel?' sel':''}" onclick="toggleCap('${c.id}')">
+          <div class="cap-dot" style="background:${c.color}"></div>
+          <span class="cap-name">${c.name}</span>
+        </div>`;
+      }).join('')
+    ).join('');
   }
 
-  function radio(field, val, label, extraClass='') {
-    const cnt = countFor({[field]:val});
-    const sel = F[field]===val;
-    return `<div class="filt-opt" onclick="setFilter('${field}','${val}')">
-      <div class="filt-radio ${sel?'sel':''}"></div>
-      <span class="filt-label">${label}</span>
-      <span class="filt-count">${cnt}</span>
-    </div>`;
+  /* ── Step 3 content ── */
+  const typeRow = `<div class="narrow-row">
+    <div class="narrow-lbl">Document Type</div>
+    <div class="type-chips">` +
+      TYPES.map(t => {
+        const sel = F.type === t;
+        return `<div class="type-chip${sel?' sel':''}" onclick="toggleType('${t}')">${t}</div>`;
+      }).join('') +
+    `</div></div>`;
+
+  const accRow = `<div class="narrow-row">
+    <div class="narrow-lbl">Access Level</div>
+    <div class="acc-opts">
+      <div class="acc-opt${!F.access?' sel':''}" onclick="setFilter('access','')">All</div>
+      <div class="acc-opt${F.access==='client'?' sel':''}" onclick="setFilter('access','client')">Client</div>
+      <div class="acc-opt${F.access==='internal'?' sel':''}" onclick="setFilter('access','internal')">Internal</div>
+    </div></div>`;
+
+  const unitRow = (intent !== 'unit') ? `<div class="narrow-row">
+    <div class="narrow-lbl">Industry Unit</div>
+    <div class="unit-grid">` +
+      UNITS.map(u => {
+        const sel = F.unit === u.id;
+        return `<div class="unit-chip${sel?' sel':''}" onclick="toggleUnit('${u.id}')">${u.name}</div>`;
+      }).join('') +
+    `</div></div>` : '';
+
+  let step3Body = '';
+  if (!intent) {
+    step3Body = '<p class="step-placeholder">Complete steps above to narrow results</p>';
+  } else {
+    step3Body = typeRow + accRow + unitRow;
   }
-
-  function check(field, val, label) {
-    const sel = F[field]===val;
-    const cnt = countFor({[field]:val});
-    return `<div class="filt-opt" onclick="setFilter('${field}',${sel?`''`:`'${val}'`})">
-      <div class="filt-check ${sel?'sel':''}"></div>
-      <span class="filt-label">${label}</span>
-      <span class="filt-count">${cnt}</span>
-    </div>`;
-  }
-
-  const unitOpts = `${radio('unit','','All Units')}` + UNITS.map(u=>radio('unit',u.id,u.name)).join('');
-
-  const slOpts = `${radio('sl','','All Service Lines')}` + SLS.map(s=>radio('sl',s.id,s.name)).join('');
-
-  const ofOpts = activeOfferings.length
-    ? `${radio('offering','','All Offerings')}` + activeOfferings.map(o=>radio('offering',o.id,o.name)).join('')
-    : `<p style="font-size:12px;color:var(--g400);font-style:italic">Select a Service Line first</p>`;
-
-  const capOpts = CAPS.map(g=>`
-    <div class="filt-group-label">${g.group}</div>
-    ${g.items.map(c=>radio('cap',c.id,c.name)).join('')}
-  `).join('');
-
-  const typeOpts = TYPES.map(t=>check('type',t,t)).join('');
-
-  const accOpts = `${radio('access','','All')}${radio('access','client','Client-Facing')}${radio('access','internal','Internal')}`;
 
   document.getElementById('sidebar').innerHTML = `
     <div class="sidebar-head">
       <span class="sidebar-title">Find Collaterals</span>
       <button class="btn-reset" onclick="clearAllFilters()">Reset all</button>
     </div>
-    ${sec('unit','Unit / Vertical', unitOpts)}
-    ${sec('sl','Service Line', slOpts)}
-    ${sec('offering','Offering', ofOpts)}
-    ${sec('cap','Capability', capOpts)}
-    ${sec('type','Document Type', typeOpts)}
-    ${sec('access','Access Level', accOpts)}
+
+    <div class="step-block">
+      <div class="step-label">
+        <div class="step-num">1</div>
+        <span class="step-q">What are you looking for?</span>
+      </div>
+      ${[
+        {val:'unit',     name:'Unit Capability Deck',     desc:'Full capability overview for an industry vertical'},
+        {val:'sl',       name:'Service Line Collateral',  desc:'First Call Decks, battlecards & playbooks by SL'},
+        {val:'offering', name:'Offering Collateral',      desc:'Solution decks and assets tied to a specific offering'},
+        {val:'cap',      name:'Capability Collateral',    desc:'Data, AI, agentic & core capability assets'},
+      ].map(o => `<div class="intent-opt${intent===o.val?' sel':''}" onclick="setIntent('${o.val}')">
+        <div class="intent-radio"></div>
+        <div><div class="intent-name">${o.name}</div><div class="intent-desc">${o.desc}</div></div>
+      </div>`).join('')}
+    </div>
+
+    <div class="step-block">
+      <div class="step-label">
+        <div class="step-num${active?'':' inactive'}">2</div>
+        <span class="step-q">${active ? STEP2_Q[intent] : 'Pick a specific item…'}</span>
+      </div>
+      ${step2Body}
+    </div>
+
+    <div class="step-block">
+      <div class="step-label">
+        <div class="step-num${active?'':' inactive'}">3</div>
+        <span class="step-q">Narrow further</span>
+      </div>
+      ${step3Body}
+    </div>
   `;
 }
 
-/* ═══════════════ RENDER COLLATERAL CARD ═══════════════ */
+/* ═══════════════════════════════════════════
+   RENDER COLLATERAL CARD
+═══════════════════════════════════════════ */
 function collCard(c) {
-  const tb = TBADGE[c.type]||'b-cd';
-  const ab = c.access==='internal'?'b-int':'b-cli';
-  const al = c.access==='internal'?'Internal':'Client-Facing';
-  const vIcon = c.type==='Demo'?S.play:S.eye;
-  const vLabel = c.type==='Demo'?'Play':'View';
-  const ll = LEVEL_LABEL[c.level]||'';
+  const tb = TBADGE[c.type] || 'b-cd';
+  const ab = c.access === 'internal' ? 'b-int' : 'b-cli';
+  const al = c.access === 'internal' ? 'Internal' : 'Client-Facing';
+  const vIcon = c.type === 'Demo' ? S.play : S.eye;
+  const vLabel = c.type === 'Demo' ? 'Play' : 'View';
+  const ll = LEVEL_LABEL[c.level] || '';
+
+  // Sub-offerings metadata (offering-level cards only)
+  let subsHtml = '';
+  if (c.level === 'offering' && c.offering && c.sl) {
+    const slData = SLS.find(s => s.id === c.sl);
+    const ofData = slData && slData.offerings.find(o => o.id === c.offering);
+    if (ofData && ofData.subs && ofData.subs.length) {
+      subsHtml = `<div class="coll-subs"><b>Covers:</b> ${ofData.subs.join(' · ')}</div>`;
+    }
+  }
+
   return `<div class="coll-card" tabindex="0">
     <div class="coll-top">
       <div class="coll-badges">
@@ -617,6 +768,7 @@ function collCard(c) {
       <span class="coll-level">${ll}</span>
     </div>
     <div class="coll-title">${c.title}</div>
+    ${subsHtml}
     <div class="coll-meta"><span>${c.fmt} · ${c.size}</span><span>Updated ${c.upd}</span></div>
     <div class="coll-actions">
       <button class="coll-btn cv">${vIcon} ${vLabel}</button>
@@ -625,27 +777,34 @@ function collCard(c) {
   </div>`;
 }
 
-/* ═══════════════ RENDER RESULTS ═══════════════ */
+/* ═══════════════════════════════════════════
+   RENDER RESULTS
+═══════════════════════════════════════════ */
 function renderResults() {
   const colls = filtered();
-  const hasFilters = F.unit||F.sl||F.offering||F.cap||F.type||F.access||F.q;
 
-  // Active chips
+  // Active filter chips
   const chips = [];
-  if(F.q)        chips.push(`<span class="chip">Search: "${F.q}" <span class="chip-x" onclick="setFilter('q','')">${S.x}</span></span>`);
-  if(F.unit)     chips.push(`<span class="chip chip-unit">${UNITS.find(u=>u.id===F.unit)?.name||F.unit} <span class="chip-x" onclick="setFilter('unit','')">${S.x}</span></span>`);
-  if(F.sl)       chips.push(`<span class="chip chip-sl">${SLS.find(s=>s.id===F.sl)?.name||F.sl} <span class="chip-x" onclick="setFilter('sl','')">${S.x}</span></span>`);
-  if(F.offering) { const of=SLS.flatMap(s=>s.offerings).find(o=>o.id===F.offering); chips.push(`<span class="chip chip-of">${of?.name||F.offering} <span class="chip-x" onclick="setFilter('offering','')">${S.x}</span></span>`); }
-  if(F.cap)      { const cap=CAPS.flatMap(g=>g.items).find(c=>c.id===F.cap); chips.push(`<span class="chip chip-cap">${cap?.name||F.cap} <span class="chip-x" onclick="setFilter('cap','')">${S.x}</span></span>`); }
-  if(F.type)     chips.push(`<span class="chip chip-type">${F.type} <span class="chip-x" onclick="setFilter('type','')">${S.x}</span></span>`);
-  if(F.access)   chips.push(`<span class="chip chip-acc">${F.access==='internal'?'Internal':'Client-Facing'} <span class="chip-x" onclick="setFilter('access','')">${S.x}</span></span>`);
+  if (F.q)       chips.push(`<span class="chip">Search: "${F.q}" <span class="chip-x" onclick="setFilter('q','')">${S.x}</span></span>`);
+  if (F.intent)  chips.push(`<span class="chip chip-intent">${INTENT_NAME[F.intent]} <span class="chip-x" onclick="clearIntent()">${S.x}</span></span>`);
+  if (F.unit)    { const u = UNITS.find(u=>u.id===F.unit); chips.push(`<span class="chip chip-unit">${u?u.name:F.unit} <span class="chip-x" onclick="setFilter('unit','')">${S.x}</span></span>`); }
+  if (F.sl && !F.offering) { const s = SLS.find(s=>s.id===F.sl); chips.push(`<span class="chip chip-sl">${s?s.name:F.sl} <span class="chip-x" onclick="setFilter('sl','')">${S.x}</span></span>`); }
+  if (F.offering) {
+    const ofData = SLS.flatMap(s=>s.offerings).find(o=>o.id===F.offering);
+    chips.push(`<span class="chip chip-of">${ofData?ofData.name:F.offering} <span class="chip-x" onclick="clearOffering()">${S.x}</span></span>`);
+  }
+  if (F.cap)     { const capData = CAPS.flatMap(g=>g.items).find(c=>c.id===F.cap); chips.push(`<span class="chip chip-cap">${capData?capData.name:F.cap} <span class="chip-x" onclick="setFilter('cap','')">${S.x}</span></span>`); }
+  if (F.type)    chips.push(`<span class="chip chip-type">${F.type} <span class="chip-x" onclick="setFilter('type','')">${S.x}</span></span>`);
+  if (F.access)  chips.push(`<span class="chip chip-acc">${F.access==='internal'?'Internal':'Client-Facing'} <span class="chip-x" onclick="setFilter('access','')">${S.x}</span></span>`);
 
-  // Group by SL or Capability
+  // Grid or grouped
   let gridHtml;
-  if(F.group==='sl') {
-    const bySL = SLS.map(sl => {
-      const items = colls.filter(c=>c.sl===sl.id);
-      if(!items.length) return '';
+  if (F.group === 'sl') {
+    const unitLevel = colls.filter(c => c.level === 'unit');
+    const capLevel  = colls.filter(c => c.level === 'cap');
+    const slSecs = SLS.map(sl => {
+      const items = colls.filter(c => c.sl === sl.id);
+      if (!items.length) return '';
       return `<div class="group-section">
         <div class="group-header">
           <div class="group-icon" style="background:${sl.bg};color:${sl.color}">
@@ -658,16 +817,14 @@ function renderResults() {
         <div class="card-grid">${items.map(collCard).join('')}</div>
       </div>`;
     });
-    const unitLevel = colls.filter(c=>c.level==='unit');
-    const capLevel  = colls.filter(c=>c.level==='cap');
-    const unitSec   = unitLevel.length?`<div class="group-section"><div class="group-header"><span class="group-name">Unit Level</span><span class="group-cnt">${unitLevel.length}</span><div class="group-line"></div></div><div class="card-grid">${unitLevel.map(collCard).join('')}</div></div>`:'';
-    const capSec    = capLevel.length?`<div class="group-section"><div class="group-header"><span class="group-name">Capability Level</span><span class="group-cnt">${capLevel.length}</span><div class="group-line"></div></div><div class="card-grid">${capLevel.map(collCard).join('')}</div></div>`:'';
-    gridHtml = unitSec + bySL.join('') + capSec;
-  } else if(F.group==='cap') {
-    const byCap = CAPS.map(grp => {
-      const grpSec = grp.items.map(cap => {
-        const items = colls.filter(c=>c.cap===cap.id);
-        if(!items.length) return '';
+    const unitSec = unitLevel.length ? `<div class="group-section"><div class="group-header"><span class="group-name">Unit Level</span><span class="group-cnt">${unitLevel.length}</span><div class="group-line"></div></div><div class="card-grid">${unitLevel.map(collCard).join('')}</div></div>` : '';
+    const capSec  = capLevel.length  ? `<div class="group-section"><div class="group-header"><span class="group-name">Capability Level</span><span class="group-cnt">${capLevel.length}</span><div class="group-line"></div></div><div class="card-grid">${capLevel.map(collCard).join('')}</div></div>` : '';
+    gridHtml = unitSec + slSecs.join('') + capSec;
+  } else if (F.group === 'cap') {
+    const capSecs = CAPS.map(grp =>
+      grp.items.map(cap => {
+        const items = colls.filter(c => c.cap === cap.id);
+        if (!items.length) return '';
         return `<div class="group-section">
           <div class="group-header">
             <div class="group-icon" style="background:${cap.bg};color:${cap.color}">
@@ -679,64 +836,112 @@ function renderResults() {
           </div>
           <div class="card-grid">${items.map(collCard).join('')}</div>
         </div>`;
-      }).join('');
-      const nonCap = colls.filter(c=>!c.cap&&grp.items.every(ci=>ci.id!==c.cap));
-      return grpSec;
-    }).join('');
-    const rest = colls.filter(c=>!c.cap);
-    const restSec = rest.length?`<div class="group-section"><div class="group-header"><span class="group-name">Other</span><span class="group-cnt">${rest.length}</span><div class="group-line"></div></div><div class="card-grid">${rest.map(collCard).join('')}</div></div>`:'';
-    gridHtml = byCap + restSec;
+      }).join('')
+    ).join('');
+    const rest = colls.filter(c => !c.cap);
+    const restSec = rest.length ? `<div class="group-section"><div class="group-header"><span class="group-name">Other</span><span class="group-cnt">${rest.length}</span><div class="group-line"></div></div><div class="card-grid">${rest.map(collCard).join('')}</div></div>` : '';
+    gridHtml = capSecs + restSec;
   } else {
     gridHtml = colls.length
       ? `<div class="card-grid">${colls.map(collCard).join('')}</div>`
-      : `<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><h3>No collaterals found</h3><p>Try adjusting your filters — you can combine Unit, Service Line, Offering, and Type independently.</p></div>`;
+      : `<div class="empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <h3>No collaterals found</h3>
+          <p>Try adjusting your selections — use the sidebar to pick a different intent, item, or type.</p>
+        </div>`;
   }
 
   document.getElementById('results').innerHTML = `
     <div class="results-bar">
-      <div class="results-count"><span>${colls.length}</span> collateral${colls.length!==1?'s':''} found</div>
+      <div class="results-count"><span>${colls.length}</span> collateral${colls.length !== 1 ? 's' : ''} found</div>
       <div class="group-toggle" role="group" aria-label="Group by">
-        <button class="grp-btn ${F.group==='flat'?'active':''}" onclick="setGroup('flat')">${S.flat} Flat</button>
-        <button class="grp-btn ${F.group==='sl'?'active':''}" onclick="setGroup('sl')">${S.grp} By SL</button>
-        <button class="grp-btn ${F.group==='cap'?'active':''}" onclick="setGroup('cap')">${S.grp} By Capability</button>
+        <button class="grp-btn${F.group==='flat'?' active':''}" onclick="setGroup('flat')">${S.flat} Flat</button>
+        <button class="grp-btn${F.group==='sl'?' active':''}" onclick="setGroup('sl')">${S.grp} By SL</button>
+        <button class="grp-btn${F.group==='cap'?' active':''}" onclick="setGroup('cap')">${S.grp} By Capability</button>
       </div>
     </div>
-    ${chips.length?`<div class="active-chips">${chips.join('')}</div>`:''}
+    ${chips.length ? `<div class="active-chips">${chips.join('')}</div>` : ''}
     ${gridHtml}
   `;
 }
 
-/* ═══════════════ ACTIONS ═══════════════ */
+/* ═══════════════════════════════════════════
+   ACTIONS
+═══════════════════════════════════════════ */
 function render() { renderSidebar(); renderResults(); }
+
+function setIntent(val) {
+  F.intent = (F.intent === val) ? '' : val;
+  // Clear step-2 picks when intent switches
+  F.sl = ''; F.offering = ''; F.cap = '';
+  // Clear unit only if switching away from unit intent
+  if (F.intent !== 'unit') F.unit = '';
+  render();
+}
+
+function clearIntent() {
+  F.intent = ''; F.unit = ''; F.sl = ''; F.offering = ''; F.cap = '';
+  render();
+}
+
+function toggleUnit(id) {
+  F.unit = (F.unit === id) ? '' : id;
+  render();
+}
+
+function toggleSL(id) {
+  if (F.sl === id) { F.sl = ''; F.offering = ''; }
+  else             { F.sl = id; F.offering = ''; }
+  render();
+}
+
+function toggleOffering(id) {
+  F.offering = (F.offering === id) ? '' : id;
+  render();
+}
+
+function toggleCap(id) {
+  F.cap = (F.cap === id) ? '' : id;
+  render();
+}
+
+function toggleType(val) {
+  F.type = (F.type === val) ? '' : val;
+  render();
+}
+
+function clearOffering() {
+  F.offering = '';
+  render();
+}
 
 function setFilter(field, val) {
   F[field] = val;
-  // If SL changes, clear offering (it's SL-specific)
-  if(field==='sl') F.offering='';
-  // If SL or offering is set, clear capability (mutually exclusive makes sense)
-  if(field==='sl'||field==='offering') { /* allow both, don't clear */ }
   render();
 }
 
-function setGroup(g) { F.group=g; renderResults(); }
-
-function toggleSec(key) { OPEN[key]=!OPEN[key]; renderSidebar(); }
+function setGroup(g) { F.group = g; renderResults(); }
 
 function clearAllFilters() {
-  F.unit=''; F.sl=''; F.offering=''; F.cap=''; F.type=''; F.access=''; F.q='';
-  document.getElementById('navQ').value='';
+  F.intent = ''; F.unit = ''; F.sl = ''; F.offering = ''; F.cap = '';
+  F.type = ''; F.access = ''; F.q = '';
+  document.getElementById('navQ').value = '';
   render();
-  window.scrollTo({top:document.getElementById('sidebar').offsetTop-80,behavior:'smooth'});
+  window.scrollTo({ top: document.getElementById('sidebar').offsetTop - 80, behavior: 'smooth' });
 }
 
-/* ═══════════════ SEARCH ═══════════════ */
+/* ═══════════════════════════════════════════
+   SEARCH
+═══════════════════════════════════════════ */
 let searchTimer;
-document.getElementById('navQ').addEventListener('input', function() {
+document.getElementById('navQ').addEventListener('input', function () {
   clearTimeout(searchTimer);
-  searchTimer = setTimeout(()=>{ F.q=this.value.trim(); render(); }, 220);
+  searchTimer = setTimeout(() => { F.q = this.value.trim(); render(); }, 220);
 });
 
-/* ═══════════════ INIT ═══════════════ */
+/* ═══════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════ */
 render();
 </script>
 </body>
