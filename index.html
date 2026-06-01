@@ -10,287 +10,239 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --green: #009B4E; --green-dark: #007A3D; --green-light: #00C062; --green-subtle: #E6F5EE;
-      --navy: #1A1A2E; --navy-mid: #16213E;
-      --gray-50: #F8FAFB; --gray-100: #F1F4F6; --gray-200: #E2E8EE;
-      --gray-400: #8A9BB0; --gray-600: #4A5568; --gray-800: #1A202C;
-      --white: #FFFFFF;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08); --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
-      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12); --shadow-green: 0 4px 20px rgba(0,155,78,0.25);
-      --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 24px;
-      --t: 200ms cubic-bezier(0.4,0,0.2,1);
+      --green:#009B4E; --green-dk:#007A3D; --green-lt:#00C062; --green-sub:#E6F5EE;
+      --navy:#1A1A2E; --navy-mid:#16213E;
+      --g50:#F8FAFB; --g100:#F1F4F6; --g200:#E2E8EE; --g300:#C8D3DE;
+      --g400:#8A9BB0; --g600:#4A5568; --g800:#1A202C;
+      --white:#FFFFFF;
+      --sh-sm:0 1px 3px rgba(0,0,0,0.07); --sh-md:0 4px 16px rgba(0,0,0,0.08);
+      --sh-lg:0 12px 40px rgba(0,0,0,0.11); --sh-green:0 4px 20px rgba(0,155,78,0.22);
+      --r:8px; --r-md:12px; --r-lg:16px;
+      --t:180ms cubic-bezier(0.4,0,0.2,1);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--gray-800); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    body { font-family:'Inter',sans-serif; background:var(--g50); color:var(--g800); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
 
     /* ── NAVBAR ── */
-    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); height: 64px; display: flex; align-items: center; }
-    .navbar-inner { max-width: 1320px; margin: 0 auto; padding: 0 24px; width: 100%; display: flex; align-items: center; gap: 28px; }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-    .nav-logo-mark { width: 36px; height: 36px; background: var(--green); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-    .nav-logo-mark svg { width: 22px; height: 22px; fill: white; }
-    .nav-logo-text { font-size: 17px; font-weight: 700; color: var(--navy); letter-spacing: -0.3px; }
-    .nav-logo-text span { color: var(--green); }
-    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; flex: 1; }
-    .nav-links a { display: block; padding: 6px 12px; font-size: 14px; font-weight: 500; color: var(--gray-600); text-decoration: none; border-radius: var(--r-sm); transition: color var(--t), background var(--t); }
-    .nav-links a:hover, .nav-links a.active { color: var(--green); background: var(--green-subtle); }
-    .nav-search { display: flex; align-items: center; background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: var(--r-sm); padding: 7px 12px; gap: 8px; min-width: 200px; transition: border-color var(--t), box-shadow var(--t); }
-    .nav-search:focus-within { border-color: var(--green); box-shadow: 0 0 0 3px rgba(0,155,78,0.12); background: white; }
-    .nav-search svg { width: 16px; height: 16px; color: var(--gray-400); flex-shrink: 0; }
-    .nav-search input { border: none; background: transparent; font-size: 14px; color: var(--gray-800); outline: none; width: 100%; }
-    .nav-search input::placeholder { color: var(--gray-400); }
-    .btn-primary { padding: 7px 18px; font-size: 14px; font-weight: 600; color: white; background: var(--green); border: none; border-radius: var(--r-sm); cursor: pointer; text-decoration: none; transition: all var(--t); white-space: nowrap; }
-    .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: var(--shadow-green); }
+    .nav { position:fixed; top:0; left:0; right:0; z-index:200; height:60px; background:rgba(255,255,255,0.97); backdrop-filter:blur(12px); border-bottom:1px solid var(--g200); display:flex; align-items:center; }
+    .nav-in { max-width:1400px; margin:0 auto; padding:0 24px; width:100%; display:flex; align-items:center; gap:24px; }
+    .logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
+    .logo-mark { width:34px; height:34px; background:var(--green); border-radius:7px; display:flex; align-items:center; justify-content:center; }
+    .logo-mark svg { width:20px; height:20px; fill:white; }
+    .logo-text { font-size:16px; font-weight:700; color:var(--navy); letter-spacing:-0.3px; }
+    .logo-text span { color:var(--green); }
+    .nav-links { display:flex; gap:2px; list-style:none; flex:1; }
+    .nav-links a { padding:5px 11px; font-size:13px; font-weight:500; color:var(--g600); text-decoration:none; border-radius:6px; transition:color var(--t),background var(--t); }
+    .nav-links a:hover { color:var(--green); background:var(--green-sub); }
+    .nav-search { display:flex; align-items:center; background:var(--g100); border:1px solid var(--g200); border-radius:var(--r); padding:6px 12px; gap:8px; width:220px; transition:border-color var(--t),box-shadow var(--t); }
+    .nav-search:focus-within { border-color:var(--green); box-shadow:0 0 0 3px rgba(0,155,78,0.1); background:white; }
+    .nav-search svg { width:14px; height:14px; color:var(--g400); flex-shrink:0; }
+    .nav-search input { border:none; background:transparent; font-size:13px; color:var(--g800); outline:none; width:100%; }
+    .nav-search input::placeholder { color:var(--g400); }
+    .btn-nav { padding:6px 16px; font-size:13px; font-weight:600; color:white; background:var(--green); border:none; border-radius:var(--r); cursor:pointer; text-decoration:none; transition:all var(--t); white-space:nowrap; flex-shrink:0; }
+    .btn-nav:hover { background:var(--green-dk); box-shadow:var(--sh-green); }
 
     /* ── HERO ── */
-    .hero { margin-top: 64px; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #0F2440 100%); padding: 56px 24px 52px; position: relative; overflow: hidden; }
-    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,155,78,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,155,78,0.07) 1px, transparent 1px); background-size: 60px 60px; }
-    .hero-glow { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,155,78,0.15) 0%, transparent 70%); right: -80px; top: -80px; pointer-events: none; }
-    .hero-inner { max-width: 1320px; margin: 0 auto; position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,155,78,0.15); border: 1px solid rgba(0,155,78,0.3); border-radius: 100px; padding: 5px 14px; margin-bottom: 16px; font-size: 12px; font-weight: 600; color: #4FFFAA; text-transform: uppercase; letter-spacing: 0.5px; }
-    .hero-badge-dot { width: 6px; height: 6px; background: var(--green-light); border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
-    .hero h1 { font-size: clamp(28px,3.5vw,46px); font-weight: 800; color: white; letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 12px; }
-    .hero h1 span { color: var(--green-light); }
-    .hero-sub { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 500px; line-height: 1.7; }
-    .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
-    .hero-stat { text-align: center; }
-    .hero-stat-num { font-size: 28px; font-weight: 800; color: white; letter-spacing: -1px; }
-    .hero-stat-num span { color: var(--green-light); }
-    .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.45); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+    .hero { margin-top:60px; background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,#0F2440 100%); padding:44px 24px 40px; position:relative; overflow:hidden; }
+    .hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(0,155,78,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,155,78,0.06) 1px,transparent 1px); background-size:56px 56px; }
+    .hero-glow { position:absolute; width:400px; height:400px; background:radial-gradient(circle,rgba(0,155,78,0.14) 0%,transparent 70%); right:-40px; top:-40px; pointer-events:none; }
+    .hero-in { max-width:1400px; margin:0 auto; position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap; }
+    .hero-badge { display:inline-flex; align-items:center; gap:7px; background:rgba(0,155,78,0.14); border:1px solid rgba(0,155,78,0.28); border-radius:100px; padding:4px 13px; margin-bottom:14px; font-size:11px; font-weight:600; color:#4FFFAA; text-transform:uppercase; letter-spacing:0.5px; }
+    .hero-dot { width:6px; height:6px; background:var(--green-lt); border-radius:50%; animation:blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
+    .hero h1 { font-size:clamp(26px,3vw,42px); font-weight:800; color:white; letter-spacing:-1.2px; line-height:1.15; margin-bottom:8px; }
+    .hero h1 span { color:var(--green-lt); }
+    .hero-sub { font-size:14px; color:rgba(255,255,255,0.55); max-width:460px; line-height:1.7; }
+    .hero-stats { display:flex; gap:28px; }
+    .hs-num { font-size:26px; font-weight:800; color:white; letter-spacing:-0.8px; }
+    .hs-num span { color:var(--green-lt); }
+    .hs-lbl { font-size:11px; color:rgba(255,255,255,0.4); font-weight:500; text-transform:uppercase; letter-spacing:0.5px; margin-top:2px; }
 
-    /* ── LAYOUT ── */
-    .section { padding: 0 24px; }
-    .section-alt { background: var(--gray-50); }
-    .inner { max-width: 1320px; margin: 0 auto; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
-    .eyebrow::before { content: ''; display: block; width: 18px; height: 2px; background: var(--green); border-radius: 2px; }
-    .sec-title { font-size: clamp(22px,2.5vw,32px); font-weight: 800; color: var(--navy); letter-spacing: -0.8px; line-height: 1.2; margin-bottom: 8px; }
-    .sec-title span { color: var(--green); }
-    .sec-desc { font-size: 15px; color: var(--gray-600); line-height: 1.7; }
+    /* ── MAIN LAYOUT ── */
+    .app-wrap { max-width:1400px; margin:0 auto; padding:28px 24px 60px; display:flex; gap:24px; align-items:flex-start; }
 
-    /* ── UNIT TABS ── */
-    .unit-section { background: var(--navy); padding: 28px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .unit-section-inner { max-width: 1320px; margin: 0 auto; }
-    .unit-section-label { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }
-    .unit-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
-    .unit-tab { padding: 9px 18px; border-radius: 100px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.55); transition: all var(--t); white-space: nowrap; }
-    .unit-tab:hover { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.2); }
-    .unit-tab.active { background: var(--green); border-color: var(--green); color: white; box-shadow: var(--shadow-green); }
+    /* ── FILTER SIDEBAR ── */
+    .sidebar { width:248px; flex-shrink:0; background:white; border:1px solid var(--g200); border-radius:var(--r-lg); overflow:hidden; position:sticky; top:76px; max-height:calc(100vh - 92px); overflow-y:auto; }
+    .sidebar::-webkit-scrollbar { width:4px; }
+    .sidebar::-webkit-scrollbar-thumb { background:var(--g200); border-radius:4px; }
+    .sidebar-head { padding:16px 18px 12px; border-bottom:1px solid var(--g100); display:flex; align-items:center; justify-content:space-between; }
+    .sidebar-title { font-size:13px; font-weight:700; color:var(--navy); }
+    .btn-reset { font-size:12px; font-weight:600; color:var(--green); background:none; border:none; cursor:pointer; padding:3px 8px; border-radius:5px; transition:background var(--t); }
+    .btn-reset:hover { background:var(--green-sub); }
 
-    /* ── UNIT HEADER ── */
-    .unit-header { padding: 32px 24px 0; }
-    .unit-header-inner { max-width: 1320px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 28px; border-bottom: 1px solid var(--gray-200); }
-    .unit-header-left { flex: 1; min-width: 280px; }
-    .unit-name { font-size: clamp(20px,2vw,28px); font-weight: 800; color: var(--navy); letter-spacing: -0.5px; margin-bottom: 6px; }
-    .unit-desc { font-size: 14px; color: var(--gray-600); line-height: 1.65; max-width: 560px; }
-    .unit-deck-card { background: var(--green-subtle); border: 1.5px solid var(--green); border-radius: var(--r-md); padding: 18px 22px; display: flex; align-items: center; gap: 16px; min-width: 300px; flex-shrink: 0; transition: all var(--t); cursor: pointer; }
-    .unit-deck-card:hover { background: var(--green); }
-    .unit-deck-card:hover .unit-deck-title { color: white; }
-    .unit-deck-card:hover .unit-deck-sub { color: rgba(255,255,255,0.7); }
-    .unit-deck-card:hover .unit-deck-icon { background: rgba(255,255,255,0.2); color: white; }
-    .unit-deck-card:hover .unit-deck-btn { background: white; color: var(--green); }
-    .unit-deck-icon { width: 44px; height: 44px; border-radius: var(--r-sm); background: var(--green); color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--t); }
-    .unit-deck-icon svg { width: 22px; height: 22px; }
-    .unit-deck-content { flex: 1; }
-    .unit-deck-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; transition: color var(--t); }
-    .unit-deck-sub { font-size: 12px; color: var(--gray-600); transition: color var(--t); }
-    .unit-deck-btn { display: flex; align-items: center; gap: 6px; padding: 7px 14px; background: var(--green); color: white; border-radius: var(--r-sm); font-size: 13px; font-weight: 600; transition: all var(--t); white-space: nowrap; }
-    .unit-deck-btn svg { width: 14px; height: 14px; }
+    .filt-section { border-bottom:1px solid var(--g100); }
+    .filt-section:last-child { border-bottom:none; }
+    .filt-toggle { width:100%; display:flex; align-items:center; justify-content:space-between; padding:12px 18px; background:none; border:none; cursor:pointer; font-size:12px; font-weight:700; color:var(--g600); text-transform:uppercase; letter-spacing:0.8px; }
+    .filt-toggle:hover { color:var(--navy); }
+    .filt-toggle svg { width:14px; height:14px; color:var(--g400); transition:transform var(--t); }
+    .filt-toggle.open svg { transform:rotate(180deg); }
+    .filt-body { padding:0 18px 14px; }
+    .filt-body.closed { display:none; }
 
-    /* ── VIEW TOGGLE ── */
-    .view-toggle-wrap { padding: 24px 24px 0; }
-    .view-toggle-inner { max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-    .view-toggle { display: flex; background: var(--gray-100); border-radius: var(--r-sm); padding: 4px; gap: 4px; }
-    .view-btn { padding: 9px 22px; font-size: 14px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; background: transparent; color: var(--gray-600); transition: all var(--t); display: flex; align-items: center; gap: 8px; }
-    .view-btn.active { background: white; color: var(--navy); box-shadow: var(--shadow-sm); }
-    .view-btn svg { width: 16px; height: 16px; }
-    .view-hint { font-size: 13px; color: var(--gray-400); font-style: italic; }
+    .filt-opt { display:flex; align-items:center; gap:9px; padding:5px 0; cursor:pointer; }
+    .filt-opt:hover .filt-label { color:var(--navy); }
+    .filt-radio { width:15px; height:15px; border:1.5px solid var(--g300); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all var(--t); }
+    .filt-radio.sel { border-color:var(--green); background:var(--green); }
+    .filt-radio.sel::after { content:''; width:5px; height:5px; background:white; border-radius:50%; }
+    .filt-check { width:15px; height:15px; border:1.5px solid var(--g300); border-radius:3px; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all var(--t); }
+    .filt-check.sel { border-color:var(--green); background:var(--green); }
+    .filt-check.sel::after { content:''; width:8px; height:5px; border-left:2px solid white; border-bottom:2px solid white; transform:rotate(-45deg) translate(1px,-1px); }
+    .filt-label { font-size:13px; color:var(--g600); flex:1; transition:color var(--t); }
+    .filt-count { font-size:11px; font-weight:600; color:var(--g400); background:var(--g100); padding:1px 6px; border-radius:100px; }
 
-    /* ── SL VIEW ── */
-    .sl-view { padding: 20px 24px 48px; }
-    .sl-view-inner { max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+    .filt-group-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--g400); margin:10px 0 6px; padding-top:6px; border-top:1px solid var(--g100); }
+    .filt-group-label:first-child { border-top:none; margin-top:0; }
 
-    .sl-item { border: 1px solid var(--gray-200); border-radius: var(--r-lg); background: white; overflow: hidden; transition: border-color var(--t), box-shadow var(--t); }
-    .sl-item:hover { border-color: var(--gray-400); }
-    .sl-item.expanded { border-color: var(--green); box-shadow: var(--shadow-md); }
+    .filt-indent { padding-left:24px; }
 
-    .sl-header { display: flex; align-items: center; gap: 16px; padding: 18px 22px; cursor: pointer; user-select: none; }
-    .sl-icon { width: 42px; height: 42px; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--t); }
-    .sl-icon svg { width: 20px; height: 20px; }
-    .sl-item.expanded .sl-icon { background: var(--green) !important; color: white !important; }
-    .sl-header-content { flex: 1; }
-    .sl-name { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
-    .sl-short-desc { font-size: 13px; color: var(--gray-400); }
-    .sl-header-right { display: flex; align-items: center; gap: 12px; }
-    .sl-caps-pills { display: flex; gap: 5px; flex-wrap: wrap; }
-    .sl-cap-pill { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 100px; background: var(--gray-100); color: var(--gray-600); white-space: nowrap; }
-    .sl-chevron { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--t); }
-    .sl-chevron svg { width: 16px; height: 16px; color: var(--gray-400); transition: transform var(--t); }
-    .sl-item.expanded .sl-chevron { background: var(--green-subtle); border-color: var(--green); }
-    .sl-item.expanded .sl-chevron svg { color: var(--green); transform: rotate(180deg); }
+    /* ── RESULTS AREA ── */
+    .results { flex:1; min-width:0; }
+    .results-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
+    .results-count { font-size:14px; font-weight:700; color:var(--navy); }
+    .results-count span { color:var(--green); }
 
-    .sl-body { max-height: 0; overflow: hidden; transition: max-height 380ms ease; }
-    .sl-item.expanded .sl-body { max-height: 3600px; }
-    .sl-body-inner { padding: 0 22px 22px; border-top: 1px solid var(--gray-100); padding-top: 18px; }
+    .active-chips { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:16px; }
+    .chip { display:inline-flex; align-items:center; gap:6px; padding:5px 11px; background:white; border:1px solid var(--g200); border-radius:100px; font-size:12px; font-weight:600; color:var(--navy); }
+    .chip-x { cursor:pointer; color:var(--g400); display:flex; align-items:center; transition:color var(--t); }
+    .chip-x:hover { color:var(--g800); }
+    .chip-x svg { width:12px; height:12px; }
+    .chip.chip-unit { border-color:var(--green); background:var(--green-sub); color:var(--green); }
+    .chip.chip-sl   { border-color:#6D28D9; background:#F5F3FF; color:#6D28D9; }
+    .chip.chip-of   { border-color:#1D4ED8; background:#EFF6FF; color:#1D4ED8; }
+    .chip.chip-cap  { border-color:#0F766E; background:#F0FDFA; color:#0F766E; }
+    .chip.chip-type { border-color:#B45309; background:#FFFBEB; color:#B45309; }
+    .chip.chip-acc  { border-color:#374151; background:var(--g100); color:#374151; }
 
-    .sl-colls-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 12px; }
-    .sl-colls { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .group-toggle { display:flex; gap:4px; background:white; border:1px solid var(--g200); border-radius:var(--r); padding:3px; }
+    .grp-btn { padding:5px 13px; font-size:12px; font-weight:600; border:none; border-radius:5px; cursor:pointer; background:transparent; color:var(--g600); transition:all var(--t); display:flex; align-items:center; gap:6px; }
+    .grp-btn svg { width:13px; height:13px; }
+    .grp-btn.active { background:var(--navy); color:white; }
 
-    .offerings-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 12px; }
-    .offerings-list { display: flex; flex-direction: column; gap: 8px; }
+    /* ── EMPTY STATE ── */
+    .empty { text-align:center; padding:60px 24px; background:white; border-radius:var(--r-lg); border:1px solid var(--g200); }
+    .empty svg { width:48px; height:48px; color:var(--g300); margin-bottom:16px; }
+    .empty h3 { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:6px; }
+    .empty p { font-size:14px; color:var(--g400); }
 
-    .offering-item { border: 1px solid var(--gray-200); border-radius: var(--r-md); background: var(--gray-50); overflow: hidden; transition: border-color var(--t); }
-    .offering-item.expanded { border-color: var(--green); background: white; }
-    .offering-header { display: flex; align-items: center; gap: 12px; padding: 13px 16px; cursor: pointer; user-select: none; }
-    .offering-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gray-200); flex-shrink: 0; transition: background var(--t); }
-    .offering-item.expanded .offering-dot { background: var(--green); }
-    .offering-name { font-size: 14px; font-weight: 600; color: var(--navy); flex: 1; }
-    .offering-chev { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all var(--t); }
-    .offering-chev svg { width: 14px; height: 14px; color: var(--gray-400); transition: transform var(--t); }
-    .offering-item.expanded .offering-chev svg { color: var(--green); transform: rotate(180deg); }
+    /* ── COLLATERAL CARDS ── */
+    .card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; }
 
-    .offering-body { max-height: 0; overflow: hidden; transition: max-height 320ms ease; }
-    .offering-item.expanded .offering-body { max-height: 1600px; }
-    .offering-body-inner { padding: 0 16px 16px; border-top: 1px solid var(--gray-100); padding-top: 14px; }
-    .offering-desc { font-size: 13px; color: var(--gray-600); line-height: 1.65; margin-bottom: 12px; }
-    .sub-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 8px; }
-    .sub-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-    .sub-tag { font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 100px; background: white; border: 1px solid var(--gray-200); color: var(--gray-600); }
-    .offering-colls { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+    .coll-card { background:white; border:1px solid var(--g200); border-radius:var(--r-md); padding:16px 18px; display:flex; flex-direction:column; gap:11px; transition:all var(--t); cursor:pointer; }
+    .coll-card:hover { border-color:var(--green); transform:translateY(-2px); box-shadow:var(--sh-md); }
+    .coll-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
+    .coll-badges { display:flex; gap:5px; flex-wrap:wrap; }
+    .badge { font-size:10px; font-weight:700; padding:2px 8px; border-radius:100px; text-transform:uppercase; letter-spacing:0.2px; white-space:nowrap; }
+    .b-bc  { background:#FEF2F2; color:#DC2626; }
+    .b-fc  { background:#EFF6FF; color:#2563EB; }
+    .b-cs  { background:#ECFDF5; color:#059669; }
+    .b-2p  { background:#F5F3FF; color:#7C3AED; }
+    .b-dm  { background:#FFFBEB; color:#D97706; }
+    .b-pb  { background:#ECFEFF; color:#0891B2; }
+    .b-wl  { background:#FFF7ED; color:#EA580C; }
+    .b-cd  { background:#EFF6FF; color:#1E40AF; }
+    .b-int { background:#FEF3F2; color:#B42318; }
+    .b-cli { background:#ECFDF5; color:#027A48; }
 
-    /* ── CAPABILITY VIEW ── */
-    .cap-view { padding: 24px 24px 48px; }
-    .cap-view-inner { max-width: 1320px; margin: 0 auto; }
-    .cap-group { margin-bottom: 32px; }
-    .cap-group-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-    .cap-group-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-600); }
-    .cap-group-line { flex: 1; height: 1px; background: var(--gray-200); }
-    .cap-group-count { font-size: 12px; font-weight: 600; color: var(--gray-400); }
-    .cap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+    .coll-level { font-size:10px; font-weight:600; color:var(--g400); background:var(--g100); padding:2px 7px; border-radius:100px; white-space:nowrap; flex-shrink:0; }
+    .coll-title { font-size:13px; font-weight:700; color:var(--navy); line-height:1.4; }
+    .coll-meta { display:flex; align-items:center; justify-content:space-between; font-size:11px; color:var(--g400); }
+    .coll-actions { display:flex; gap:6px; }
+    .coll-btn { flex:1; padding:7px 10px; font-size:12px; font-weight:600; border-radius:6px; cursor:pointer; border:none; transition:all var(--t); display:flex; align-items:center; justify-content:center; gap:5px; }
+    .coll-btn svg { width:12px; height:12px; }
+    .cv { background:var(--green-sub); color:var(--green); }
+    .cv:hover { background:var(--green); color:white; }
+    .cd { background:var(--g100); color:var(--g600); }
+    .cd:hover { background:var(--g200); }
 
-    .cap-item { border: 1px solid var(--gray-200); border-radius: var(--r-lg); background: white; overflow: hidden; transition: border-color var(--t), box-shadow var(--t); }
-    .cap-item.expanded { border-color: var(--green); box-shadow: var(--shadow-md); }
-    .cap-header { padding: 18px 20px; cursor: pointer; user-select: none; display: flex; align-items: flex-start; gap: 14px; }
-    .cap-icon { width: 44px; height: 44px; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--t); }
-    .cap-icon svg { width: 22px; height: 22px; }
-    .cap-item.expanded .cap-icon { background: var(--green) !important; color: white !important; }
-    .cap-header-content { flex: 1; }
-    .cap-name { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-    .cap-preview { font-size: 12px; color: var(--gray-400); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .cap-chev { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--t); margin-top: 2px; }
-    .cap-chev svg { width: 14px; height: 14px; color: var(--gray-400); transition: transform var(--t); }
-    .cap-item.expanded .cap-chev { background: var(--green-subtle); border-color: var(--green); }
-    .cap-item.expanded .cap-chev svg { color: var(--green); transform: rotate(180deg); }
-
-    .cap-body { max-height: 0; overflow: hidden; transition: max-height 350ms ease; }
-    .cap-item.expanded .cap-body { max-height: 1800px; }
-    .cap-body-inner { padding: 0 20px 20px; border-top: 1px solid var(--gray-100); padding-top: 16px; }
-    .cap-full-desc { font-size: 13px; color: var(--gray-600); line-height: 1.65; margin-bottom: 14px; }
-    .cap-colls { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
-
-    /* ── COLLATERAL CARD (inline) ── */
-    .coll-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--r-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; transition: all var(--t); cursor: pointer; }
-    .coll-card:hover { border-color: var(--green); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-    .coll-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-    .coll-badges { display: flex; gap: 5px; flex-wrap: wrap; }
-    .badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.3px; }
-    .b-battlecard  { background: #FEF2F2; color: #DC2626; }
-    .b-firstcall   { background: #EFF6FF; color: #2563EB; }
-    .b-casestudy   { background: #ECFDF5; color: #059669; }
-    .b-twopager    { background: #F5F3FF; color: #7C3AED; }
-    .b-demo        { background: #FFFBEB; color: #D97706; }
-    .b-playbook    { background: #ECFEFF; color: #0891B2; }
-    .b-winloss     { background: #FFF7ED; color: #EA580C; }
-    .b-capdeck     { background: #EFF6FF; color: #1E40AF; }
-    .b-internal    { background: #FEF3F2; color: #B42318; }
-    .b-client      { background: #ECFDF5; color: #027A48; }
-    .coll-title    { font-size: 13px; font-weight: 700; color: var(--navy); line-height: 1.4; }
-    .coll-meta     { display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: var(--gray-400); }
-    .coll-actions  { display: flex; gap: 6px; }
-    .coll-btn { flex: 1; padding: 6px 10px; font-size: 12px; font-weight: 600; border-radius: var(--r-sm); cursor: pointer; border: none; transition: all var(--t); display: flex; align-items: center; justify-content: center; gap: 5px; }
-    .coll-btn svg { width: 12px; height: 12px; }
-    .coll-btn-view { background: var(--green-subtle); color: var(--green); }
-    .coll-btn-view:hover { background: var(--green); color: white; }
-    .coll-btn-dl { background: var(--gray-100); color: var(--gray-600); }
-    .coll-btn-dl:hover { background: var(--gray-200); }
-    .no-colls { font-size: 13px; color: var(--gray-400); font-style: italic; padding: 8px 0; }
+    /* ── GROUPED VIEW ── */
+    .group-section { margin-bottom:28px; }
+    .group-header { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+    .group-icon { width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .group-icon svg { width:18px; height:18px; }
+    .group-name { font-size:15px; font-weight:700; color:var(--navy); }
+    .group-cnt { font-size:12px; font-weight:600; color:var(--g400); background:var(--g100); padding:2px 8px; border-radius:100px; }
+    .group-line { flex:1; height:1px; background:var(--g200); }
 
     /* ── CASE STUDIES ── */
-    .cs-section { padding: 80px 24px; }
-    .cs-inner { max-width: 1320px; margin: 0 auto; }
-    .cs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
-    .cs-card { border: 1px solid var(--gray-200); border-radius: var(--r-xl); overflow: hidden; transition: all var(--t); cursor: pointer; background: white; }
-    .cs-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--green); }
-    .cs-img { height: 140px; display: flex; align-items: center; justify-content: center; position: relative; }
-    .cs-img-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(26,26,46,0.8) 100%); }
-    .cs-body { padding: 22px; }
-    .cs-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-    .cs-industry { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 100px; }
-    .cs-result { font-size: 12px; font-weight: 600; color: var(--green); }
-    .cs-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.4; }
-    .cs-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; background: var(--gray-50); border-radius: var(--r-md); padding: 12px; margin-bottom: 14px; }
-    .cs-stat-val { font-size: 18px; font-weight: 800; color: var(--navy); }
-    .cs-stat-val span { color: var(--green); }
-    .cs-stat-lbl { font-size: 11px; color: var(--gray-400); font-weight: 500; }
-    .cs-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--green); text-decoration: none; }
-    .cs-link svg { width: 14px; height: 14px; }
+    .cs-section { background:white; padding:72px 24px; border-top:1px solid var(--g200); }
+    .cs-in { max-width:1400px; margin:0 auto; }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px; }
+    .eyebrow::before { content:''; display:block; width:16px; height:2px; background:var(--green); border-radius:2px; }
+    .sec-title { font-size:clamp(22px,2.5vw,30px); font-weight:800; color:var(--navy); letter-spacing:-0.8px; margin-bottom:6px; }
+    .sec-title span { color:var(--green); }
+    .sec-desc { font-size:14px; color:var(--g600); margin-bottom:36px; }
+    .cs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .cs-card { border:1px solid var(--g200); border-radius:var(--r-lg); overflow:hidden; transition:all var(--t); cursor:pointer; }
+    .cs-card:hover { transform:translateY(-3px); box-shadow:var(--sh-lg); border-color:var(--green); }
+    .cs-img { height:130px; display:flex; align-items:center; justify-content:center; position:relative; }
+    .cs-ov { position:absolute; inset:0; background:linear-gradient(180deg,transparent 40%,rgba(26,26,46,0.8) 100%); }
+    .cs-body { padding:20px; }
+    .cs-meta { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+    .cs-ind { font-size:11px; font-weight:700; padding:2px 8px; border-radius:100px; }
+    .cs-res { font-size:12px; font-weight:600; color:var(--green); }
+    .cs-title { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:12px; line-height:1.4; }
+    .cs-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; background:var(--g50); border-radius:var(--r); padding:12px; margin-bottom:14px; }
+    .csv { font-size:18px; font-weight:800; color:var(--navy); }
+    .csv span { color:var(--green); }
+    .csl { font-size:11px; color:var(--g400); font-weight:500; margin-top:1px; }
+    .cs-link { display:inline-flex; align-items:center; gap:5px; font-size:13px; font-weight:600; color:var(--green); text-decoration:none; }
+    .cs-link svg { width:14px; height:14px; }
 
-    /* ── CTA / FOOTER ── */
-    .cta-section { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); padding: 72px 24px; text-align: center; position: relative; overflow: hidden; }
-    .cta-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
-    .cta-inner h2 { font-size: clamp(24px,3vw,36px); font-weight: 800; color: white; letter-spacing: -1px; margin-bottom: 12px; }
-    .cta-inner p { font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 28px; line-height: 1.7; }
-    .cta-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-    .btn-cta-primary { padding: 13px 28px; font-size: 15px; font-weight: 600; color: white; background: var(--green); border: none; border-radius: var(--r-sm); cursor: pointer; text-decoration: none; transition: all var(--t); display: inline-flex; align-items: center; gap: 8px; }
-    .btn-cta-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: var(--shadow-green); }
-    .btn-cta-ghost { padding: 13px 28px; font-size: 15px; font-weight: 600; color: white; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); border-radius: var(--r-sm); cursor: pointer; text-decoration: none; transition: all var(--t); display: inline-flex; align-items: center; gap: 8px; }
-    .btn-cta-ghost:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
+    /* ── CTA ── */
+    .cta-sec { background:linear-gradient(135deg,var(--navy),var(--navy-mid)); padding:64px 24px; text-align:center; position:relative; overflow:hidden; }
+    .cta-in { max-width:600px; margin:0 auto; position:relative; z-index:1; }
+    .cta-in h2 { font-size:clamp(22px,3vw,34px); font-weight:800; color:white; letter-spacing:-0.8px; margin-bottom:12px; }
+    .cta-in p { font-size:14px; color:rgba(255,255,255,0.55); margin-bottom:28px; line-height:1.7; }
+    .cta-btns { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
+    .btn-cta1 { padding:12px 26px; font-size:14px; font-weight:600; color:white; background:var(--green); border:none; border-radius:var(--r); cursor:pointer; text-decoration:none; transition:all var(--t); display:inline-flex; align-items:center; gap:7px; }
+    .btn-cta1:hover { background:var(--green-dk); transform:translateY(-2px); box-shadow:var(--sh-green); }
+    .btn-cta2 { padding:12px 26px; font-size:14px; font-weight:600; color:white; background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.2); border-radius:var(--r); cursor:pointer; text-decoration:none; transition:all var(--t); display:inline-flex; align-items:center; gap:7px; }
+    .btn-cta2:hover { background:rgba(255,255,255,0.15); }
 
-    .footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 56px 24px 28px; }
-    .footer-inner { max-width: 1320px; margin: 0 auto; }
-    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-    .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-bottom: 14px; }
-    .footer-logo-mark { width: 34px; height: 34px; background: var(--green); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-    .footer-logo-mark svg { width: 20px; height: 20px; fill: white; }
-    .footer-logo-text { font-size: 16px; font-weight: 700; color: white; }
-    .footer-tagline { font-size: 14px; line-height: 1.65; max-width: 260px; margin-bottom: 18px; }
-    .footer-col h4 { font-size: 12px; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color var(--t); }
-    .footer-links a:hover { color: var(--green-light); }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 22px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px; }
-    .footer-legal { display: flex; gap: 20px; }
-    .footer-legal a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color var(--t); }
-    .footer-legal a:hover { color: rgba(255,255,255,0.7); }
+    /* ── FOOTER ── */
+    .footer { background:var(--navy); color:rgba(255,255,255,0.55); padding:52px 24px 26px; }
+    .footer-in { max-width:1400px; margin:0 auto; }
+    .ft { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:44px; margin-bottom:44px; }
+    .fl { display:flex; align-items:center; gap:10px; text-decoration:none; margin-bottom:12px; }
+    .fl-mark { width:32px; height:32px; background:var(--green); border-radius:7px; display:flex; align-items:center; justify-content:center; }
+    .fl-mark svg { width:18px; height:18px; fill:white; }
+    .fl-text { font-size:15px; font-weight:700; color:white; }
+    .ft-tag { font-size:13px; line-height:1.65; max-width:250px; margin-bottom:0; }
+    .fc h4 { font-size:11px; font-weight:700; color:white; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
+    .fc ul { list-style:none; display:flex; flex-direction:column; gap:8px; }
+    .fc ul a { font-size:13px; color:rgba(255,255,255,0.45); text-decoration:none; transition:color var(--t); }
+    .fc ul a:hover { color:var(--green-lt); }
+    .fb { border-top:1px solid rgba(255,255,255,0.08); padding-top:20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px; }
+    .fb-legal { display:flex; gap:18px; }
+    .fb-legal a { color:rgba(255,255,255,0.3); text-decoration:none; transition:color var(--t); }
+    .fb-legal a:hover { color:rgba(255,255,255,0.65); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) { .cs-grid { grid-template-columns: repeat(2,1fr); } .footer-top { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 768px) { .nav-links, .nav-search { display: none; } .hero-inner { flex-direction: column; gap: 28px; } .cs-grid { grid-template-columns: 1fr; } .footer-top { grid-template-columns: 1fr; gap: 28px; } .sl-header { flex-wrap: wrap; } .sl-caps-pills { display: none; } }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+    @media(max-width:1100px){ .sidebar{width:220px;} }
+    @media(max-width:900px){ .app-wrap{flex-direction:column;} .sidebar{width:100%;position:static;max-height:none;} .cs-grid{grid-template-columns:1fr 1fr;} .ft{grid-template-columns:1fr 1fr;gap:28px;} }
+    @media(max-width:600px){ .nav-links,.nav-search{display:none;} .cs-grid{grid-template-columns:1fr;} .ft{grid-template-columns:1fr;} .hero-stats{display:none;} }
+    @media(prefers-reduced-motion:reduce){ *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;} }
   </style>
 </head>
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar" role="navigation" aria-label="Main navigation">
-  <div class="navbar-inner">
-    <a href="#" class="nav-logo" aria-label="Genpact Sales Hub">
-      <div class="nav-logo-mark">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-      </div>
-      <span class="nav-logo-text">Gen<span>pact</span> Sales Hub</span>
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-in">
+    <a href="#" class="logo" aria-label="Genpact Sales Hub">
+      <div class="logo-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+      <span class="logo-text">Gen<span>pact</span> Sales Hub</span>
     </a>
     <ul class="nav-links" role="list">
-      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#">Home</a></li>
       <li><a href="#case-studies">Case Studies</a></li>
       <li><a href="mailto:salesenablement@genpact.com">Contact</a></li>
     </ul>
     <div class="nav-search" role="search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-      <input type="search" placeholder="Search collaterals…" aria-label="Search collaterals" id="globalSearch" />
+      <input type="search" placeholder="Search collaterals…" aria-label="Search" id="navQ" />
     </div>
-    <a href="mailto:salesenablement@genpact.com" class="btn-primary">Request Access</a>
+    <a href="mailto:salesenablement@genpact.com" class="btn-nav">Request Access</a>
   </div>
 </nav>
 
@@ -298,74 +250,77 @@
 <section class="hero">
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="hero-glow" aria-hidden="true"></div>
-  <div class="hero-inner">
+  <div class="hero-in">
     <div>
-      <div class="hero-badge"><span class="hero-badge-dot"></span>Sales Enablement Portal — FY 2025</div>
+      <div class="hero-badge"><span class="hero-dot"></span>Sales Enablement Portal — FY 2025</div>
       <h1>Genpact <span>Sales Hub</span></h1>
-      <p class="hero-sub">Unit-specific capability decks, service line offerings, and client-ready collaterals — one source of truth for your sales conversations.</p>
+      <p class="hero-sub">Find unit capability decks, service line collaterals, offering assets, and competitive intelligence — filter any way you need.</p>
     </div>
     <div class="hero-stats" role="list">
-      <div class="hero-stat" role="listitem"><div class="hero-stat-num">125<span>K+</span></div><div class="hero-stat-label">Professionals</div></div>
-      <div class="hero-stat" role="listitem"><div class="hero-stat-num">30<span>+</span></div><div class="hero-stat-label">Countries</div></div>
-      <div class="hero-stat" role="listitem"><div class="hero-stat-num">4000<span>+</span></div><div class="hero-stat-label">Clients</div></div>
+      <div role="listitem"><div class="hs-num">125<span>K+</span></div><div class="hs-lbl">Professionals</div></div>
+      <div role="listitem"><div class="hs-num">30<span>+</span></div><div class="hs-lbl">Countries</div></div>
+      <div role="listitem"><div class="hs-num">4000<span>+</span></div><div class="hs-lbl">Clients</div></div>
     </div>
   </div>
 </section>
 
-<!-- DYNAMIC APP ROOT -->
-<div id="app"></div>
+<!-- MAIN APP -->
+<div class="app-wrap">
+  <aside class="sidebar" id="sidebar" aria-label="Collateral filters"></aside>
+  <div class="results" id="results"></div>
+</div>
 
 <!-- CASE STUDIES -->
-<section class="cs-section" id="case-studies" aria-labelledby="cs-heading">
-  <div class="cs-inner">
+<section class="cs-section" id="case-studies">
+  <div class="cs-in">
     <div class="eyebrow">Client Impact</div>
-    <h2 class="sec-title" id="cs-heading">Featured <span>Case Studies</span></h2>
-    <p class="sec-desc">Real-world transformation stories across units and service lines.</p>
+    <h2 class="sec-title">Featured <span>Case Studies</span></h2>
+    <p class="sec-desc">Real-world transformation outcomes across units and service lines.</p>
     <div class="cs-grid">
       <div class="cs-card">
         <div class="cs-img" style="background:linear-gradient(135deg,#1A1A2E,#0F2440)">
-          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="30" stroke="rgba(0,155,78,0.35)" stroke-width="2"/><path d="M32 18v14l9 5" stroke="#009B4E" stroke-width="2.5" stroke-linecap="round"/></svg>
-          <div class="cs-img-overlay"></div>
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" aria-hidden="true"><circle cx="30" cy="30" r="28" stroke="rgba(0,155,78,0.3)" stroke-width="2"/><path d="M30 16v14l8 5" stroke="#009B4E" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <div class="cs-ov"></div>
         </div>
         <div class="cs-body">
-          <div class="cs-meta"><span class="cs-industry" style="background:#EFF6FF;color:#1D4ED8">Banking & FS</span><span class="cs-result">42% Cost Reduction</span></div>
-          <h3 class="cs-title">Global Bank: Intelligent F&A Transformation</h3>
+          <div class="cs-meta"><span class="cs-ind" style="background:#EFF6FF;color:#1D4ED8">Banking & FS</span><span class="cs-res">42% Cost Reduction</span></div>
+          <div class="cs-title">Global Bank: Intelligent F&A Transformation</div>
           <div class="cs-stats">
-            <div><div class="cs-stat-val">42<span>%</span></div><div class="cs-stat-lbl">Cost Reduction</div></div>
-            <div><div class="cs-stat-val">60<span>%</span></div><div class="cs-stat-lbl">Faster Close</div></div>
-            <div><div class="cs-stat-val">$85<span>M</span></div><div class="cs-stat-lbl">Savings</div></div>
+            <div><div class="csv">42<span>%</span></div><div class="csl">Cost Save</div></div>
+            <div><div class="csv">60<span>%</span></div><div class="csl">Faster Close</div></div>
+            <div><div class="csv">$85<span>M</span></div><div class="csl">Annual Save</div></div>
           </div>
           <a href="#" class="cs-link">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
       <div class="cs-card">
         <div class="cs-img" style="background:linear-gradient(135deg,#1A0A30,#2D1A4E)">
-          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="16" y="16" width="32" height="32" rx="4" stroke="rgba(109,40,217,0.4)" stroke-width="2"/><path d="M24 32h16M32 24v16" stroke="#8B5CF6" stroke-width="2.5" stroke-linecap="round"/></svg>
-          <div class="cs-img-overlay"></div>
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" aria-hidden="true"><rect x="14" y="14" width="32" height="32" rx="4" stroke="rgba(109,40,217,0.35)" stroke-width="2"/><path d="M22 30h16M30 22v16" stroke="#8B5CF6" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <div class="cs-ov"></div>
         </div>
         <div class="cs-body">
-          <div class="cs-meta"><span class="cs-industry" style="background:#F5F3FF;color:#6D28D9">Consumer & Retail</span><span class="cs-result">35% Inventory Cut</span></div>
-          <h3 class="cs-title">Fortune 500 Retailer: AI-Led Supply Chain Overhaul</h3>
+          <div class="cs-meta"><span class="cs-ind" style="background:#F5F3FF;color:#6D28D9">Consumer & Retail</span><span class="cs-res">35% Inventory Cut</span></div>
+          <div class="cs-title">Fortune 500 Retailer: AI-Led Supply Chain Overhaul</div>
           <div class="cs-stats">
-            <div><div class="cs-stat-val">35<span>%</span></div><div class="cs-stat-lbl">Inventory</div></div>
-            <div><div class="cs-stat-val">28<span>%</span></div><div class="cs-stat-lbl">Fill Rate</div></div>
-            <div><div class="cs-stat-val">$120<span>M</span></div><div class="cs-stat-lbl">Working Cap</div></div>
+            <div><div class="csv">35<span>%</span></div><div class="csl">Inventory</div></div>
+            <div><div class="csv">28<span>%</span></div><div class="csl">Fill Rate</div></div>
+            <div><div class="csv">$120<span>M</span></div><div class="csl">Working Cap</div></div>
           </div>
           <a href="#" class="cs-link">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
       <div class="cs-card">
         <div class="cs-img" style="background:linear-gradient(135deg,#001A1A,#003333)">
-          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="16" stroke="rgba(245,158,11,0.4)" stroke-width="2"/><path d="M32 20v12l8 4" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round"/></svg>
-          <div class="cs-img-overlay"></div>
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" aria-hidden="true"><circle cx="30" cy="30" r="16" stroke="rgba(245,158,11,0.35)" stroke-width="2"/><path d="M30 20v10l7 4" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <div class="cs-ov"></div>
         </div>
         <div class="cs-body">
-          <div class="cs-meta"><span class="cs-industry" style="background:#FFFBEB;color:#B45309">Healthcare</span><span class="cs-result">+22 NPS Points</span></div>
-          <h3 class="cs-title">Healthcare Leader: CX Modernisation at Scale</h3>
+          <div class="cs-meta"><span class="cs-ind" style="background:#FFFBEB;color:#B45309">Healthcare</span><span class="cs-res">+22 NPS Points</span></div>
+          <div class="cs-title">Healthcare Leader: CX Modernisation at Scale</div>
           <div class="cs-stats">
-            <div><div class="cs-stat-val">38<span>%</span></div><div class="cs-stat-lbl">AHT Drop</div></div>
-            <div><div class="cs-stat-val">+22</div><div class="cs-stat-lbl">NPS Gain</div></div>
-            <div><div class="cs-stat-val">91<span>%</span></div><div class="cs-stat-lbl">CSAT</div></div>
+            <div><div class="csv">38<span>%</span></div><div class="csl">AHT Drop</div></div>
+            <div><div class="csv">+22</div><div class="csl">NPS</div></div>
+            <div><div class="csv">91<span>%</span></div><div class="csl">CSAT</div></div>
           </div>
           <a href="#" class="cs-link">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
@@ -375,18 +330,18 @@
 </section>
 
 <!-- CTA -->
-<section class="cta-section" aria-label="Call to action">
+<section class="cta-sec">
   <div class="hero-grid" aria-hidden="true"></div>
-  <div class="cta-inner">
+  <div class="cta-in">
     <h2>Ready to Win Your Next Deal?</h2>
-    <p>Access the full Genpact sales toolkit — customisable decks, competitive intelligence, and expert support from Sales Enablement.</p>
+    <p>Access the full Genpact sales toolkit — capability decks, competitive intelligence, and expert support from Sales Enablement.</p>
     <div class="cta-btns">
-      <a href="#app" class="btn-cta-primary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Browse Collaterals
+      <a href="#" class="btn-cta1" onclick="clearAllFilters()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Browse All Collaterals
       </a>
-      <a href="mailto:salesenablement@genpact.com" class="btn-cta-ghost">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <a href="mailto:salesenablement@genpact.com" class="btn-cta2">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Contact Sales Enablement
       </a>
     </div>
@@ -394,438 +349,395 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="footer" aria-label="Site footer">
-  <div class="footer-inner">
-    <div class="footer-top">
+<footer class="footer">
+  <div class="footer-in">
+    <div class="ft">
       <div>
-        <a href="#" class="footer-logo"><div class="footer-logo-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><span class="footer-logo-text">Genpact Sales Hub</span></a>
-        <p class="footer-tagline">Empowering Genpact sales teams with unit-specific capability decks, SL & capability collaterals, and competitive intelligence.</p>
+        <a href="#" class="fl"><div class="fl-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><span class="fl-text">Genpact Sales Hub</span></a>
+        <p class="ft-tag">Empowering Genpact sales teams with unit-specific capability decks, service line collaterals, and competitive intelligence.</p>
       </div>
-      <div class="footer-col"><h4>Service Lines</h4><ul class="footer-links"><li><a href="#">Finance & Accounting</a></li><li><a href="#">Supply Chain</a></li><li><a href="#">Customer Experience</a></li><li><a href="#">Human Resources</a></li><li><a href="#">Risk & Compliance</a></li></ul></div>
-      <div class="footer-col"><h4>Capabilities</h4><ul class="footer-links"><li><a href="#">Data</a></li><li><a href="#">Unified AI</a></li><li><a href="#">Service as Agentic</a></li><li><a href="#">Digital Technology</a></li><li><a href="#">DSS / Tech Services</a></li></ul></div>
-      <div class="footer-col"><h4>Resources</h4><ul class="footer-links"><li><a href="#">Sales Training</a></li><li><a href="#">Partner Portal</a></li><li><a href="#">Genpact.com</a></li><li><a href="mailto:salesenablement@genpact.com">Sales Enablement</a></li><li><a href="#">Request Custom Deck</a></li></ul></div>
+      <div class="fc"><h4>Service Lines</h4><ul><li><a href="#">Finance & Accounting</a></li><li><a href="#">Supply Chain</a></li><li><a href="#">Customer Experience</a></li><li><a href="#">Human Resources</a></li><li><a href="#">Risk & Compliance</a></li></ul></div>
+      <div class="fc"><h4>Capabilities</h4><ul><li><a href="#">Data</a></li><li><a href="#">Unified AI</a></li><li><a href="#">Service as Agentic</a></li><li><a href="#">Digital Technology</a></li><li><a href="#">DSS / Tech Services</a></li></ul></div>
+      <div class="fc"><h4>Resources</h4><ul><li><a href="#">Sales Training</a></li><li><a href="#">Partner Portal</a></li><li><a href="#">Genpact.com</a></li><li><a href="mailto:salesenablement@genpact.com">Sales Enablement</a></li><li><a href="#">Request Custom Deck</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© 2025 Genpact. All rights reserved. Internal Use Only.</span><nav class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a></nav></div>
+    <div class="fb"><span>© 2025 Genpact. All rights reserved. Internal Use Only.</span><nav class="fb-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a></nav></div>
   </div>
 </footer>
 
 <script>
-/* ═══════════════════════ DATA ═══════════════════════ */
-const UNITS = [
-  { id:'lifesciences', name:'Life Sciences & Pharma', desc:'Drug discovery, clinical operations, pharmacovigilance, and commercial excellence across pharma, biotech, and med-tech.' },
-  { id:'healthcare',   name:'Healthcare',             desc:'Payer and provider transformation — member services, claims, utilisation management, and value-based care.' },
-  { id:'banking',      name:'Banking & FS',           desc:'Retail, commercial, and investment banking — F&A, risk, compliance, and digital transformation.' },
-  { id:'insurance',    name:'Insurance',              desc:'P&C, life, and specialty — underwriting, claims, policy admin, and regulatory compliance.' },
-  { id:'consumer',     name:'Consumer & Retail',      desc:'Supply chain, customer experience, and analytics for global consumer goods and retail leaders.' },
-  { id:'manufacturing',name:'Manufacturing',          desc:'Engineering, supply chain, finance, and digital operations for discrete and process manufacturers.' },
-  { id:'hightech',     name:'High Tech',              desc:'Revenue operations, supply chain, customer support, and analytics for technology companies.' },
-  { id:'energy',       name:'Energy & Utilities',     desc:'Asset management, field services, regulatory compliance, and analytics for energy and utility firms.' },
+/* ═══════════════ DATA ═══════════════ */
+const UNITS=[
+  {id:'lifesciences', name:'Life Sciences & Pharma'},
+  {id:'healthcare',   name:'Healthcare'},
+  {id:'banking',      name:'Banking & FS'},
+  {id:'insurance',    name:'Insurance'},
+  {id:'consumer',     name:'Consumer & Retail'},
+  {id:'manufacturing',name:'Manufacturing'},
+  {id:'hightech',     name:'High Tech'},
+  {id:'energy',       name:'Energy & Utilities'},
 ];
 
-const SLS = [
-  {
-    id:'fa', name:'Finance & Accounting', icon:'dollar', color:'#1D4ED8', bg:'#EFF6FF',
-    desc:'End-to-end finance transformation covering receivables, accounting, and payables with AI-driven insights.',
-    caps:['Data','Unified AI','DSS','Digital Ops'],
-    offerings:[
-      { id:'i2c', name:'I2C Services', desc:'Invoice-to-cash automation covering order management, billing, collections, and cash application.', subs:['Order Management','Billing & Invoicing','Collections Management','Cash Application','Dispute Resolution','Credit Management'] },
-      { id:'r2r', name:'R2R Services', desc:'Record-to-report services for faster, more accurate financial close and reporting at scale.', subs:['GL Accounting','Period Close Management','Financial Consolidation','Management Reporting','Intercompany Accounting','Fixed Assets'] },
-      { id:'ap',  name:'AP Suite',    desc:'Accounts payable automation from invoice receipt to payment execution and vendor management.', subs:['Invoice Processing','Vendor Master Management','Payment Processing','T&E Management','AP Analytics','Vendor Portal'] },
-    ]
-  },
-  {
-    id:'sc', name:'Supply Chain', icon:'chain', color:'#6D28D9', bg:'#F5F3FF',
-    desc:'Intelligent supply chain management from demand sensing to last-mile delivery, powered by AI and real-time visibility.',
-    caps:['Data','Unified AI','Digital Tech','Digital Ops'],
-    offerings:[
-      { id:'proc', name:'Procurement Suite',      desc:'Source-to-pay transformation with intelligent category management and supplier collaboration.', subs:['Strategic Sourcing','Category Management','Supplier Relationship Mgmt','Contract Management','Purchase-to-Pay','Spend Analytics'] },
-      { id:'dp',   name:'Demand Planning',         desc:'AI-driven demand sensing and supply planning for optimised inventory across markets.', subs:['Demand Sensing','S&OP Planning','Inventory Optimisation','Capacity Planning','Scenario Modelling'] },
-      { id:'lf',   name:'Logistics & Fulfillment', desc:'End-to-end logistics management and last-mile optimisation with trade compliance.', subs:['Warehouse Management','Transportation Management','Last-Mile Delivery','Returns Management','Trade Compliance'] },
-    ]
-  },
-  {
-    id:'cx', name:'Customer Experience', icon:'headphones', color:'#B45309', bg:'#FFFBEB',
-    desc:'Omni-channel CX transformation combining human empathy with AI — contact centre to self-service and CRM.',
-    caps:['Unified AI','Service as Agentic','Digital Tech','Digital Ops'],
-    offerings:[
-      { id:'cc',          name:'Contact Centre Services', desc:'AI-augmented contact centre operations across voice, digital, and self-service channels.', subs:['Voice Operations','Digital Support','Back-office CX','Quality Management','Workforce Management'] },
-      { id:'selfservice', name:'Self-Service & Digital',  desc:'Intelligent self-service across web, mobile, and messaging with AI-powered virtual agents.', subs:['Chatbot & Virtual Agent','IVR Modernisation','Knowledge Management','Customer Portal'] },
-      { id:'crm',         name:'CRM & Lifecycle Mgmt',   desc:'Customer lifecycle management from acquisition to retention, loyalty, and win-back.', subs:['CRM Operations','Loyalty Management','Customer Analytics','Campaign Management'] },
-    ]
-  },
-  {
-    id:'hr', name:'Human Resources', icon:'users', color:'#0891B2', bg:'#ECFEFF',
-    desc:'End-to-end HR transformation from talent acquisition through operations, payroll, and learning.',
-    caps:['Data','Unified AI','DSS','Digital Ops'],
-    offerings:[
-      { id:'ta',    name:'Talent Acquisition', desc:'AI-driven recruitment and onboarding for faster, better-quality hiring at scale.', subs:['Sourcing & Screening','Interview Orchestration','Offer Management','Onboarding','RPO'] },
-      { id:'hrops', name:'HR Operations',      desc:'Efficient HR shared services covering core employee lifecycle processes.', subs:['Employee Data Management','Payroll Processing','Benefits Administration','Time & Attendance','Employee Helpdesk'] },
-      { id:'ld',    name:'Learning & Development', desc:'Digital-first L&D solutions to upskill your workforce at scale and speed.', subs:['Learning Platform Mgmt','Content Development','Compliance Training','Leadership Development'] },
-    ]
-  },
-  {
-    id:'rc', name:'Risk & Compliance', icon:'shield', color:'#3730A3', bg:'#EEF2FF',
-    desc:'Enterprise risk, regulatory compliance, and financial crime management for regulated industries.',
-    caps:['Data','Unified AI','DSS','Tech Services'],
-    offerings:[
-      { id:'kyc',     name:'KYC / AML',              desc:'End-to-end Know Your Customer and Anti-Money Laundering operations and screening.', subs:['Customer Due Diligence','Enhanced Due Diligence','Sanctions Screening','Transaction Monitoring','SAR Filing'] },
-      { id:'regcomp', name:'Regulatory Compliance',   desc:'Regulatory reporting, compliance monitoring, and audit management at scale.', subs:['Regulatory Reporting','Compliance Monitoring','Internal Audit','Model Risk Governance','Policy Management'] },
-      { id:'fraud',   name:'Fraud & Financial Crime', desc:'AI-powered fraud detection and financial crime prevention across channels.', subs:['Fraud Detection','Claims Investigation','Insurance Fraud','Cyber Risk','Trade Surveillance'] },
-    ]
-  },
+const SLS=[
+  {id:'fa',  name:'Finance & Accounting', color:'#1D4ED8', bg:'#EFF6FF',
+   offerings:[
+     {id:'i2c',  name:'I2C Services'},
+     {id:'r2r',  name:'R2R Services'},
+     {id:'ap',   name:'AP Suite'},
+   ]},
+  {id:'sc',  name:'Supply Chain',          color:'#6D28D9', bg:'#F5F3FF',
+   offerings:[
+     {id:'proc', name:'Procurement Suite'},
+     {id:'dp',   name:'Demand Planning'},
+     {id:'lf',   name:'Logistics & Fulfillment'},
+   ]},
+  {id:'cx',  name:'Customer Experience',   color:'#B45309', bg:'#FFFBEB',
+   offerings:[
+     {id:'cc',   name:'Contact Centre Services'},
+     {id:'ss',   name:'Self-Service & Digital'},
+     {id:'crm',  name:'CRM & Lifecycle Mgmt'},
+   ]},
+  {id:'hr',  name:'Human Resources',       color:'#0891B2', bg:'#ECFEFF',
+   offerings:[
+     {id:'ta',   name:'Talent Acquisition'},
+     {id:'hrops',name:'HR Operations'},
+     {id:'ld',   name:'Learning & Development'},
+   ]},
+  {id:'rc',  name:'Risk & Compliance',     color:'#3730A3', bg:'#EEF2FF',
+   offerings:[
+     {id:'kyc',  name:'KYC / AML'},
+     {id:'reg',  name:'Regulatory Compliance'},
+     {id:'fraud',name:'Fraud & Financial Crime'},
+   ]},
 ];
 
-const CAPS = {
-  advancedTech: [
-    { id:'data',       name:'Data',                  color:'#1D4ED8', bg:'#EFF6FF', icon:'database',  desc:'Data engineering, analytics, and governance platforms that turn enterprise data into a strategic asset at scale.', subs:['Data Engineering','Analytics & BI','Data Governance','Data Products','Data Monetisation'] },
-    { id:'unifiedai',  name:'Unified AI',             color:'#7C3AED', bg:'#F5F3FF', icon:'sparkle',   desc:'Machine learning, generative AI, and NLP solutions at enterprise scale — from model development to production and ops.', subs:['Machine Learning','Generative AI','NLP & Vision','AI Ops / MLOps','Responsible AI'] },
-    { id:'agentic',    name:'Service as Agentic',     color:'#0F766E', bg:'#F0FDFA', icon:'bot',       desc:'Autonomous AI agents and orchestration platforms that execute multi-step business processes with minimal human intervention.', subs:['AI Agents','Process Orchestration','Human-in-Loop Design','Agentic Workflow Automation','Agent Evaluation'] },
-    { id:'digitaltech',name:'Digital Technology',     color:'#C2410C', bg:'#FFF7ED', icon:'code',      desc:'Cloud-native application development, modernisation, and platform engineering for enterprise-grade digital transformation.', subs:['Cloud Migration','App Modernisation','API & Integration','DevSecOps','Platform Engineering'] },
-    { id:'advisory',   name:'Advisory',               color:'#B45309', bg:'#FFFBEB', icon:'lightbulb', desc:'Strategy, operating model design, and digital roadmapping to lead enterprise transformation from the boardroom.', subs:['Digital Strategy','Operating Model Design','Change Management','Innovation Labs','Value Realisation'] },
-  ],
-  coreBusiness: [
-    { id:'dss',        name:'DSS',                   color:'#065F46', bg:'#ECFDF5', icon:'barchart', desc:'Decision Support Services providing performance management, FP&A, and risk intelligence to drive better business outcomes.', subs:['Decision Analytics','Risk Intelligence','Performance Management','FP&A','CFO Advisory'] },
-    { id:'techsvc',    name:'Tech Services',          color:'#1D4ED8', bg:'#EFF6FF', icon:'server',   desc:'IT infrastructure, application management, service desk, and cybersecurity services for enterprise technology estates.', subs:['IT Infrastructure','Application Management','Service Desk','Cybersecurity','End-User Computing'] },
-    { id:'digitalops', name:'Digital Operations',     color:'#6D28D9', bg:'#F5F3FF', icon:'cog',     desc:'Intelligent BPO and digital operations management with continuous improvement, automation, and lean principles at its core.', subs:['Process Management','Intelligent Automation','Quality Ops','Workforce Optimisation','Lean & Six Sigma'] },
-  ],
-};
+const CAPS=[
+  {group:'Advanced Tech', items:[
+    {id:'data',       name:'Data',                 color:'#1D4ED8', bg:'#EFF6FF'},
+    {id:'unifiedai',  name:'Unified AI',            color:'#7C3AED', bg:'#F5F3FF'},
+    {id:'agentic',    name:'Service as Agentic',    color:'#0F766E', bg:'#F0FDFA'},
+    {id:'digitaltech',name:'Digital Technology',    color:'#C2410C', bg:'#FFF7ED'},
+    {id:'advisory',   name:'Advisory',              color:'#B45309', bg:'#FFFBEB'},
+  ]},
+  {group:'Core Business', items:[
+    {id:'dss',        name:'DSS',                  color:'#065F46', bg:'#ECFDF5'},
+    {id:'techsvc',    name:'Tech Services',         color:'#1D4ED8', bg:'#EFF6FF'},
+    {id:'digitalops', name:'Digital Operations',    color:'#6D28D9', bg:'#F5F3FF'},
+  ]},
+];
 
-const COLLS = [
+const TYPES=['Capability Deck','First Call Deck','Battlecard','Case Study','2-Pager','Demo','Playbook','Win/Loss'];
+
+// level: 'unit' | 'sl' | 'offering' | 'cap'
+const COLLS=[
   // Unit-level
-  { id:1,  title:'Life Sciences — Unit Capability Overview', type:'Capability Deck', access:'client',   units:['lifesciences'], sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'8.4 MB', upd:'Feb 2025' },
-  { id:2,  title:'Healthcare — Unit Capability Overview',    type:'Capability Deck', access:'client',   units:['healthcare'],   sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'7.2 MB', upd:'Feb 2025' },
-  { id:3,  title:'Banking & FS — Unit Capability Overview',  type:'Capability Deck', access:'client',   units:['banking'],      sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'9.1 MB', upd:'Jan 2025' },
-  { id:4,  title:'Insurance — Unit Capability Overview',     type:'Capability Deck', access:'client',   units:['insurance'],    sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'6.8 MB', upd:'Feb 2025' },
-  { id:5,  title:'Consumer & Retail — Unit Capability Overview', type:'Capability Deck', access:'client', units:['consumer'], sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'7.5 MB', upd:'Jan 2025' },
-  { id:6,  title:'Manufacturing — Unit Capability Overview', type:'Capability Deck', access:'client',   units:['manufacturing'],sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'6.2 MB', upd:'Feb 2025' },
-  { id:7,  title:'High Tech — Unit Capability Overview',     type:'Capability Deck', access:'client',   units:['hightech'],     sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'8.0 MB', upd:'Feb 2025' },
-  { id:8,  title:'Energy & Utilities — Unit Capability Overview', type:'Capability Deck', access:'client', units:['energy'],   sl:null,  cap:null,       offering:null,   fmt:'PPTX', size:'5.9 MB', upd:'Jan 2025' },
-  { id:9,  title:'Life Sciences Sales Playbook FY25',        type:'Playbook',        access:'internal', units:['lifesciences'], sl:null,  cap:null,       offering:null,   fmt:'PDF',  size:'4.2 MB', upd:'Feb 2025' },
-  { id:10, title:'Banking & FS Win/Loss Analysis Q3 2024',   type:'Win/Loss',        access:'internal', units:['banking'],      sl:null,  cap:null,       offering:null,   fmt:'PDF',  size:'3.1 MB', upd:'Dec 2024' },
+  {id:1,  title:'Life Sciences & Pharma — Unit Capability Deck',  type:'Capability Deck', access:'client',   level:'unit', units:['lifesciences'], sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'8.4 MB',upd:'Feb 2025'},
+  {id:2,  title:'Healthcare — Unit Capability Deck',               type:'Capability Deck', access:'client',   level:'unit', units:['healthcare'],   sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'7.2 MB',upd:'Feb 2025'},
+  {id:3,  title:'Banking & FS — Unit Capability Deck',             type:'Capability Deck', access:'client',   level:'unit', units:['banking'],      sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'9.1 MB',upd:'Jan 2025'},
+  {id:4,  title:'Insurance — Unit Capability Deck',                type:'Capability Deck', access:'client',   level:'unit', units:['insurance'],    sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'6.8 MB',upd:'Feb 2025'},
+  {id:5,  title:'Consumer & Retail — Unit Capability Deck',        type:'Capability Deck', access:'client',   level:'unit', units:['consumer'],     sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'7.5 MB',upd:'Jan 2025'},
+  {id:6,  title:'Manufacturing — Unit Capability Deck',            type:'Capability Deck', access:'client',   level:'unit', units:['manufacturing'],sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'6.2 MB',upd:'Feb 2025'},
+  {id:7,  title:'High Tech — Unit Capability Deck',                type:'Capability Deck', access:'client',   level:'unit', units:['hightech'],     sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'8.0 MB',upd:'Feb 2025'},
+  {id:8,  title:'Energy & Utilities — Unit Capability Deck',       type:'Capability Deck', access:'client',   level:'unit', units:['energy'],       sl:null,  offering:null, cap:null,        fmt:'PPTX',size:'5.9 MB',upd:'Jan 2025'},
+  {id:9,  title:'Life Sciences Sales Playbook FY25',               type:'Playbook',        access:'internal', level:'unit', units:['lifesciences'], sl:null,  offering:null, cap:null,        fmt:'PDF', size:'4.2 MB',upd:'Feb 2025'},
+  {id:10, title:'Banking & FS Win/Loss Analysis Q3 2024',          type:'Win/Loss',        access:'internal', level:'unit', units:['banking'],      sl:null,  offering:null, cap:null,        fmt:'PDF', size:'3.1 MB',upd:'Dec 2024'},
+  {id:11, title:'Healthcare Sales Playbook FY25',                  type:'Playbook',        access:'internal', level:'unit', units:['healthcare'],   sl:null,  offering:null, cap:null,        fmt:'PDF', size:'3.8 MB',upd:'Jan 2025'},
   // F&A SL
-  { id:11, title:'F&A First Call Deck 2025',                 type:'First Call Deck', access:'client',   units:['all'],          sl:'fa',  cap:null,       offering:null,   fmt:'PPTX', size:'5.8 MB', upd:'Jan 2025' },
-  { id:12, title:'F&A Transformation 2-Pager',               type:'2-Pager',         access:'client',   units:['all'],          sl:'fa',  cap:null,       offering:null,   fmt:'PDF',  size:'1.2 MB', upd:'Feb 2025' },
-  { id:13, title:'F&A Battlecard — Accenture / EY / WNS',   type:'Battlecard',      access:'internal', units:['all'],          sl:'fa',  cap:null,       offering:null,   fmt:'PDF',  size:'2.4 MB', upd:'Jan 2025' },
-  { id:14, title:'F&A Internal Playbook 2025',               type:'Playbook',        access:'internal', units:['all'],          sl:'fa',  cap:null,       offering:null,   fmt:'PDF',  size:'6.2 MB', upd:'Feb 2025' },
-  // I2C
-  { id:15, title:'I2C Services — Solution Deck',             type:'First Call Deck', access:'client',   units:['all'],          sl:'fa',  cap:null,       offering:'i2c',  fmt:'PPTX', size:'4.1 MB', upd:'Feb 2025' },
-  { id:16, title:'I2C Competitive Battlecard',               type:'Battlecard',      access:'internal', units:['all'],          sl:'fa',  cap:null,       offering:'i2c',  fmt:'PDF',  size:'1.8 MB', upd:'Jan 2025' },
-  { id:17, title:'I2C Case Study — Global Bank',             type:'Case Study',      access:'client',   units:['banking'],      sl:'fa',  cap:null,       offering:'i2c',  fmt:'PDF',  size:'2.1 MB', upd:'Jan 2025' },
-  // R2R
-  { id:18, title:'R2R Services — Solution Overview',         type:'First Call Deck', access:'client',   units:['all'],          sl:'fa',  cap:null,       offering:'r2r',  fmt:'PPTX', size:'3.9 MB', upd:'Feb 2025' },
-  { id:19, title:'R2R Battlecard vs Competitors',            type:'Battlecard',      access:'internal', units:['all'],          sl:'fa',  cap:null,       offering:'r2r',  fmt:'PDF',  size:'1.6 MB', upd:'Jan 2025' },
-  // AP
-  { id:20, title:'AP Suite — Product Demo',                  type:'Demo',            access:'client',   units:['all'],          sl:'fa',  cap:null,       offering:'ap',   fmt:'MP4',  size:'142 MB', upd:'Feb 2025' },
-  { id:21, title:'AP Suite 2-Pager',                         type:'2-Pager',         access:'client',   units:['all'],          sl:'fa',  cap:null,       offering:'ap',   fmt:'PDF',  size:'0.9 MB', upd:'Feb 2025' },
+  {id:12, title:'F&A First Call Deck 2025',                        type:'First Call Deck', access:'client',   level:'sl',   units:['all'],          sl:'fa',  offering:null, cap:null,        fmt:'PPTX',size:'5.8 MB',upd:'Jan 2025'},
+  {id:13, title:'F&A Transformation 2-Pager',                      type:'2-Pager',         access:'client',   level:'sl',   units:['all'],          sl:'fa',  offering:null, cap:null,        fmt:'PDF', size:'1.2 MB',upd:'Feb 2025'},
+  {id:14, title:'F&A Battlecard — Accenture / EY / WNS',           type:'Battlecard',      access:'internal', level:'sl',   units:['all'],          sl:'fa',  offering:null, cap:null,        fmt:'PDF', size:'2.4 MB',upd:'Jan 2025'},
+  {id:15, title:'F&A Internal Playbook 2025',                      type:'Playbook',        access:'internal', level:'sl',   units:['all'],          sl:'fa',  offering:null, cap:null,        fmt:'PDF', size:'6.2 MB',upd:'Feb 2025'},
+  {id:16, title:'F&A Case Study — Global Bank Cost Reduction',     type:'Case Study',      access:'client',   level:'sl',   units:['banking'],      sl:'fa',  offering:null, cap:null,        fmt:'PDF', size:'2.8 MB',upd:'Jan 2025'},
+  // F&A Offerings
+  {id:17, title:'I2C Services — Solution Deck',                    type:'First Call Deck', access:'client',   level:'offering',units:['all'],        sl:'fa',  offering:'i2c',cap:null,        fmt:'PPTX',size:'4.1 MB',upd:'Feb 2025'},
+  {id:18, title:'I2C Competitive Battlecard',                      type:'Battlecard',      access:'internal', level:'offering',units:['all'],        sl:'fa',  offering:'i2c',cap:null,        fmt:'PDF', size:'1.8 MB',upd:'Jan 2025'},
+  {id:19, title:'I2C Case Study — Top-10 Global Bank',             type:'Case Study',      access:'client',   level:'offering',units:['banking'],    sl:'fa',  offering:'i2c',cap:null,        fmt:'PDF', size:'2.1 MB',upd:'Jan 2025'},
+  {id:20, title:'R2R Services — Solution Overview',                type:'First Call Deck', access:'client',   level:'offering',units:['all'],        sl:'fa',  offering:'r2r',cap:null,        fmt:'PPTX',size:'3.9 MB',upd:'Feb 2025'},
+  {id:21, title:'R2R Battlecard vs Competitors',                   type:'Battlecard',      access:'internal', level:'offering',units:['all'],        sl:'fa',  offering:'r2r',cap:null,        fmt:'PDF', size:'1.6 MB',upd:'Jan 2025'},
+  {id:22, title:'AP Suite — Product Demo',                         type:'Demo',            access:'client',   level:'offering',units:['all'],        sl:'fa',  offering:'ap', cap:null,        fmt:'MP4', size:'142 MB',upd:'Feb 2025'},
+  {id:23, title:'AP Suite 2-Pager',                               type:'2-Pager',         access:'client',   level:'offering',units:['all'],        sl:'fa',  offering:'ap', cap:null,        fmt:'PDF', size:'0.9 MB',upd:'Feb 2025'},
   // Supply Chain SL
-  { id:22, title:'Supply Chain First Call Deck 2025',        type:'First Call Deck', access:'client',   units:['all'],          sl:'sc',  cap:null,       offering:null,   fmt:'PPTX', size:'6.5 MB', upd:'Jan 2025' },
-  { id:23, title:'Supply Chain 2-Pager',                     type:'2-Pager',         access:'client',   units:['all'],          sl:'sc',  cap:null,       offering:null,   fmt:'PDF',  size:'1.4 MB', upd:'Feb 2025' },
-  { id:24, title:'Supply Chain Battlecard vs SAP / Blue Yonder', type:'Battlecard',  access:'internal', units:['all'],          sl:'sc',  cap:null,       offering:null,   fmt:'PDF',  size:'1.8 MB', upd:'Feb 2025' },
-  // Procurement
-  { id:25, title:'Procurement Suite — Solution Deck',        type:'First Call Deck', access:'client',   units:['all'],          sl:'sc',  cap:null,       offering:'proc', fmt:'PPTX', size:'4.8 MB', upd:'Feb 2025' },
-  { id:26, title:'Procurement Battlecard vs Coupa / Ivalua', type:'Battlecard',      access:'internal', units:['all'],          sl:'sc',  cap:null,       offering:'proc', fmt:'PDF',  size:'2.0 MB', upd:'Jan 2025' },
+  {id:24, title:'Supply Chain First Call Deck 2025',               type:'First Call Deck', access:'client',   level:'sl',   units:['all'],          sl:'sc',  offering:null, cap:null,        fmt:'PPTX',size:'6.5 MB',upd:'Jan 2025'},
+  {id:25, title:'Supply Chain 2-Pager',                            type:'2-Pager',         access:'client',   level:'sl',   units:['all'],          sl:'sc',  offering:null, cap:null,        fmt:'PDF', size:'1.4 MB',upd:'Feb 2025'},
+  {id:26, title:'Supply Chain Battlecard vs SAP / Blue Yonder',    type:'Battlecard',      access:'internal', level:'sl',   units:['all'],          sl:'sc',  offering:null, cap:null,        fmt:'PDF', size:'1.8 MB',upd:'Feb 2025'},
+  {id:27, title:'Procurement Suite — Solution Deck',               type:'First Call Deck', access:'client',   level:'offering',units:['all'],        sl:'sc',  offering:'proc',cap:null,       fmt:'PPTX',size:'4.8 MB',upd:'Feb 2025'},
+  {id:28, title:'Procurement Battlecard vs Coupa / Ivalua',        type:'Battlecard',      access:'internal', level:'offering',units:['all'],        sl:'sc',  offering:'proc',cap:null,       fmt:'PDF', size:'2.0 MB',upd:'Jan 2025'},
+  {id:29, title:'Demand Planning — Solution Brief',                type:'2-Pager',         access:'client',   level:'offering',units:['all'],        sl:'sc',  offering:'dp', cap:null,        fmt:'PDF', size:'1.1 MB',upd:'Feb 2025'},
   // CX SL
-  { id:27, title:'CX First Call Deck 2025',                  type:'First Call Deck', access:'client',   units:['all'],          sl:'cx',  cap:null,       offering:null,   fmt:'PPTX', size:'9.4 MB', upd:'Feb 2025' },
-  { id:28, title:'CX Transformation Case Study — Telecom',   type:'Case Study',      access:'client',   units:['all'],          sl:'cx',  cap:null,       offering:null,   fmt:'PDF',  size:'2.0 MB', upd:'Jan 2025' },
-  { id:29, title:'CX Battlecard',                            type:'Battlecard',      access:'internal', units:['all'],          sl:'cx',  cap:null,       offering:null,   fmt:'PDF',  size:'2.2 MB', upd:'Jan 2025' },
+  {id:30, title:'CX First Call Deck 2025',                         type:'First Call Deck', access:'client',   level:'sl',   units:['all'],          sl:'cx',  offering:null, cap:null,        fmt:'PPTX',size:'9.4 MB',upd:'Feb 2025'},
+  {id:31, title:'CX Transformation Case Study — Telecom',          type:'Case Study',      access:'client',   level:'sl',   units:['all'],          sl:'cx',  offering:null, cap:null,        fmt:'PDF', size:'2.0 MB',upd:'Jan 2025'},
+  {id:32, title:'CX Battlecard',                                   type:'Battlecard',      access:'internal', level:'sl',   units:['all'],          sl:'cx',  offering:null, cap:null,        fmt:'PDF', size:'2.2 MB',upd:'Jan 2025'},
+  {id:33, title:'Contact Centre Services — Solution Deck',         type:'First Call Deck', access:'client',   level:'offering',units:['all'],        sl:'cx',  offering:'cc', cap:null,        fmt:'PPTX',size:'5.1 MB',upd:'Feb 2025'},
+  {id:34, title:'Self-Service & Digital — 2-Pager',               type:'2-Pager',         access:'client',   level:'offering',units:['all'],        sl:'cx',  offering:'ss', cap:null,        fmt:'PDF', size:'0.8 MB',upd:'Feb 2025'},
+  // HR SL
+  {id:35, title:'HR First Call Deck 2025',                         type:'First Call Deck', access:'client',   level:'sl',   units:['all'],          sl:'hr',  offering:null, cap:null,        fmt:'PPTX',size:'4.6 MB',upd:'Jan 2025'},
+  {id:36, title:'HR Battlecard vs ADP / Alight',                   type:'Battlecard',      access:'internal', level:'sl',   units:['all'],          sl:'hr',  offering:null, cap:null,        fmt:'PDF', size:'1.9 MB',upd:'Feb 2025'},
+  {id:37, title:'Talent Acquisition — Solution Deck',              type:'First Call Deck', access:'client',   level:'offering',units:['all'],        sl:'hr',  offering:'ta', cap:null,        fmt:'PPTX',size:'3.7 MB',upd:'Feb 2025'},
   // Risk SL
-  { id:30, title:'Risk & Compliance First Call Deck',        type:'First Call Deck', access:'client',   units:['banking','insurance'], sl:'rc', cap:null, offering:null,   fmt:'PPTX', size:'5.1 MB', upd:'Jan 2025' },
-  { id:31, title:'RegTech & Compliance 2-Pager',             type:'2-Pager',         access:'client',   units:['all'],          sl:'rc',  cap:null,       offering:null,   fmt:'PDF',  size:'1.5 MB', upd:'Jan 2025' },
-  { id:32, title:'KYC/AML Solution Deck',                    type:'First Call Deck', access:'client',   units:['banking','insurance'], sl:'rc', cap:null, offering:'kyc',  fmt:'PPTX', size:'4.2 MB', upd:'Feb 2025' },
+  {id:38, title:'Risk & Compliance First Call Deck',               type:'First Call Deck', access:'client',   level:'sl',   units:['banking','insurance'], sl:'rc', offering:null, cap:null,  fmt:'PPTX',size:'5.1 MB',upd:'Jan 2025'},
+  {id:39, title:'RegTech & Compliance 2-Pager',                    type:'2-Pager',         access:'client',   level:'sl',   units:['all'],          sl:'rc',  offering:null, cap:null,        fmt:'PDF', size:'1.5 MB',upd:'Jan 2025'},
+  {id:40, title:'KYC/AML Solution Deck',                           type:'First Call Deck', access:'client',   level:'offering',units:['banking','insurance'], sl:'rc', offering:'kyc', cap:null, fmt:'PPTX',size:'4.2 MB',upd:'Feb 2025'},
+  {id:41, title:'KYC Battlecard vs LexisNexis / Acuris',           type:'Battlecard',      access:'internal', level:'offering',units:['all'],        sl:'rc',  offering:'kyc',cap:null,        fmt:'PDF', size:'1.7 MB',upd:'Feb 2025'},
   // Capabilities
-  { id:33, title:'Unified AI — Capability Overview Deck',    type:'Capability Deck', access:'client',   units:['all'],          sl:null,  cap:'unifiedai', offering:null,   fmt:'PPTX', size:'7.1 MB', upd:'Feb 2025' },
-  { id:34, title:'Generative AI — Solution Brief',           type:'2-Pager',         access:'client',   units:['all'],          sl:null,  cap:'unifiedai', offering:null,   fmt:'PDF',  size:'1.1 MB', upd:'Feb 2025' },
-  { id:35, title:'Unified AI — Product Demo',                type:'Demo',            access:'client',   units:['all'],          sl:null,  cap:'unifiedai', offering:null,   fmt:'MP4',  size:'98 MB',  upd:'Feb 2025' },
-  { id:36, title:'AI Agents — Competitive Battlecard',       type:'Battlecard',      access:'internal', units:['all'],          sl:null,  cap:'agentic',   offering:null,   fmt:'PDF',  size:'2.3 MB', upd:'Feb 2025' },
-  { id:37, title:'Service as Agentic — Introduction Deck',   type:'First Call Deck', access:'client',   units:['all'],          sl:null,  cap:'agentic',   offering:null,   fmt:'PPTX', size:'6.3 MB', upd:'Feb 2025' },
-  { id:38, title:'Data Platform — Capability Overview',      type:'Capability Deck', access:'client',   units:['all'],          sl:null,  cap:'data',      offering:null,   fmt:'PPTX', size:'5.9 MB', upd:'Jan 2025' },
-  { id:39, title:'Digital Operations — Overview Deck',       type:'Capability Deck', access:'client',   units:['all'],          sl:null,  cap:'digitalops', offering:null,  fmt:'PPTX', size:'7.3 MB', upd:'Feb 2025' },
-  { id:40, title:'DSS — Decision Support Services Overview', type:'Capability Deck', access:'client',   units:['all'],          sl:null,  cap:'dss',       offering:null,   fmt:'PPTX', size:'4.8 MB', upd:'Jan 2025' },
-  { id:41, title:'Digital Technology — Platform Deck',       type:'Capability Deck', access:'client',   units:['all'],          sl:null,  cap:'digitaltech',offering:null,  fmt:'PPTX', size:'6.1 MB', upd:'Feb 2025' },
-  { id:42, title:'HR First Call Deck 2025',                  type:'First Call Deck', access:'client',   units:['all'],          sl:'hr',  cap:null,       offering:null,   fmt:'PPTX', size:'4.6 MB', upd:'Jan 2025' },
-  { id:43, title:'HR Battlecard vs ADP / Alight',            type:'Battlecard',      access:'internal', units:['all'],          sl:'hr',  cap:null,       offering:null,   fmt:'PDF',  size:'1.9 MB', upd:'Feb 2025' },
+  {id:42, title:'Unified AI — Capability Overview Deck',           type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'unifiedai', fmt:'PPTX',size:'7.1 MB',upd:'Feb 2025'},
+  {id:43, title:'Generative AI — Solution Brief',                  type:'2-Pager',         access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'unifiedai', fmt:'PDF', size:'1.1 MB',upd:'Feb 2025'},
+  {id:44, title:'Unified AI — Product Demo',                       type:'Demo',            access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'unifiedai', fmt:'MP4', size:'98 MB', upd:'Feb 2025'},
+  {id:45, title:'AI Agents — Competitive Battlecard',              type:'Battlecard',      access:'internal', level:'cap',  units:['all'],          sl:null,  offering:null, cap:'agentic',   fmt:'PDF', size:'2.3 MB',upd:'Feb 2025'},
+  {id:46, title:'Service as Agentic — Introduction Deck',          type:'First Call Deck', access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'agentic',   fmt:'PPTX',size:'6.3 MB',upd:'Feb 2025'},
+  {id:47, title:'Data Platform — Capability Overview',             type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'data',      fmt:'PPTX',size:'5.9 MB',upd:'Jan 2025'},
+  {id:48, title:'Digital Operations — Overview Deck',              type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'digitalops',fmt:'PPTX',size:'7.3 MB',upd:'Feb 2025'},
+  {id:49, title:'DSS — Decision Support Services Overview',        type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'dss',       fmt:'PPTX',size:'4.8 MB',upd:'Jan 2025'},
+  {id:50, title:'Digital Technology — Platform Deck',              type:'Capability Deck', access:'client',   level:'cap',  units:['all'],          sl:null,  offering:null, cap:'digitaltech',fmt:'PPTX',size:'6.1 MB',upd:'Feb 2025'},
 ];
 
-/* ═══════════════════════ STATE ═══════════════════════ */
-let STATE = { unitId: 'lifesciences', view: 'sl' };
-
-/* ═══════════════════════ SVG ICONS ═══════════════════════ */
-const IC = {
-  dollar:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>`,
-  chain:      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>`,
-  headphones: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg>`,
-  users:      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>`,
-  shield:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-  database:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>`,
-  sparkle:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 5.5L19 10l-5.5 1.5L12 17l-1.5-5.5L5 10l5.5-1.5L12 3z"/></svg>`,
-  bot:        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 3v4M8 3h8"/><circle cx="9" cy="16" r="1" fill="currentColor"/><circle cx="15" cy="16" r="1" fill="currentColor"/></svg>`,
-  code:       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
-  lightbulb:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 015.74 11.05L17 15H7l-.74-1.95A7 7 0 0112 2z"/></svg>`,
-  barchart:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
-  server:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`,
-  cog:        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M12 2v2M12 20v2M2 12H4M20 12h2"/></svg>`,
-  deck:       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>`,
-  download:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`,
-  eye:        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
-  play:       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>`,
-  chevdown:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>`,
+/* ═══════════════ FILTER STATE ═══════════════ */
+// Each dimension is independent — AND logic across dimensions
+const F = {
+  unit:'', sl:'', offering:'', cap:'', type:'', access:'', q:'', group:'flat',
 };
 
-const TYPE_BADGE = {
-  'Battlecard':     'b-battlecard',
-  'First Call Deck':'b-firstcall',
-  'Case Study':     'b-casestudy',
-  '2-Pager':        'b-twopager',
-  'Demo':           'b-demo',
-  'Playbook':       'b-playbook',
-  'Win/Loss':       'b-winloss',
-  'Capability Deck':'b-capdeck',
+/* ═══════════════ OPEN STATE (sidebar sections) ═══════════════ */
+const OPEN = { unit:true, sl:true, offering:true, cap:true, type:true, access:true };
+
+/* ═══════════════ FILTER LOGIC ═══════════════ */
+function countFor(updates) {
+  const test = {...F,...updates};
+  return COLLS.filter(c=>matches(c,test)).length;
+}
+
+function matches(c, f=F) {
+  const q = (f.q||'').toLowerCase().trim();
+  if (q && !c.title.toLowerCase().includes(q)) return false;
+  if (f.unit && !c.units.includes('all') && !c.units.includes(f.unit)) return false;
+  if (f.sl   && c.sl !== f.sl) return false;
+  if (f.offering && c.offering !== f.offering) return false;
+  if (f.cap  && c.cap !== f.cap) return false;
+  if (f.type && c.type !== f.type) return false;
+  if (f.access && c.access !== f.access) return false;
+  return true;
+}
+
+function filtered() { return COLLS.filter(c=>matches(c)); }
+
+/* ═══════════════ BADGE CLASSES ═══════════════ */
+const TBADGE = {
+  'Capability Deck':'b-cd','First Call Deck':'b-fc','Battlecard':'b-bc',
+  'Case Study':'b-cs','2-Pager':'b-2p','Demo':'b-dm','Playbook':'b-pb','Win/Loss':'b-wl'
 };
 
-/* ═══════════════════════ COLLATERAL FILTER ═══════════════════════ */
-function getColls({ unitId, sl, cap, offering }) {
-  return COLLS.filter(c => {
-    const uMatch = c.units.includes('all') || c.units.includes(unitId);
-    const slMatch   = c.sl       === (sl       || null);
-    const capMatch  = c.cap      === (cap      || null);
-    const ofMatch   = c.offering === (offering || null);
-    return uMatch && slMatch && capMatch && ofMatch;
-  });
-}
+const LEVEL_LABEL = { unit:'Unit Level', sl:'Service Line', offering:'Offering', cap:'Capability' };
 
-/* ═══════════════════════ RENDER HELPERS ═══════════════════════ */
-function btnIcon(type) {
-  if (type === 'Demo') return IC.play;
-  return IC.eye;
-}
-function btnLabel(type) {
-  return type === 'Demo' ? 'Play' : 'View';
-}
+/* ═══════════════ SVG SNIPPETS ═══════════════ */
+const S = {
+  chev:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>`,
+  eye:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+  play:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>`,
+  dl:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`,
+  x:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
+  flat:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>`,
+  grp:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>`,
+};
 
-function renderCollCard(c) {
-  const typeCls = TYPE_BADGE[c.type] || 'b-capdeck';
-  const accessCls = c.access === 'internal' ? 'b-internal' : 'b-client';
-  const accessLabel = c.access === 'internal' ? 'Internal' : 'Client';
-  return `
-    <div class="coll-card" tabindex="0">
-      <div class="coll-card-top">
-        <div class="coll-badges">
-          <span class="badge ${typeCls}">${c.type}</span>
-          <span class="badge ${accessCls}">${accessLabel}</span>
-        </div>
-      </div>
-      <div class="coll-title">${c.title}</div>
-      <div class="coll-meta">
-        <span>${c.fmt} · ${c.size}</span>
-        <span>Updated ${c.upd}</span>
-      </div>
-      <div class="coll-actions">
-        <button class="coll-btn coll-btn-view">${btnIcon(c.type)} ${btnLabel(c.type)}</button>
-        <button class="coll-btn coll-btn-dl">${IC.download} Download</button>
-      </div>
+/* ═══════════════ RENDER SIDEBAR ═══════════════ */
+function renderSidebar() {
+  const activeOfferings = F.sl ? (SLS.find(s=>s.id===F.sl)||{offerings:[]}).offerings : [];
+
+  function sec(key, label, content) {
+    const open = OPEN[key];
+    return `<div class="filt-section">
+      <button class="filt-toggle ${open?'open':''}" onclick="toggleSec('${key}')">${label}${S.chev}</button>
+      <div class="filt-body ${open?'':'closed'}">${content}</div>
     </div>`;
-}
-
-function renderCollGrid(colls, cls) {
-  if (!colls.length) return `<p class="no-colls">No collaterals available yet for this level.</p>`;
-  return `<div class="${cls}">${colls.map(renderCollCard).join('')}</div>`;
-}
-
-/* ═══════════════════════ RENDER SL VIEW ═══════════════════════ */
-function renderSLView(unitId) {
-  const items = SLS.map(sl => {
-    const slColls = getColls({ unitId, sl: sl.id, cap: null, offering: null });
-    const offeringsHtml = sl.offerings.map(of => {
-      const ofColls = getColls({ unitId, sl: sl.id, cap: null, offering: of.id });
-      return `
-        <div class="offering-item" data-offering="${of.id}">
-          <div class="offering-header" onclick="toggleOffering('${of.id}')">
-            <span class="offering-dot"></span>
-            <span class="offering-name">${of.name}</span>
-            <span class="offering-chev">${IC.chevdown}</span>
-          </div>
-          <div class="offering-body">
-            <div class="offering-body-inner">
-              <p class="offering-desc">${of.desc}</p>
-              <div class="sub-label">Sub-offerings</div>
-              <div class="sub-tags">${of.subs.map(s=>`<span class="sub-tag">${s}</span>`).join('')}</div>
-              <div class="sub-label">Collaterals</div>
-              ${renderCollGrid(ofColls,'offering-colls')}
-            </div>
-          </div>
-        </div>`;
-    }).join('');
-
-    return `
-      <div class="sl-item" data-sl="${sl.id}">
-        <div class="sl-header" onclick="toggleSL('${sl.id}')">
-          <div class="sl-icon" style="background:${sl.bg};color:${sl.color}">${IC[sl.icon]}</div>
-          <div class="sl-header-content">
-            <div class="sl-name">${sl.name}</div>
-            <div class="sl-short-desc">${sl.desc.substring(0,80)}…</div>
-          </div>
-          <div class="sl-header-right">
-            <div class="sl-caps-pills">${sl.caps.map(c=>`<span class="sl-cap-pill">${c}</span>`).join('')}</div>
-            <div class="sl-chevron">${IC.chevdown}</div>
-          </div>
-        </div>
-        <div class="sl-body">
-          <div class="sl-body-inner">
-            <div class="sl-colls-label">SL-Level Collaterals</div>
-            ${renderCollGrid(slColls,'sl-colls')}
-            <div class="offerings-label" style="margin-top:${slColls.length?'20px':'0'}">Offerings</div>
-            <div class="offerings-list">${offeringsHtml}</div>
-          </div>
-        </div>
-      </div>`;
-  }).join('');
-
-  return `<div class="sl-view"><div class="sl-view-inner">${items}</div></div>`;
-}
-
-/* ═══════════════════════ RENDER CAPABILITY VIEW ═══════════════════════ */
-function renderCapView(unitId) {
-  function renderGroup(label, caps) {
-    const items = caps.map(cap => {
-      const colls = getColls({ unitId, sl: null, cap: cap.id, offering: null });
-      return `
-        <div class="cap-item" data-cap="${cap.id}">
-          <div class="cap-header" onclick="toggleCap('${cap.id}')">
-            <div class="cap-icon" style="background:${cap.bg};color:${cap.color}">${IC[cap.icon]}</div>
-            <div class="cap-header-content">
-              <div class="cap-name">${cap.name}</div>
-              <div class="cap-preview">${cap.desc}</div>
-            </div>
-            <div class="cap-chev">${IC.chevdown}</div>
-          </div>
-          <div class="cap-body">
-            <div class="cap-body-inner">
-              <p class="cap-full-desc">${cap.desc}</p>
-              <div class="sub-label">Sub-capabilities</div>
-              <div class="sub-tags" style="margin-bottom:16px">${cap.subs.map(s=>`<span class="sub-tag">${s}</span>`).join('')}</div>
-              <div class="sub-label">Collaterals</div>
-              ${renderCollGrid(colls,'cap-colls')}
-            </div>
-          </div>
-        </div>`;
-    }).join('');
-    return `
-      <div class="cap-group">
-        <div class="cap-group-header">
-          <span class="cap-group-label">${label}</span>
-          <div class="cap-group-line"></div>
-          <span class="cap-group-count">${caps.length} capabilities</span>
-        </div>
-        <div class="cap-grid">${items}</div>
-      </div>`;
   }
 
-  return `
-    <div class="cap-view">
-      <div class="cap-view-inner">
-        ${renderGroup('Advanced Tech', CAPS.advancedTech)}
-        ${renderGroup('Core Business', CAPS.coreBusiness)}
-      </div>
+  function radio(field, val, label, extraClass='') {
+    const cnt = countFor({[field]:val});
+    const sel = F[field]===val;
+    return `<div class="filt-opt" onclick="setFilter('${field}','${val}')">
+      <div class="filt-radio ${sel?'sel':''}"></div>
+      <span class="filt-label">${label}</span>
+      <span class="filt-count">${cnt}</span>
     </div>`;
-}
+  }
 
-/* ═══════════════════════ RENDER APP ═══════════════════════ */
-function renderApp() {
-  const unit = UNITS.find(u => u.id === STATE.unitId);
-  const unitColls = getColls({ unitId: STATE.unitId, sl: null, cap: null, offering: null });
+  function check(field, val, label) {
+    const sel = F[field]===val;
+    const cnt = countFor({[field]:val});
+    return `<div class="filt-opt" onclick="setFilter('${field}',${sel?`''`:`'${val}'`})">
+      <div class="filt-check ${sel?'sel':''}"></div>
+      <span class="filt-label">${label}</span>
+      <span class="filt-count">${cnt}</span>
+    </div>`;
+  }
 
-  const unitTabsHtml = UNITS.map(u => `
-    <button class="unit-tab${u.id === STATE.unitId ? ' active' : ''}" onclick="selectUnit('${u.id}')" role="tab" aria-selected="${u.id===STATE.unitId}">${u.name}</button>
+  const unitOpts = `${radio('unit','','All Units')}` + UNITS.map(u=>radio('unit',u.id,u.name)).join('');
+
+  const slOpts = `${radio('sl','','All Service Lines')}` + SLS.map(s=>radio('sl',s.id,s.name)).join('');
+
+  const ofOpts = activeOfferings.length
+    ? `${radio('offering','','All Offerings')}` + activeOfferings.map(o=>radio('offering',o.id,o.name)).join('')
+    : `<p style="font-size:12px;color:var(--g400);font-style:italic">Select a Service Line first</p>`;
+
+  const capOpts = CAPS.map(g=>`
+    <div class="filt-group-label">${g.group}</div>
+    ${g.items.map(c=>radio('cap',c.id,c.name)).join('')}
   `).join('');
 
-  const viewContent = STATE.view === 'sl'
-    ? renderSLView(STATE.unitId)
-    : renderCapView(STATE.unitId);
+  const typeOpts = TYPES.map(t=>check('type',t,t)).join('');
 
-  document.getElementById('app').innerHTML = `
-    <section class="unit-section">
-      <div class="unit-section-inner">
-        <div class="unit-section-label">Select Unit / Industry Vertical</div>
-        <div class="unit-tabs" role="tablist">${unitTabsHtml}</div>
-      </div>
-    </section>
+  const accOpts = `${radio('access','','All')}${radio('access','client','Client-Facing')}${radio('access','internal','Internal')}`;
 
-    <div class="unit-header">
-      <div class="unit-header-inner">
-        <div class="unit-header-left">
-          <h2 class="unit-name">${unit.name}</h2>
-          <p class="unit-desc">${unit.desc}</p>
-        </div>
-        <div class="unit-deck-card" role="button" tabindex="0">
-          <div class="unit-deck-icon">${IC.deck}</div>
-          <div class="unit-deck-content">
-            <div class="unit-deck-title">${unit.name} — Capability Overview</div>
-            <div class="unit-deck-sub">${unitColls.filter(c=>c.access==='client').length} client · ${unitColls.filter(c=>c.access==='internal').length} internal</div>
-          </div>
-          <div class="unit-deck-btn">${IC.download} Download</div>
-        </div>
-      </div>
+  document.getElementById('sidebar').innerHTML = `
+    <div class="sidebar-head">
+      <span class="sidebar-title">Find Collaterals</span>
+      <button class="btn-reset" onclick="clearAllFilters()">Reset all</button>
     </div>
-
-    <div class="view-toggle-wrap">
-      <div class="view-toggle-inner">
-        <div class="view-toggle" role="tablist" aria-label="View type">
-          <button class="view-btn${STATE.view==='sl' ? ' active':''}" onclick="switchView('sl')" role="tab" aria-selected="${STATE.view==='sl'}">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-            Service Line View
-          </button>
-          <button class="view-btn${STATE.view==='cap' ? ' active':''}" onclick="switchView('cap')" role="tab" aria-selected="${STATE.view==='cap'}">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-            Capability View
-          </button>
-        </div>
-        <span class="view-hint">${STATE.view==='sl' ? 'All capabilities combined by service line' : 'Discrete capability areas — Advanced Tech & Core Business'}</span>
-      </div>
-    </div>
-
-    ${viewContent}
+    ${sec('unit','Unit / Vertical', unitOpts)}
+    ${sec('sl','Service Line', slOpts)}
+    ${sec('offering','Offering', ofOpts)}
+    ${sec('cap','Capability', capOpts)}
+    ${sec('type','Document Type', typeOpts)}
+    ${sec('access','Access Level', accOpts)}
   `;
 }
 
-/* ═══════════════════════ ACTIONS ═══════════════════════ */
-function selectUnit(id) { STATE.unitId = id; renderApp(); }
-function switchView(v)   { STATE.view  = v;  renderApp(); }
-
-function toggleSL(id) {
-  const el = document.querySelector(`[data-sl="${id}"]`);
-  if (!el) return;
-  const wasOpen = el.classList.contains('expanded');
-  document.querySelectorAll('.sl-item.expanded').forEach(e => e.classList.remove('expanded'));
-  if (!wasOpen) el.classList.add('expanded');
+/* ═══════════════ RENDER COLLATERAL CARD ═══════════════ */
+function collCard(c) {
+  const tb = TBADGE[c.type]||'b-cd';
+  const ab = c.access==='internal'?'b-int':'b-cli';
+  const al = c.access==='internal'?'Internal':'Client-Facing';
+  const vIcon = c.type==='Demo'?S.play:S.eye;
+  const vLabel = c.type==='Demo'?'Play':'View';
+  const ll = LEVEL_LABEL[c.level]||'';
+  return `<div class="coll-card" tabindex="0">
+    <div class="coll-top">
+      <div class="coll-badges">
+        <span class="badge ${tb}">${c.type}</span>
+        <span class="badge ${ab}">${al}</span>
+      </div>
+      <span class="coll-level">${ll}</span>
+    </div>
+    <div class="coll-title">${c.title}</div>
+    <div class="coll-meta"><span>${c.fmt} · ${c.size}</span><span>Updated ${c.upd}</span></div>
+    <div class="coll-actions">
+      <button class="coll-btn cv">${vIcon} ${vLabel}</button>
+      <button class="coll-btn cd">${S.dl} Download</button>
+    </div>
+  </div>`;
 }
 
-function toggleOffering(id) {
-  const el = document.querySelector(`[data-offering="${id}"]`);
-  if (!el) return;
-  const wasOpen = el.classList.contains('expanded');
-  const parent = el.closest('.sl-body-inner');
-  if (parent) parent.querySelectorAll('.offering-item.expanded').forEach(e => e.classList.remove('expanded'));
-  if (!wasOpen) el.classList.add('expanded');
+/* ═══════════════ RENDER RESULTS ═══════════════ */
+function renderResults() {
+  const colls = filtered();
+  const hasFilters = F.unit||F.sl||F.offering||F.cap||F.type||F.access||F.q;
+
+  // Active chips
+  const chips = [];
+  if(F.q)        chips.push(`<span class="chip">Search: "${F.q}" <span class="chip-x" onclick="setFilter('q','')">${S.x}</span></span>`);
+  if(F.unit)     chips.push(`<span class="chip chip-unit">${UNITS.find(u=>u.id===F.unit)?.name||F.unit} <span class="chip-x" onclick="setFilter('unit','')">${S.x}</span></span>`);
+  if(F.sl)       chips.push(`<span class="chip chip-sl">${SLS.find(s=>s.id===F.sl)?.name||F.sl} <span class="chip-x" onclick="setFilter('sl','')">${S.x}</span></span>`);
+  if(F.offering) { const of=SLS.flatMap(s=>s.offerings).find(o=>o.id===F.offering); chips.push(`<span class="chip chip-of">${of?.name||F.offering} <span class="chip-x" onclick="setFilter('offering','')">${S.x}</span></span>`); }
+  if(F.cap)      { const cap=CAPS.flatMap(g=>g.items).find(c=>c.id===F.cap); chips.push(`<span class="chip chip-cap">${cap?.name||F.cap} <span class="chip-x" onclick="setFilter('cap','')">${S.x}</span></span>`); }
+  if(F.type)     chips.push(`<span class="chip chip-type">${F.type} <span class="chip-x" onclick="setFilter('type','')">${S.x}</span></span>`);
+  if(F.access)   chips.push(`<span class="chip chip-acc">${F.access==='internal'?'Internal':'Client-Facing'} <span class="chip-x" onclick="setFilter('access','')">${S.x}</span></span>`);
+
+  // Group by SL or Capability
+  let gridHtml;
+  if(F.group==='sl') {
+    const bySL = SLS.map(sl => {
+      const items = colls.filter(c=>c.sl===sl.id);
+      if(!items.length) return '';
+      return `<div class="group-section">
+        <div class="group-header">
+          <div class="group-icon" style="background:${sl.bg};color:${sl.color}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <span class="group-name">${sl.name}</span>
+          <span class="group-cnt">${items.length}</span>
+          <div class="group-line"></div>
+        </div>
+        <div class="card-grid">${items.map(collCard).join('')}</div>
+      </div>`;
+    });
+    const unitLevel = colls.filter(c=>c.level==='unit');
+    const capLevel  = colls.filter(c=>c.level==='cap');
+    const unitSec   = unitLevel.length?`<div class="group-section"><div class="group-header"><span class="group-name">Unit Level</span><span class="group-cnt">${unitLevel.length}</span><div class="group-line"></div></div><div class="card-grid">${unitLevel.map(collCard).join('')}</div></div>`:'';
+    const capSec    = capLevel.length?`<div class="group-section"><div class="group-header"><span class="group-name">Capability Level</span><span class="group-cnt">${capLevel.length}</span><div class="group-line"></div></div><div class="card-grid">${capLevel.map(collCard).join('')}</div></div>`:'';
+    gridHtml = unitSec + bySL.join('') + capSec;
+  } else if(F.group==='cap') {
+    const byCap = CAPS.map(grp => {
+      const grpSec = grp.items.map(cap => {
+        const items = colls.filter(c=>c.cap===cap.id);
+        if(!items.length) return '';
+        return `<div class="group-section">
+          <div class="group-header">
+            <div class="group-icon" style="background:${cap.bg};color:${cap.color}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <span class="group-name">${cap.name}</span>
+            <span class="group-cnt">${items.length}</span>
+            <div class="group-line"></div>
+          </div>
+          <div class="card-grid">${items.map(collCard).join('')}</div>
+        </div>`;
+      }).join('');
+      const nonCap = colls.filter(c=>!c.cap&&grp.items.every(ci=>ci.id!==c.cap));
+      return grpSec;
+    }).join('');
+    const rest = colls.filter(c=>!c.cap);
+    const restSec = rest.length?`<div class="group-section"><div class="group-header"><span class="group-name">Other</span><span class="group-cnt">${rest.length}</span><div class="group-line"></div></div><div class="card-grid">${rest.map(collCard).join('')}</div></div>`:'';
+    gridHtml = byCap + restSec;
+  } else {
+    gridHtml = colls.length
+      ? `<div class="card-grid">${colls.map(collCard).join('')}</div>`
+      : `<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><h3>No collaterals found</h3><p>Try adjusting your filters — you can combine Unit, Service Line, Offering, and Type independently.</p></div>`;
+  }
+
+  document.getElementById('results').innerHTML = `
+    <div class="results-bar">
+      <div class="results-count"><span>${colls.length}</span> collateral${colls.length!==1?'s':''} found</div>
+      <div class="group-toggle" role="group" aria-label="Group by">
+        <button class="grp-btn ${F.group==='flat'?'active':''}" onclick="setGroup('flat')">${S.flat} Flat</button>
+        <button class="grp-btn ${F.group==='sl'?'active':''}" onclick="setGroup('sl')">${S.grp} By SL</button>
+        <button class="grp-btn ${F.group==='cap'?'active':''}" onclick="setGroup('cap')">${S.grp} By Capability</button>
+      </div>
+    </div>
+    ${chips.length?`<div class="active-chips">${chips.join('')}</div>`:''}
+    ${gridHtml}
+  `;
 }
 
-function toggleCap(id) {
-  const el = document.querySelector(`[data-cap="${id}"]`);
-  if (!el) return;
-  const wasOpen = el.classList.contains('expanded');
-  document.querySelectorAll('.cap-item.expanded').forEach(e => e.classList.remove('expanded'));
-  if (!wasOpen) el.classList.add('expanded');
+/* ═══════════════ ACTIONS ═══════════════ */
+function render() { renderSidebar(); renderResults(); }
+
+function setFilter(field, val) {
+  F[field] = val;
+  // If SL changes, clear offering (it's SL-specific)
+  if(field==='sl') F.offering='';
+  // If SL or offering is set, clear capability (mutually exclusive makes sense)
+  if(field==='sl'||field==='offering') { /* allow both, don't clear */ }
+  render();
 }
 
-/* ═══════════════════════ INIT ═══════════════════════ */
-renderApp();
+function setGroup(g) { F.group=g; renderResults(); }
 
-document.getElementById('globalSearch').addEventListener('input', function() {
-  const q = this.value.toLowerCase().trim();
-  if (!q) { document.querySelectorAll('.coll-card').forEach(c=>c.style.opacity='1'); return; }
-  document.querySelectorAll('.coll-card').forEach(c => {
-    c.style.opacity = c.innerText.toLowerCase().includes(q) ? '1' : '0.25';
-  });
+function toggleSec(key) { OPEN[key]=!OPEN[key]; renderSidebar(); }
+
+function clearAllFilters() {
+  F.unit=''; F.sl=''; F.offering=''; F.cap=''; F.type=''; F.access=''; F.q='';
+  document.getElementById('navQ').value='';
+  render();
+  window.scrollTo({top:document.getElementById('sidebar').offsetTop-80,behavior:'smooth'});
+}
+
+/* ═══════════════ SEARCH ═══════════════ */
+let searchTimer;
+document.getElementById('navQ').addEventListener('input', function() {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(()=>{ F.q=this.value.trim(); render(); }, 220);
 });
+
+/* ═══════════════ INIT ═══════════════ */
+render();
 </script>
 </body>
 </html>
